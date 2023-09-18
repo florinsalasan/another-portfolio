@@ -1,4 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+module.exports = {
+  webpack: (config, { isServer }) => {
+    // Check if this is the server build (Node.js environment)
+    if (isServer) {
+      // Ensure that 'fs' module is not bundled on the server side
+      config.externals.push("fs");
+    }
+
+    return config;
+  },
+};
