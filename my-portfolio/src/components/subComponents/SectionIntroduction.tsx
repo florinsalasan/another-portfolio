@@ -6,7 +6,7 @@ interface SectionIntroductionProps {
 
 const SectionIntroduction: React.FC<SectionIntroductionProps> = ({ title }) => {
   return (
-    <div className="flex items-end">
+    <div className="flex items-end mb-16">
       <h2 className="text-5xl font-semibold mb-2">{title} </h2>
       <div className="h-0.5 bg-white w-10 flex-grow ml-5 mb-4"></div>
     </div>

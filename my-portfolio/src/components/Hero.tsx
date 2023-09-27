@@ -21,7 +21,14 @@ const Hero: React.FC = () => {
             className="rounded-full w-32 h-32 mx-auto"
           /> */}
 
-          <Image src="/cnTower.svg" height="0" width="150" alt="CN Tower" />
+          <Image
+            src="/cnTower.svg"
+            alt="CN Tower outline"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "40%", height: "auto" }} // optional
+          />
         </div>
       </div>
     </section>
