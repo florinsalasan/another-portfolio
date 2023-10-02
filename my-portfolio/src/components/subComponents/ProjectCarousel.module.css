@@ -1,0 +1,76 @@
+/* ProjectCarousel.module.css
+
+/* Set the container to use relative positioning */
+/* Set the container to use grid */
+.carousel {
+  display: grid;
+  width: 100%; /* Occupy the full width of the container */
+  display: grid;
+  grid-template-columns: 5% auto 5%; /* Adjust the number of columns as needed */
+  gap: 0.5rem; /* Adjust the gap between cards */
+  align-items: center; /* Center the buttons vertically */
+}
+
+/* Define card styles */
+.card {
+  width: 100%; /* Adjust the card width as needed */
+  text-align: center;
+  transition: transform 0.3s, grid-column 3s linear; /* Add a transition for smoother animations */
+  z-index: 1; /* Default z-index for all cards */
+  grid-row: 1;
+}
+
+/* Center the current card */
+.card.center {
+  transform: scale(
+    1.1
+  ); /* Example: Enlarge the center card for focus any larger and the card gets cutoff in the carousel. */
+  z-index: 2; /* Ensure the center card is on top */
+  grid-column: 2;
+}
+
+/* Move the card to the left when it's on the left */
+.card.left {
+  /* transform: translateX(-100%); Move left card to the left */
+  grid-column: 1;
+}
+
+/* Move the card to the right when it's on the right */
+.card.right {
+  /* transform: translateX(100%); Move right card to the right */
+  grid-column: 3;
+}
+
+/* Hide cards that don't have any positioning classes */
+.card:not(.center):not(.left):not(.right) {
+  display: none;
+}
+
+/* Ensure that the card container expands to fit the content */
+.cardContainer {
+  display: grid;
+  grid-template-columns: 2fr 6fr 2fr;
+  grid-template-rows: 1fr;
+  height: fit-content; /* Allow the container to take up full height */
+  order: 2;
+  align-items: center;
+}
+
+/* Style for the Previous and Next buttons */
+.prevButton,
+.nextButton {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  z-index: 3; /* Ensure the buttons are on top */
+}
+
+.prevButton {
+  order: 1; /* Display the Previous button on the left */
+}
+
+.nextButton {
+  order: 3; /* Display the Next button on the right */
+}

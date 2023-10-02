@@ -1,142 +1,108 @@
-// import React, { useState } from "react";
+// // ProjectCarousel.tsx
+
+// import React, { useState, useEffect } from "react";
+// import styles from "./ProjectCarousel.module.css";
 
 // interface ProjectCarouselProps {
 //   children: React.ReactNode[];
 // }
 
 // const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ children }) => {
+//   const totalCards = children.length;
 //   const [currentCard, setCurrentCard] = useState(0);
 
 //   const nextCard = () => {
-//     const nextIndex = (currentCard + 1) % children.length;
+//     const nextIndex = (currentCard + 1) % totalCards;
 //     setCurrentCard(nextIndex);
 //   };
 
 //   const prevCard = () => {
-//     const prevIndex = (currentCard - 1 + children.length) % children.length;
+//     const prevIndex = (currentCard - 1 + totalCards) % totalCards;
 //     setCurrentCard(prevIndex);
 //   };
 
 //   return (
-//     <div className="relative overflow-hidden">
-//       <div className="flex transition-transform duration-300 ease-in-out transform -translate-x-1/4">
+//     <div className={styles.carousel}>
+//       <button onClick={prevCard} className={styles.prevButton}>
+//         Previous
+//       </button>
+//       <div className={styles.cardContainer}>
 //         {children.map((child, index) => (
 //           <div
 //             key={index}
-//             className={`w-full flex-shrink-0 ${
-//               index === currentCard ? "" : "opacity-50"
+//             className={`${styles.card} ${
+//               index === currentCard
+//                 ? styles.center
+//                 : index === (currentCard + 1) % totalCards
+//                 ? styles.right
+//                 : index === (currentCard - 1 + totalCards) % totalCards
+//                 ? styles.left
+//                 : ""
 //             }`}
 //           >
 //             {child}
 //           </div>
 //         ))}
 //       </div>
-
-//       <button onClick={prevCard}>Previous</button>
-//       <button onClick={nextCard}>Next</button>
+//       <button onClick={nextCard} className={styles.nextButton}>
+//         Next
+//       </button>
 //     </div>
 //   );
 // };
 
 // export default ProjectCarousel;
-
-// import React, { useState } from "react";
-
-// interface ProjectCarouselProps {
-//   children: React.ReactNode[];
-// }
-
-// const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ children }) => {
-//   const [currentCard, setCurrentCard] = useState(0);
-
-//   const nextCard = () => {
-//     const nextIndex = (currentCard + 1) % children.length;
-//     setCurrentCard(nextIndex);
-//   };
-
-//   const prevCard = () => {
-//     const prevIndex = (currentCard - 1 + children.length) % children.length;
-//     setCurrentCard(prevIndex);
-//   };
-
-//   const cardStyle = {
-//     transform: `translateX(-${currentCard * 100}%)`,
-//     transition: "transform 0.3s ease-in-out",
-//   };
-
-//   return (
-//     <div className="relative overflow-hidden">
-//       <div className="flex" style={cardStyle}>
-//         {children.map((child, index) => (
-//           <div
-//             key={index}
-//             className={`w-full flex-shrink-0 ${
-//               index === currentCard ? "" : "opacity-50"
-//             }`}
-//           >
-//             {child}
-//           </div>
-//         ))}
-//       </div>
-
-//       <button onClick={prevCard}>Previous</button>
-//       <button onClick={nextCard}>Next</button>
-//     </div>
-//   );
-// };
-
-// export default ProjectCarousel;
-
 import React, { useState } from "react";
+import styles from "./ProjectCarousel.module.css";
 
 interface ProjectCarouselProps {
   children: React.ReactNode[];
 }
 
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ children }) => {
+  const totalCards = children.length;
   const [currentCard, setCurrentCard] = useState(0);
 
   const nextCard = () => {
-    const nextIndex = (currentCard + 1) % children.length;
+    const nextIndex = (currentCard + 1) % totalCards;
     setCurrentCard(nextIndex);
   };
 
   const prevCard = () => {
-    const prevIndex = (currentCard - 1 + children.length) % children.length;
+    const prevIndex = (currentCard - 1 + totalCards) % totalCards;
     setCurrentCard(prevIndex);
   };
 
-  const cardStyle = {
-    transform: `translateX(-${currentCard * 60}%)`,
-    transition: "transform 0.3s ease-in-out",
-  };
-
-  const getCardStyle = (index: number) => {
-    const zIndex = children.length - Math.abs(currentCard - index);
-    return {
-      zIndex,
-      transform: `scale(${zIndex === children.length ? 1 : 0.9})`,
-    };
-  };
-
   return (
-    <div className="relative overflow-hidden">
-      <div className="flex" style={cardStyle}>
+    <div className={styles.carousel}>
+      <button onClick={prevCard} className={styles.prevButton}>
+        Previous
+      </button>
+
+      {/* Carousel Grid */}
+
+      <div className={styles.cardContainer}>
         {children.map((child, index) => (
           <div
             key={index}
-            className={`w-3/5 flex-shrink-0 ${
-              index === currentCard ? "" : "opacity-50"
+            className={`${styles.card} ${
+              index === currentCard
+                ? styles.center
+                : index === (currentCard + 1) % totalCards
+                ? styles.right
+                : index === (currentCard - 1 + totalCards) % totalCards
+                ? styles.left
+                : ""
             }`}
-            style={getCardStyle(index)}
           >
             {child}
           </div>
         ))}
       </div>
 
-      <button onClick={prevCard}>Previous</button>
-      <button onClick={nextCard}>Next</button>
+      <button onClick={nextCard} className={styles.nextButton}>
+        Next
+      </button>
     </div>
   );
 };
