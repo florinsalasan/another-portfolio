@@ -41,9 +41,9 @@ const Projects: React.FC = () => {
     <section id="projects" className="py-10 bg-blue-500 text-white">
       <div className="container mx-auto">
         {/* <h2 className="text-2xl font-semibold mb-6">Projects</h2> */}
-        <SectionIntroduction title="Projects" />
+        <SectionIntroduction title="Projects" className="text-5xl mb-20" />
         <ProjectCarousel>
-          {fakeProjects.map((project, index) => (
+          {fakeProjects.map((project) => (
             <ProjectCard
               key={uuidv4()} // Generate a unique key using uuid
               title={project.title}

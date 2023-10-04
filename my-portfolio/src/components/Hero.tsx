@@ -3,7 +3,10 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="bg-blue-500 text-white min-h-screen flex items-center">
+    <section
+      id="hero"
+      className="bg-blue-500 text-white min-h-screen flex items-center"
+    >
       <div className="container mx-auto flex justify-between items-center">
         {/* Text on the left (2/3 of the space) */}
         <div className="w-2/3 pr-4">

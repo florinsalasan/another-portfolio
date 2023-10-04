@@ -1,0 +1,15 @@
+/* ProcessStep.module.css */
+
+.content {
+  font-size: 1rem; /* Adjust the font size as needed */
+  line-height: 1.5; /* Adjust the line height as needed */
+  opacity: 0; /* Initially set the opacity to 0 to hide the content */
+  max-height: 0; /* Initially set the max height to 0 to hide the content */
+  overflow: hidden; /* Hide overflowing content */
+  transition: opacity 1s ease-in-out, max-height 1s ease-in; /* Add a transition for smoother animation */
+}
+
+.expanded {
+  opacity: 1; /* When hovering over the step, change opacity to 1 to reveal the content */
+  max-height: 100%; /* When hovering, set max height to 100% to expand the content */
+}
