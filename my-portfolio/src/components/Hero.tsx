@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
         {/* Text on the left (2/3 of the space) */}
         <div className="w-2/3 pr-4">
           <h1 className="text-8xl font-bold mb-2">
-            I'm Florin, <br /> a software developer <br /> based in the GTA
+            {`I'm Florin,`} <br /> a software developer <br /> based in the GTA
           </h1>
           {/* <p className="text-lg mb-4">Web whisperer, tech enjoyer</p> */}
         </div>

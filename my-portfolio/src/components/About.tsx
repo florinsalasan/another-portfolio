@@ -13,11 +13,11 @@ const About: React.FC = () => {
         <SectionIntroduction title="About" className="text-5xl mb-16" />
 
         <p className="text-2xl font-light">
-          I'm currently on the lookout for new opportunities in the world of
+          {`I'm currently on the lookout for new opportunities in the world of
           software development. When I'm not coding, you can often find me
           immersed in the highs and lows of being a devoted Leafs fan. I'm also
           a sushi and shawarma enthusiast, constantly on a quest to discover the
-          best spots in town.
+          best spots in town.`}
         </p>
       </div>
     </section>

@@ -3,11 +3,12 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-blue-500 text-white p-4 hidden">
+    <header className="bg-blue-500 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Left side: Website name */}
-        <h1>Florin / Salasan</h1>
+        <h2>Florin / Salasan</h2>
 
+        <p className="bg-red-500">Still under construction!</p>
         {/* Right side: Navigation links */}
         <nav>
           <ul className="flex space-x-4">
