@@ -14,6 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Head */}
       <Head>
         <title>Florin / Salasan</title>
+        <link rel="canonical" href="https://www.florinsalasan.dev" />
       </Head>
 
       {/* Header */}
