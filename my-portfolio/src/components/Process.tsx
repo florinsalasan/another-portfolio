@@ -43,6 +43,9 @@ const Process: React.FC = () => {
           ))}
         </div>
       </div>
+      <button className="bg-yellow-500 text-black rounded-full px-6 py-2 mt-4">
+        Contact Me!
+      </button>
     </section>
   );
 };

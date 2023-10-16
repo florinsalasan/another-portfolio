@@ -1,0 +1,44 @@
+/* Header.module.css */
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Initially off-screen to the right */
+  width: 100%; /* Adjust width as needed */
+  height: 100%;
+  background-color: black;
+  transition: right 0.3s ease-in-out; /* Use transition to animate the right property */
+  z-index: 10;
+}
+
+.open {
+  right: 0; /* Slide in from the right when open */
+}
+
+.mobileMenu button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.mobileMenu li {
+  padding: 32px 0; /* Adjust the padding to increase vertical spacing */
+}
+/* Adjust any other styles as needed */
+
+.stickyPlaceholder {
+  height: 64px; /* Adjust this to match the header's height */
+}
+
+.stickyCustom {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
