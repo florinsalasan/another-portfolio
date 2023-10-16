@@ -5,7 +5,6 @@ import SectionIntroduction from "./SectionIntroduction";
 interface ProcessStepProps {
   title: string;
   content: string;
-  customStyle?: string;
 }
 
 const ProcessStep: React.FC<ProcessStepProps> = ({ title, content }) => {
@@ -13,7 +12,6 @@ const ProcessStep: React.FC<ProcessStepProps> = ({ title, content }) => {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    console.log(styles);
   };
 
   const handleMouseLeave = () => {
