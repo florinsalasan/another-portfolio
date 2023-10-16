@@ -76,8 +76,9 @@ const Header: React.FC = () => {
       >
         <div className="container mx-auto flex justify-between items-center">
           {/* Left side: Website name */}
-          <h2>Florin / Salasan</h2>
-
+          <Link href="#hero">
+            <h2>Florin / Salasan</h2>
+          </Link>
           {/* Right side: Mobile menu icon */}
           <div className="lg:hidden">
             <button
@@ -92,18 +93,18 @@ const Header: React.FC = () => {
           <nav className="hidden lg:flex">
             <ul className="flex space-x-4">
               <li>
-                <Link href="/page1">
+                <Link href="#about">
                   <div className="text-white hover:underline">About</div>
                 </Link>
               </li>
               <li>
-                <Link href="/page2">
+                <Link href="#projects">
                   <div className="text-white hover:underline">Projects</div>
                 </Link>
               </li>
               <li>
-                <Link href="/page3">
-                  <div className="text-white hover:underline">Contact</div>
+                <Link href="#process">
+                  <div className="text-white hover:underline">Process</div>
                 </Link>
               </li>
             </ul>
@@ -125,18 +126,18 @@ const Header: React.FC = () => {
             </button>
             <ul className="pt-16 pb-8 text-2xl text-center">
               <li>
-                <Link href="/page1">
+                <Link href="#about">
                   <div className="text-white hover:underline">About</div>
                 </Link>
               </li>
               <li>
-                <Link href="/page2">
+                <Link href="#projects">
                   <div className="text-white hover:underline">Projects</div>
                 </Link>
               </li>
               <li>
-                <Link href="/page3">
-                  <div className="text-white hover:underline">Contact</div>
+                <Link href="#process">
+                  <div className="text-white hover:underline">Process</div>
                 </Link>
               </li>
             </ul>

@@ -31,7 +31,7 @@ const Process: React.FC = () => {
   return (
     <section id="process" className="py-10 bg-blue-500 text-white">
       <div className="container mx-auto">
-        <SectionIntroduction title="Process" className="text-5xl mb-16" />
+        <SectionIntroduction title="Process" type="title" />
         <div className="processContainer ml-[30%]">
           {ProcessSteps.map((step) => (
             <ProcessStep

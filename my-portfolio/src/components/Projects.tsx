@@ -41,7 +41,7 @@ const Projects: React.FC = () => {
     <section id="projects" className="py-10 bg-blue-500 text-white">
       <div className="container mx-auto">
         {/* <h2 className="text-2xl font-semibold mb-6">Projects</h2> */}
-        <SectionIntroduction title="Projects" className="text-5xl mb-20" />
+        <SectionIntroduction title="Projects" type="title" />
         <ProjectCarousel>
           {fakeProjects.map((project) => (
             <ProjectCard

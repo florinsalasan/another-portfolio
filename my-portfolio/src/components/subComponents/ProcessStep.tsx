@@ -8,11 +8,7 @@ interface ProcessStepProps {
   customStyle?: string;
 }
 
-const ProcessStep: React.FC<ProcessStepProps> = ({
-  title,
-  customStyle,
-  content,
-}) => {
+const ProcessStep: React.FC<ProcessStepProps> = ({ title, content }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -30,7 +26,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <SectionIntroduction title={title} className={customStyle} />
+      <SectionIntroduction title={title} type="subtitle" />
       <p
         className={`mb-4 ml-16 ${styles.content} ${
           isHovered ? styles.expanded : ""
