@@ -50,7 +50,7 @@ const Hero = () => {
       className="bg-blue-500 text-white text-center min-h-screen flex flex-col justify-center"
     >
       <h1 className="text-3xl font-bold">Hello, I&apos;m Florin</h1>
-      <p className="text-xl">a software developer based in the GTA</p>
+      <p className="text-2xl">a software developer based in the GTA</p>
       <div className=" mx-auto mt-6">
         <Image
           src={"/cnTower.svg"}

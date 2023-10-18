@@ -52,6 +52,20 @@ const Header: React.FC = () => {
     setMobileMenuOpen(false);
   };
 
+  function scrollToSection(id: string) {
+    if (mobileMenuOpen) {
+      closeMobileMenu();
+    }
+
+    event?.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       const heroSection = document.getElementById("hero");
@@ -68,7 +82,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <div className={`${styles.stickyPlaceholder}`}>
+    <div id="top" className={`${styles.stickyPlaceholder}`}>
       <header
         className={`bg-blue-500 text-white p-4 h-[64px] ${
           isSticky ? styles.stickyCustom : ""
@@ -76,9 +90,10 @@ const Header: React.FC = () => {
       >
         <div className="container mx-auto flex justify-between items-center">
           {/* Left side: Website name */}
-          <Link href="#hero">
+          <a href="#" onClick={() => scrollToSection("top")}>
             <h2>Florin / Salasan</h2>
-          </Link>
+          </a>
+
           {/* Right side: Mobile menu icon */}
           <div className="lg:hidden">
             <button
@@ -93,19 +108,19 @@ const Header: React.FC = () => {
           <nav className="hidden lg:flex">
             <ul className="flex space-x-4">
               <li>
-                <Link href="#about">
-                  <div className="text-white hover:underline">About</div>
-                </Link>
+                <a href="#" onClick={() => scrollToSection("about")}>
+                  About
+                </a>
               </li>
               <li>
-                <Link href="#projects">
-                  <div className="text-white hover:underline">Projects</div>
-                </Link>
+                <a href="#" onClick={() => scrollToSection("projects")}>
+                  Projects
+                </a>
               </li>
               <li>
-                <Link href="#process">
-                  <div className="text-white hover:underline">Process</div>
-                </Link>
+                <a href="#" onClick={() => scrollToSection("process")}>
+                  Process
+                </a>
               </li>
             </ul>
           </nav>
@@ -126,19 +141,19 @@ const Header: React.FC = () => {
             </button>
             <ul className="pt-16 pb-8 text-2xl text-center">
               <li>
-                <Link href="#about">
-                  <div className="text-white hover:underline">About</div>
-                </Link>
+                <a href="#" onClick={() => scrollToSection("about")}>
+                  About
+                </a>
               </li>
               <li>
-                <Link href="#projects">
-                  <div className="text-white hover:underline">Projects</div>
-                </Link>
+                <a href="#" onClick={() => scrollToSection("projects")}>
+                  Projects
+                </a>
               </li>
               <li>
-                <Link href="#process">
-                  <div className="text-white hover:underline">Process</div>
-                </Link>
+                <a href="#" onClick={() => scrollToSection("process")}>
+                  Process
+                </a>
               </li>
             </ul>
           </div>

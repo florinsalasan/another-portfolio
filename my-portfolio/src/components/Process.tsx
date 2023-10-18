@@ -51,10 +51,10 @@ const ProcessSteps = [
 // };
 const Process: React.FC = () => {
   return (
-    <section id="process" className="py-10 bg-blue-500 text-white">
+    <section id="process" className="pt-10 bg-blue-500 text-white">
       <div className="container mx-auto">
         <SectionIntroduction title="Process" type="title" />
-        <div className="processContainer ml-[10%] md:ml-[20%] lg:ml-[30%]">
+        <div className="processContainer ml-[10%] md:ml-[20%] lg:ml-[25%]">
           {ProcessSteps.map((step) => (
             <ProcessStep
               key={uuidv4()}

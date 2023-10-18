@@ -3,7 +3,7 @@ import SectionIntroduction from "./subComponents/SectionIntroduction";
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="bg-blue-500 text-white py-10">
+    <section id="about" className="bg-blue-500 text-white pt-10">
       <div className="container mx-auto">
         {/* <div className="flex items-end">
           <h2 className="text-5xl font-semibold mb-2">About </h2>
@@ -21,7 +21,7 @@ const About: React.FC = () => {
           best spots in town.`}
         </p> */}
 
-        <div className="text-2xl font-light p-4">
+        <div className="text-xl p-6">
           <p className="mb-4">
             {`I'm currently on the lookout for new opportunities in the world of software development.`}
           </p>

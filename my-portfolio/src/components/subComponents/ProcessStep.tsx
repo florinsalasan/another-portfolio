@@ -26,7 +26,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({ title, content }) => {
     >
       <SectionIntroduction title={title} type="subtitle" />
       <p
-        className={`mb-4 ml-16 ${styles.content} ${
+        className={`mb-4 ml-10 md:mr-2 lg:mr-4 ${styles.content} ${
           isHovered ? styles.expanded : ""
         }`}
       >

@@ -30,7 +30,7 @@ const SectionIntroduction: React.FC<SectionIntroductionProps> = ({
   type,
 }) => {
   return (
-    <div className={`flex items-center mx-2 ${type === "subtitle" ? "" : ""}`}>
+    <div className={`flex items-center mx-2 ${type === "subtitle" ? "" : ""} `}>
       <h3
         className={
           type === "title"
