@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "@/components/Layout";
-// import Projects from "@/components/Projects";
+import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import Hero from "@/components/Hero";
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
     <Layout>
       <Hero />
       <About />
-      {/* <Projects /> */}
+      <Projects />
       <Process />
     </Layout>
   );

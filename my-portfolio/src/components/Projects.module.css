@@ -1,0 +1,34 @@
+/* Projects.module.css */
+
+.projectCard {
+  display: none;
+}
+
+.projectCard.active {
+  display: block;
+}
+
+.carouselButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigationDots {
+  display: flex;
+  gap: 8px; /* Adjust the gap between dots as needed */
+}
+
+/* Style for the navigation dots */
+.navigationDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #333; /* Change the background color as needed */
+  cursor: pointer;
+}
+
+/* Style for the active navigation dot */
+.navigationDot.active {
+  background: #0070f3; /* Change the active dot's background color */
+}
