@@ -121,118 +121,86 @@ const fakeProjects = [
 const Projects: React.FC = () => {
   const [currentCard, setCurrentCard] = useState(0);
 
+  // const nextCard = () => {
+  //   setCurrentCard((currentCard + 1) % fakeProjects.length);
+  // };
+
+  // const prevCard = () => {
+  //   setCurrentCard(
+  //     (currentCard - 1 + fakeProjects.length) % fakeProjects.length
+  //   );
+  // };
   const nextCard = () => {
-    setCurrentCard((currentCard + 1) % fakeProjects.length);
+    // Add animation classes for the "Next" direction
+    const nextCardIndex = (currentCard + 1) % fakeProjects.length;
+    // Update the current card index
+    setCurrentCard(nextCardIndex);
   };
 
   const prevCard = () => {
-    setCurrentCard(
-      (currentCard - 1 + fakeProjects.length) % fakeProjects.length
-    );
+    // Add animation classes for the "Previous" direction
+    const prevCardIndex =
+      (currentCard - 1 + fakeProjects.length) % fakeProjects.length;
+    setCurrentCard(prevCardIndex);
   };
 
   const goToCard = (index: number) => {
     setCurrentCard(index);
-
-    // Calculate the new scrollLeft value based on the index and container's clientWidth
-    const container = containerRef.current;
-    if (container) {
-      const newScrollLeft = index * container.clientWidth;
-      container.scrollLeft = newScrollLeft;
-    }
-  };
-
-  const containerRef = useRef<HTMLDivElement | null>(null); // Specify the ref type
-  const [scrollThreshold, setScrollThreshold] = useState(350); // Adjust the threshold value as needed
-
-  const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const scrollLeft = container.scrollLeft;
-    const scrollDirection = e.deltaY > 0 ? "right" : "left";
-
-    const cardWidth = container.clientWidth; // Width of each card
-    const newPosition = scrollLeft + e.deltaY;
-
-    if (scrollDirection === "right" && scrollLeft > 0) {
-      if (newPosition <= scrollThreshold) {
-        // Scroll less than threshold, don't change the card yet
-        container.scrollLeft = 0; // Reset scroll position
-      } else {
-        // Change the card
-        setCurrentCard(
-          (currentCard - 1 + fakeProjects.length) % fakeProjects.length
-        );
-        container.scrollLeft = cardWidth - newPosition; // Adjust scroll position
-      }
-    } else if (
-      scrollDirection === "left" &&
-      scrollLeft < container.scrollWidth
-    ) {
-      if (cardWidth - newPosition <= scrollThreshold) {
-        // Scroll less than threshold, don't change the card yet
-        container.scrollLeft = cardWidth; // Reset scroll position
-      } else {
-        // Change the card
-        setCurrentCard((currentCard + 1) % fakeProjects.length);
-        container.scrollLeft = newPosition - cardWidth; // Adjust scroll position
-      }
-    }
   };
 
   return (
-    <section
-      id="projects"
-      className="py-10 bg-blue-500 text-white"
-      onWheel={handleScroll}
-    >
+    <section id="projects" className="py-10 bg-blue-500 text-white">
       <div className="container mx-auto">
         <SectionIntroduction title="Projects" type="title" />
-        <div
-          className="relative"
-          onWheel={handleScroll}
-          ref={containerRef}
-          style={{ overflowX: "scroll", scrollBehavior: "smooth" }}
-        >
-          <div className="carouselContainer">
-            {fakeProjects.map((project, index) => (
-              <div
-                key={uuidv4()}
-                className={`${styles.projectCard} ${
-                  index === currentCard ? `${styles.active}` : ""
-                }`}
-              >
-                <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  technologies={project.technologies}
-                  imageSrc={project.imageSrc}
-                  link={project.link}
-                />
-              </div>
-            ))}
-          </div>
+
+        <div className={`${styles.carouselContainer} p-6  `}>
+          {fakeProjects.map((project, index) => (
+            <div
+              key={uuidv4()}
+              className={`${styles.projectCard} ${
+                index === currentCard ? `${styles.active}` : ""
+              } ${
+                index ===
+                (currentCard - 1 + fakeProjects.length) % fakeProjects.length
+                  ? `${styles.left}`
+                  : ""
+              } ${
+                index === (currentCard + 1) % fakeProjects.length
+                  ? `${styles.right}`
+                  : ""
+              }`}
+            >
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                technologies={project.technologies}
+                imageSrc={project.imageSrc}
+                link={project.link}
+              />
+            </div>
+          ))}
         </div>
-        <div className={`${styles.carouselButtons}`}>
-          <button className="prev" onClick={prevCard}>
-            Previous
-          </button>
-          <div className={`${styles.navigationDots}`}>
-            {fakeProjects.map((_, index) => (
-              <span
-                key={index}
-                className={`${styles.navigationDot} ${
-                  index === currentCard ? "active" : ""
-                }`}
-                onClick={() => goToCard(index)}
-              ></span>
-            ))}
-          </div>
-          <button className="next" onClick={nextCard}>
-            Next
-          </button>
+      </div>
+      <div className={`${styles.carouselButtons}`}>
+        <button className="prev" onClick={prevCard}>
+          <span className={`p-6 ${styles.caret}`}>&#9664;</span>{" "}
+          {/* Unicode for left-pointing caret */}
+        </button>
+        <div className={`${styles.navigationDots}`}>
+          {fakeProjects.map((_, index) => (
+            <span
+              key={index}
+              className={`${styles.navigationDot} ${
+                index === currentCard ? `${styles.active}` : ""
+              }`}
+              onClick={() => goToCard(index)}
+            ></span>
+          ))}
         </div>
+        <button className="next" onClick={nextCard}>
+          <span className={`p-6 ${styles.caret}`}>&#9654;</span>{" "}
+          {/* Unicode for right-pointing caret */}
+        </button>
       </div>
     </section>
   );

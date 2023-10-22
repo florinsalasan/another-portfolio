@@ -1,6 +1,26 @@
 /* Projects.module.css */
 
 .projectCard {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.left {
+  transform: scale(0.9);
+  display: none;
+}
+
+.right {
+  transform: scale(0.9);
+  display: none;
+}
+
+.projectCard:not(.active):not(.left):not(.right) {
   display: none;
 }
 
@@ -16,7 +36,7 @@
 
 .navigationDots {
   display: flex;
-  gap: 8px; /* Adjust the gap between dots as needed */
+  gap: 12px; /* Adjust the gap between dots as needed */
 }
 
 /* Style for the navigation dots */
@@ -24,11 +44,26 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
+  border: 1px solid white;
   background: #333; /* Change the background color as needed */
   cursor: pointer;
+  /* padding-left: 5px; */
+  margin-top: 1px;
 }
 
 /* Style for the active navigation dot */
 .navigationDot.active {
-  background: #0070f3; /* Change the active dot's background color */
+  background: white; /* Change the active dot's background color */
+  box-shadow: 0 0 0px 2px white;
 }
+
+.caret {
+  /* color: #333; Change the color as needed */
+  font-size: 24px; /* Change the font size as needed */
+  /* border: 1px solid #333; Add a border */
+  /* padding: 4px 8px; Adjust padding as needed for spacing */
+  /* border-radius: 50%; Create a circular shape */
+}
+
+/* Define CSS animations for sliding in and out */
+/* Keyframes for sliding in from the left */
