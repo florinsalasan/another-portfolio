@@ -15,6 +15,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Head>
         <title>Florin / Salasan</title>
         <link rel="canonical" href="https://www.florinsalasan.dev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="I'm Florin, a software developer in the GTA, come explore some of my work!"
+        />
       </Head>
 
       {/* Header */}

@@ -9,15 +9,10 @@ import "tailwindcss/tailwind.css";
 const Home: React.FC = () => {
   return (
     <Layout>
-      <div>
-        <Hero />
-        {/* <h1>Welcome to Your Website</h1> */}
-        <About />
-        <Projects />
-        <Process />
-      </div>
-
-      {/* Add your page content here */}
+      <Hero />
+      <About />
+      <Projects />
+      <Process />
     </Layout>
   );
 };

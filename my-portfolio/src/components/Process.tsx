@@ -27,22 +27,47 @@ const ProcessSteps = [
   // Add more project data as needed
 ];
 
+// const Process: React.FC = () => {
+//   return (
+//     <section id="process" className="py-10 bg-blue-500 text-white">
+//       <div className="container mx-auto">
+//         <SectionIntroduction title="Process" type="title" />
+//         <div className="processContainer ml-[30%]">
+//           {ProcessSteps.map((step) => (
+//             <ProcessStep
+//               key={uuidv4()}
+//               title={step.heading}
+//               content={step.content}
+//               customStyle="mb-8 mt-8 text-3xl font-normal" // Apply custom styles for this instance
+//             ></ProcessStep>
+//           ))}
+//         </div>
+//       </div>
+//       <button className="bg-yellow-500 text-black rounded-full px-6 py-2 mt-4">
+//         Contact Me!
+//       </button>
+//     </section>
+//   );
+// };
 const Process: React.FC = () => {
   return (
-    <section id="process" className="py-10 bg-blue-500 text-white">
+    <section id="process" className="pt-10 bg-blue-500 text-white">
       <div className="container mx-auto">
-        <SectionIntroduction title="Process" className="text-5xl mb-16" />
-        <div className="processContainer ml-[30%]">
+        <SectionIntroduction title="Process" type="title" />
+        <div className="processContainer ml-[10%] md:ml-[20%] lg:ml-[25%]">
           {ProcessSteps.map((step) => (
             <ProcessStep
               key={uuidv4()}
               title={step.heading}
               content={step.content}
-              customStyle="mb-8 mt-8 text-3xl font-normal" // Apply custom styles for this instance
+              // Apply relevant styling directly in the ProcessStep component
             ></ProcessStep>
           ))}
         </div>
       </div>
+      <button className="bg-yellow-500 text-black rounded-full px-6 py-2 mt-4">
+        Contact Me!
+      </button>
     </section>
   );
 };

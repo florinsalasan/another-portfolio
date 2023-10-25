@@ -1,0 +1,305 @@
+/* Projects.module.css */
+
+/* .projectCard {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  width: 100%;
+} */
+
+/* .active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.left {
+  transform: scale(0.9);
+}
+
+.right {
+  transform: scale(0.9);
+} */
+
+/* .projectCard:not(.active):not(.left):not(.right) {
+  display: none;
+} */
+
+/* Keyframes for animations */
+@keyframes moveOffScreenFromLeftKF {
+  /* Define animation steps for moving off-screen from left */
+  0% {
+    transform: translateX(-40%) scale(0.8);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(-200%) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes moveOffScreenFromRightKF {
+  /* Define animation steps for moving off-screen from right */
+  0% {
+    transform: translateX(40%) scale(0.8);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(200%) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes moveMiddleFromLeftKF {
+  /* Define animation steps for moving to the middle from left */
+  0% {
+    transform: translateX(-40%) scale(0.8);
+    opacity: 1;
+    z-index: 10;
+  }
+  25% {
+    opacity: 1;
+    z-index: 10;
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+@keyframes moveMiddleFromRightKF {
+  /* Define animation steps for moving to the middle from right*/
+  0% {
+    transform: translateX(40%) scale(0.8);
+    opacity: 1;
+    z-index: 10;
+  }
+  25% {
+    z-index: 10;
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+@keyframes moveLeftFromMiddleKF {
+  /* Define animation steps for moving to the left from the middle */
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 2;
+  }
+
+  100% {
+    transform: translatex(-40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 2;
+  }
+}
+
+@keyframes moveRightFromMiddleKF {
+  /* Define animation steps for moving to the right from the middle */
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translatex(40%) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+@keyframes moveLeftFromOffScreenKF {
+  /* Define animation steps for moving to the left from offScreen */
+  0% {
+    transform: translateX(-200%) scale(0.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translatex(-40%) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+@keyframes moveRightFromOffScreenKF {
+  /* Define animation steps for moving to the right from offScreen */
+  0% {
+    transform: translateX(200%) scale(0.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translatex(40%) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+/* CSS classes for animation control */
+.moveOffScreenFromLeft {
+  z-index: 2;
+  animation: 0.4s ease 0s moveOffScreenFromLeftKF;
+}
+
+.moveOffScreenFromRight {
+  z-index: 2;
+  animation: 0.4s ease 0s moveOffScreenFromRightKF;
+}
+
+.moveMiddleFromLeft {
+  z-index: 10;
+  animation: 0.4s ease 0s moveMiddleFromLeftKF;
+}
+
+.moveMiddleFromRight {
+  z-index: 10;
+  animation: 0.4s ease 0s moveMiddleFromRightKF;
+}
+
+.moveLeftFromMiddle {
+  z-index: 2;
+  animation: 0.4s ease 0s moveLeftFromMiddleKF;
+}
+
+.moveRightFromMiddle {
+  z-index: 2;
+  animation: 0.4s ease 0s moveRightFromMiddleKF;
+}
+
+.moveLeftFromOffScreen {
+  animation: 0.4s ease 0s moveLeftFromOffScreenKF;
+}
+
+.moveRightFromOffScreen {
+  z-index: 1;
+  animation: 0.4s ease 0s moveRightFromOffScreenKF;
+}
+
+.carouselButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigationDots {
+  display: flex;
+  gap: 12px; /* Adjust the gap between dots as needed */
+}
+
+/* Style for the navigation dots */
+.navigationDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background: #333; /* Change the background color as needed */
+  /* cursor: pointer; */
+  margin-top: 1px;
+}
+
+/* Style for the active navigation dot */
+.navigationDot.active {
+  background: white; /* Change the active dot's background color */
+  box-shadow: 0 0 0px 2px white;
+}
+
+.caret {
+  font-size: 24px; /* Change the font size as needed */
+}
+
+.radioButton {
+  display: none;
+}
+
+/* CODEPEN STYLING STARTS HERE AND BELOW */
+
+.projectCard {
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.carouselContainer {
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* margin-bottom: 20px; */
+  min-height: 50vh;
+}
+
+.active {
+  /* transform: translatex(0) scale(1); */
+  opacity: 1;
+  z-index: 1;
+
+  /* img {
+    box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+  } */
+}
+
+.left {
+  transform: translatex(-40%) scale(0.8);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.right {
+  transform: translatex(40%) scale(0.8);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.offRight {
+  opacity: 0;
+}
+
+.offLeft {
+  opacity: 0;
+}
+
+/* #item-1:checked ~ .cards #song-3,
+#item-2:checked ~ .cards #song-1,
+#item-3:checked ~ .cards #song-2 {
+  transform: translatex(-40%) scale(0.8);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+#item-1:checked ~ .cards #song-2,
+#item-2:checked ~ .cards #song-3,
+#item-3:checked ~ .cards #song-1 {
+  transform: translatex(40%) scale(0.8);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+#item-1:checked ~ .cards #song-1,
+#item-2:checked ~ .cards #song-2,
+#item-3:checked ~ .cards #song-3 {
+  transform: translatex(0) scale(1);
+  opacity: 1;
+  z-index: 1;
+
+  img {
+    box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+  }
+} */
