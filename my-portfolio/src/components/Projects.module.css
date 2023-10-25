@@ -23,43 +23,99 @@
 } */
 
 /* Keyframes for animations */
-@keyframes moveLeftKF {
-  /* Define animation steps for moving from off-screen left */
+@keyframes moveOffScreenFromLeftKF {
+  /* Define animation steps for moving off-screen from left */
   0% {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateX(-40%) scale(0.8);
+    opacity: 0.4;
   }
   100% {
-    transform: translateX(-200%); /* Move off-screen to the left */
-    opacity: 0.4; /* Adjust opacity as needed */
+    transform: translateX(-200%) scale(0.2);
+    opacity: 0;
   }
 }
 
-@keyframes moveRightKF {
-  /* Define animation steps for moving from off-screen right */
+@keyframes moveOffScreenFromRightKF {
+  /* Define animation steps for moving off-screen from right */
   0% {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateX(40%) scale(0.8);
+    opacity: 0.4;
   }
   100% {
-    transform: translateX(200%); /* Move off-screen to the right */
-    opacity: 0.4; /* Adjust opacity as needed */
+    transform: translateX(200%) scale(0.2);
+    opacity: 0;
   }
 }
 
 @keyframes moveMiddleFromLeftKF {
-  /* Define animation steps for moving from left to the middle */
+  /* Define animation steps for moving to the middle from left */
+  0% {
+    transform: translateX(-40%) scale(0.8);
+    opacity: 1;
+    z-index: 10;
+  }
+  25% {
+    opacity: 1;
+    z-index: 10;
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+    z-index: 10;
+  }
 }
 
 @keyframes moveMiddleFromRightKF {
-  /* Define animation steps for moving from right to the middle */
+  /* Define animation steps for moving to the middle from right*/
+  0% {
+    transform: translateX(40%) scale(0.8);
+    opacity: 1;
+    z-index: 10;
+  }
+  25% {
+    z-index: 10;
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+    z-index: 10;
+  }
 }
 
 @keyframes moveLeftFromMiddleKF {
-  /* Define animation steps for moving from the middle to the left */
+  /* Define animation steps for moving to the left from the middle */
   0% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
     opacity: 1;
+    z-index: 2;
+  }
+
+  100% {
+    transform: translatex(-40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 2;
+  }
+}
+
+@keyframes moveRightFromMiddleKF {
+  /* Define animation steps for moving to the right from the middle */
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translatex(40%) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+@keyframes moveLeftFromOffScreenKF {
+  /* Define animation steps for moving to the left from offScreen */
+  0% {
+    transform: translateX(-200%) scale(0.2);
+    opacity: 0;
   }
 
   100% {
@@ -68,39 +124,57 @@
   }
 }
 
-@keyframes moveRightFromMiddleKF {
-  /* Define animation steps for moving from the middle to the right */
+@keyframes moveRightFromOffScreenKF {
+  /* Define animation steps for moving to the right from offScreen */
+  0% {
+    transform: translateX(200%) scale(0.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translatex(40%) scale(0.8);
+    opacity: 0.4;
+  }
 }
 
 /* CSS classes for animation control */
-.moveLeft {
+.moveOffScreenFromLeft {
   z-index: 2;
-  animation: 0.4s ease 0s moveLeftKF;
+  animation: 0.4s ease 0s moveOffScreenFromLeftKF;
 }
 
-.moveRight {
+.moveOffScreenFromRight {
   z-index: 2;
-  animation: moveRightKF 0.4s ease forwards;
+  animation: 0.4s ease 0s moveOffScreenFromRightKF;
 }
 
 .moveMiddleFromLeft {
   z-index: 10;
-  animation: moveMiddleFromLeftKF 0.4s ease forwards;
+  animation: 0.4s ease 0s moveMiddleFromLeftKF;
 }
 
 .moveMiddleFromRight {
   z-index: 10;
-  animation: moveMiddleFromRightKF 0.4s ease forwards;
+  animation: 0.4s ease 0s moveMiddleFromRightKF;
 }
 
 .moveLeftFromMiddle {
   z-index: 2;
-  animation: moveLeftFromMiddleKF 0.4s ease forwards;
+  animation: 0.4s ease 0s moveLeftFromMiddleKF;
 }
 
 .moveRightFromMiddle {
   z-index: 2;
-  animation: moveRightFromMiddleKF 0.4s ease forwards;
+  animation: 0.4s ease 0s moveRightFromMiddleKF;
+}
+
+.moveLeftFromOffScreen {
+  animation: 0.4s ease 0s moveLeftFromOffScreenKF;
+}
+
+.moveRightFromOffScreen {
+  z-index: 1;
+  animation: 0.4s ease 0s moveRightFromOffScreenKF;
 }
 
 .carouselButtons {
@@ -121,7 +195,7 @@
   border-radius: 50%;
   border: 1px solid white;
   background: #333; /* Change the background color as needed */
-  cursor: pointer;
+  /* cursor: pointer; */
   margin-top: 1px;
 }
 

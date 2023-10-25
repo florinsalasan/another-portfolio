@@ -52,11 +52,11 @@ const Projects: React.FC = () => {
 
   const nextCard = () => {
     const cards = document.querySelectorAll(`.${styles.projectCard}`);
-    const currentCardIndex = currentCard;
-    const prevCardIndex = getPrevIndex(currentCard);
-    const nextCardIndex = getNextIndex(currentCard);
-    const prevReplaceCardIndex = getPrevReplaceIndex(currentCard);
-    const nextReplaceCardIndex = getNextReplaceIndex(currentCard);
+    const currentCardIndex = currentCard; // active card
+    const prevCardIndex = getPrevIndex(currentCard); // left card
+    const nextCardIndex = getNextIndex(currentCard); // right card
+    const prevReplaceCardIndex = getPrevReplaceIndex(currentCard); // offLeft card
+    const nextReplaceCardIndex = getNextReplaceIndex(currentCard); // offRight card
 
     if (
       (currentCardIndex || currentCardIndex === 0) && // active card
@@ -66,103 +66,142 @@ const Projects: React.FC = () => {
       (nextReplaceCardIndex || nextReplaceCardIndex === 0) // offRight card @ 4 cards is equal to prevReplaceCardIndex
     ) {
       cards.forEach((card, index) => {
+        // Add eventListeners for the end of animations on all 4 cards that could be affected
         card.addEventListener(
           "animationend",
           () => {
             if (index === currentCard) {
-              card.classList.remove(styles.active);
-              card.classList.add(styles.left);
+              card.classList.remove(styles.active, styles.moveLeftFromMiddle);
+              // card.classList.add(styles.left);
             }
             if (index === prevCardIndex) {
-              card.classList.remove(styles.left);
-              card.classList.add(styles.offLeft);
+              card.classList.remove(styles.left, styles.moveOffScreenFromLeft);
+              // card.classList.add(styles.offLeft);
             }
             if (index === nextCardIndex) {
-              card.classList.remove(styles.right);
-              card.classList.add(styles.active);
+              card.classList.remove(styles.right, styles.moveMiddleFromRight);
+              // card.classList.add(styles.active);
             }
             if (index === prevReplaceCardIndex) {
               card.classList.remove(styles.offLeft);
               // card.classList.add(styles.right);
             }
             if (index === nextReplaceCardIndex) {
-              card.classList.remove(styles.offRight);
-              card.classList.add(styles.right);
-            }
-          },
-          { once: true }
-        );
-
-        card.classList.add(`${styles.moveLeft}`);
-      });
-    }
-
-    setTimeout(() => {
-      setCurrentCard(getNextIndex(currentCard));
-    }, 400);
-  };
-
-  const prevCard = () => {
-    // Add animation classes for the "Previous" direction
-    const cards = document.querySelectorAll(`.${styles.projectCard}`);
-    const currentCardIndex = currentCard;
-    const prevCardIndex = getPrevIndex(currentCard);
-    const nextCardIndex = getNextIndex(currentCard);
-    const prevReplaceCardIndex = getPrevReplaceIndex(currentCard);
-    const nextReplaceCardIndex = getNextReplaceIndex(currentCard);
-
-    if (
-      (currentCardIndex || currentCardIndex === 0) && // active card
-      (prevCardIndex || prevCardIndex === 0) && // left card
-      (nextCardIndex || nextCardIndex === 0) && // right card
-      (prevReplaceCardIndex || prevReplaceCardIndex === 0) && // offLeft card
-      (nextReplaceCardIndex || nextReplaceCardIndex === 0) // offRight card @ 4 cards is equal to prevReplaceCardIndex
-    ) {
-      cards.forEach((card, index) => {
-        card.addEventListener(
-          "animationend",
-          () => {
-            if (index === currentCard) {
-              card.classList.remove(styles.active);
-              card.classList.add(styles.left);
-            }
-            if (index === prevCardIndex) {
-              card.classList.remove(styles.left);
-              card.classList.add(styles.offLeft);
-            }
-            if (index === nextCardIndex) {
-              card.classList.remove(styles.right);
-              card.classList.add(styles.active);
-            }
-            if (index === prevReplaceCardIndex) {
-              card.classList.remove(styles.offLeft);
+              card.classList.remove(
+                styles.offRight,
+                styles.moveRightFromOffScreen
+              );
               // card.classList.add(styles.right);
             }
-            if (index === nextReplaceCardIndex) {
-              card.classList.remove(styles.offRight);
-              card.classList.add(styles.right);
-            }
           },
           { once: true }
         );
+        // Add the classes that will animate the movement in the carousel
         if (index === currentCard) {
           card.classList.add(styles.moveLeftFromMiddle);
         }
         if (index === prevCardIndex) {
-          card.classList.remove(styles.left);
-          card.classList.add(styles.offLeft);
+          card.classList.add(styles.moveOffScreenFromLeft);
+          // card.classList.remove(styles.left);
         }
         if (index === nextCardIndex) {
-          card.classList.remove(styles.right);
-          card.classList.add(styles.active);
+          card.classList.add(styles.moveMiddleFromRight);
         }
         if (index === prevReplaceCardIndex) {
           card.classList.remove(styles.offLeft);
           // card.classList.add(styles.right);
         }
         if (index === nextReplaceCardIndex) {
+          card.classList.add(styles.moveRightFromOffScreen);
+          // card.classList.add(styles.right);
+        }
+      });
+    }
+
+    setTimeout(() => {
+      setCurrentCard(getNextIndex(currentCard));
+    }, 400);
+
+    document
+      .querySelector(`.${styles.right}`)
+      ?.addEventListener("onclick", () => {
+        nextCard();
+      });
+
+    document
+      .querySelector(`.${styles.left}`)
+      ?.addEventListener("onclick", () => {
+        prevCard();
+      });
+  };
+
+  const prevCard = () => {
+    const cards = document.querySelectorAll(`.${styles.projectCard}`);
+    const currentCardIndex = currentCard; // active card
+    const prevCardIndex = getPrevIndex(currentCard); // left card
+    const nextCardIndex = getNextIndex(currentCard); // right card
+    const prevReplaceCardIndex = getPrevReplaceIndex(currentCard); // offLeft card
+    const nextReplaceCardIndex = getNextReplaceIndex(currentCard); // offRight card
+
+    if (
+      (currentCardIndex || currentCardIndex === 0) && // active card
+      (prevCardIndex || prevCardIndex === 0) && // left card
+      (nextCardIndex || nextCardIndex === 0) && // right card
+      (prevReplaceCardIndex || prevReplaceCardIndex === 0) && // offLeft card
+      (nextReplaceCardIndex || nextReplaceCardIndex === 0) // offRight card @ 4 cards is equal to prevReplaceCardIndex
+    ) {
+      cards.forEach((card, index) => {
+        // Add eventListeners for the end of animations on all 4 cards that could be affected
+        card.addEventListener(
+          "animationend",
+          () => {
+            if (index === currentCard) {
+              card.classList.remove(styles.active, styles.moveRightFromMiddle);
+              // card.classList.add(styles.left);
+            }
+            if (index === prevCardIndex) {
+              card.classList.remove(styles.left, styles.moveMiddleFromLeft);
+              // card.classList.add(styles.offLeft);
+            }
+            if (index === nextCardIndex) {
+              card.classList.remove(
+                styles.right,
+                styles.moveOffScreenFromRight
+              );
+              // card.classList.add(styles.active);
+            }
+            if (index === prevReplaceCardIndex) {
+              card.classList.remove(
+                styles.offLeft,
+                styles.moveLeftFromOffScreen
+              );
+              // card.classList.add(styles.right);
+            }
+            if (index === nextReplaceCardIndex) {
+              card.classList.remove(styles.offRight);
+              // card.classList.add(styles.right);
+            }
+          },
+          { once: true }
+        );
+        // Add the classes that will animate the movement in the carousel
+        if (index === currentCard) {
+          card.classList.add(styles.moveRightFromMiddle);
+        }
+        if (index === prevCardIndex) {
+          card.classList.add(styles.moveMiddleFromLeft);
+          // card.classList.remove(styles.left);
+        }
+        if (index === nextCardIndex) {
+          card.classList.add(styles.moveOffScreenFromRight);
+        }
+        if (index === prevReplaceCardIndex) {
+          card.classList.add(styles.moveLeftFromOffScreen);
+          // card.classList.add(styles.right);
+        }
+        if (index === nextReplaceCardIndex) {
           card.classList.remove(styles.offRight);
-          card.classList.add(styles.right);
+          // card.classList.add(styles.right);
         }
       });
     }
@@ -240,7 +279,7 @@ const Projects: React.FC = () => {
               className={`${styles.navigationDot} ${
                 index === currentCard ? `${styles.active}` : ""
               }`}
-              onClick={() => goToCard(index)}
+              // onClick={() => goToCard(index)}
             ></span>
           ))}
         </div>
