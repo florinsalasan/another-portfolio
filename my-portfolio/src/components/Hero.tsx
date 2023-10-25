@@ -49,6 +49,8 @@ const Hero = () => {
       id="hero"
       className="bg-blue-500 text-white text-center min-h-screen flex flex-col justify-center"
     >
+      <p className="bg-red-500">Still under construction sorry!</p>
+      <br />
       <h1 className="text-3xl font-bold">Hello, I&apos;m Florin</h1>
       <p className="text-2xl">a software developer based in the GTA</p>
       <div className=" mx-auto mt-6">
