@@ -37,111 +37,139 @@ const fakeProjects = [
   // Add more project data as needed
 ];
 
-// const Projects: React.FC = () => {
-//   return (
-//     <section id="projects" className="py-10 bg-blue-500 text-white">
-//       <div className="container mx-auto">
-//         {/* <h2 className="text-2xl font-semibold mb-6">Projects</h2> */}
-//         <SectionIntroduction title="Projects" type="title" />
-//         <ProjectCarousel>
-//           {fakeProjects.map((project) => (
-//             <ProjectCard
-//               key={uuidv4()} // Generate a unique key using uuid
-//               title={project.title}
-//               description={project.description}
-//               technologies={project.technologies}
-//               imageSrc={project.imageSrc}
-//               link={project.link}
-//             />
-//           ))}
-//         </ProjectCarousel>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Projects;
-
-// import React, { useState } from "react";
-// import SectionIntroduction from "./subComponents/SectionIntroduction";
-// import ProjectCard from "./subComponents/ProjectCard";
-
-// const Projects: React.FC = () => {
-//   const [currentCard, setCurrentCard] = useState(0);
-
-//   const nextCard = () => {
-//     setCurrentCard((currentCard + 1) % fakeProjects.length);
-//   };
-
-//   const prevCard = () => {
-//     setCurrentCard(
-//       (currentCard - 1 + fakeProjects.length) % fakeProjects.length
-//     );
-//   };
-
-//   return (
-//     <section id="projects" className="py-10 bg-blue-500 text-white">
-//       <div className="container mx-auto">
-//         <SectionIntroduction title="Projects" type="title" />
-//         <div className="relative">
-//           <div className="carouselContainer">
-//             {fakeProjects.map((project, index) => (
-//               <div
-//                 key={uuidv4()}
-//                 className={`${styles.projectCard} ${
-//                   index === currentCard ? `${styles.active}` : ""
-//                 }`}
-//               >
-// <ProjectCard
-//   title={project.title}
-//   description={project.description}
-//   technologies={project.technologies}
-//   imageSrc={project.imageSrc}
-//   link={project.link}
-// />
-//               </div>
-//             ))}
-//           </div>
-//           <div className="carousel-buttons">
-//             <button className="prev" onClick={prevCard}>
-//               Previous
-//             </button>
-//             <button className="next" onClick={nextCard}>
-//               Next
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Projects;
-
 const Projects: React.FC = () => {
   const [currentCard, setCurrentCard] = useState(0);
+  const totalCards = fakeProjects.length;
 
-  // const nextCard = () => {
-  //   setCurrentCard((currentCard + 1) % fakeProjects.length);
-  // };
+  const getPrevIndex = (currentIndex: number) =>
+    (currentIndex - 1 + totalCards) % totalCards;
+  const getNextIndex = (currentIndex: number) =>
+    (currentIndex + 1) % totalCards;
+  const getPrevReplaceIndex = (currentIndex: number) =>
+    (currentIndex - 2 + totalCards) % totalCards;
+  const getNextReplaceIndex = (currentIndex: number) =>
+    (currentIndex + 2) % totalCards;
 
-  // const prevCard = () => {
-  //   setCurrentCard(
-  //     (currentCard - 1 + fakeProjects.length) % fakeProjects.length
-  //   );
-  // };
   const nextCard = () => {
-    // Add animation classes for the "Next" direction
-    const nextCardIndex = (currentCard + 1) % fakeProjects.length;
-    // Update the current card index
-    setCurrentCard(nextCardIndex);
+    const cards = document.querySelectorAll(`.${styles.projectCard}`);
+    const currentCardIndex = currentCard;
+    const prevCardIndex = getPrevIndex(currentCard);
+    const nextCardIndex = getNextIndex(currentCard);
+    const prevReplaceCardIndex = getPrevReplaceIndex(currentCard);
+    const nextReplaceCardIndex = getNextReplaceIndex(currentCard);
+
+    if (
+      (currentCardIndex || currentCardIndex === 0) && // active card
+      (prevCardIndex || prevCardIndex === 0) && // left card
+      (nextCardIndex || nextCardIndex === 0) && // right card
+      (prevReplaceCardIndex || prevReplaceCardIndex === 0) && // offLeft card
+      (nextReplaceCardIndex || nextReplaceCardIndex === 0) // offRight card @ 4 cards is equal to prevReplaceCardIndex
+    ) {
+      cards.forEach((card, index) => {
+        card.addEventListener(
+          "animationend",
+          () => {
+            if (index === currentCard) {
+              card.classList.remove(styles.active);
+              card.classList.add(styles.left);
+            }
+            if (index === prevCardIndex) {
+              card.classList.remove(styles.left);
+              card.classList.add(styles.offLeft);
+            }
+            if (index === nextCardIndex) {
+              card.classList.remove(styles.right);
+              card.classList.add(styles.active);
+            }
+            if (index === prevReplaceCardIndex) {
+              card.classList.remove(styles.offLeft);
+              // card.classList.add(styles.right);
+            }
+            if (index === nextReplaceCardIndex) {
+              card.classList.remove(styles.offRight);
+              card.classList.add(styles.right);
+            }
+          },
+          { once: true }
+        );
+
+        card.classList.add(`${styles.moveLeft}`);
+      });
+    }
+
+    setTimeout(() => {
+      setCurrentCard(getNextIndex(currentCard));
+    }, 400);
   };
 
   const prevCard = () => {
     // Add animation classes for the "Previous" direction
-    const prevCardIndex =
-      (currentCard - 1 + fakeProjects.length) % fakeProjects.length;
-    setCurrentCard(prevCardIndex);
+    const cards = document.querySelectorAll(`.${styles.projectCard}`);
+    const currentCardIndex = currentCard;
+    const prevCardIndex = getPrevIndex(currentCard);
+    const nextCardIndex = getNextIndex(currentCard);
+    const prevReplaceCardIndex = getPrevReplaceIndex(currentCard);
+    const nextReplaceCardIndex = getNextReplaceIndex(currentCard);
+
+    if (
+      (currentCardIndex || currentCardIndex === 0) && // active card
+      (prevCardIndex || prevCardIndex === 0) && // left card
+      (nextCardIndex || nextCardIndex === 0) && // right card
+      (prevReplaceCardIndex || prevReplaceCardIndex === 0) && // offLeft card
+      (nextReplaceCardIndex || nextReplaceCardIndex === 0) // offRight card @ 4 cards is equal to prevReplaceCardIndex
+    ) {
+      cards.forEach((card, index) => {
+        card.addEventListener(
+          "animationend",
+          () => {
+            if (index === currentCard) {
+              card.classList.remove(styles.active);
+              card.classList.add(styles.left);
+            }
+            if (index === prevCardIndex) {
+              card.classList.remove(styles.left);
+              card.classList.add(styles.offLeft);
+            }
+            if (index === nextCardIndex) {
+              card.classList.remove(styles.right);
+              card.classList.add(styles.active);
+            }
+            if (index === prevReplaceCardIndex) {
+              card.classList.remove(styles.offLeft);
+              // card.classList.add(styles.right);
+            }
+            if (index === nextReplaceCardIndex) {
+              card.classList.remove(styles.offRight);
+              card.classList.add(styles.right);
+            }
+          },
+          { once: true }
+        );
+        if (index === currentCard) {
+          card.classList.add(styles.moveLeftFromMiddle);
+        }
+        if (index === prevCardIndex) {
+          card.classList.remove(styles.left);
+          card.classList.add(styles.offLeft);
+        }
+        if (index === nextCardIndex) {
+          card.classList.remove(styles.right);
+          card.classList.add(styles.active);
+        }
+        if (index === prevReplaceCardIndex) {
+          card.classList.remove(styles.offLeft);
+          // card.classList.add(styles.right);
+        }
+        if (index === nextReplaceCardIndex) {
+          card.classList.remove(styles.offRight);
+          card.classList.add(styles.right);
+        }
+      });
+    }
+
+    setTimeout(() => {
+      setCurrentCard(getPrevIndex(currentCard));
+    }, 400);
   };
 
   const goToCard = (index: number) => {
@@ -154,31 +182,50 @@ const Projects: React.FC = () => {
         <SectionIntroduction title="Projects" type="title" />
 
         <div className={`${styles.carouselContainer} p-6  `}>
-          {fakeProjects.map((project, index) => (
-            <div
+          {fakeProjects.map((_, index) => (
+            <input
               key={uuidv4()}
-              className={`${styles.projectCard} ${
-                index === currentCard ? `${styles.active}` : ""
-              } ${
-                index ===
-                (currentCard - 1 + fakeProjects.length) % fakeProjects.length
-                  ? `${styles.left}`
-                  : ""
-              } ${
-                index === (currentCard + 1) % fakeProjects.length
-                  ? `${styles.right}`
-                  : ""
-              }`}
-            >
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                technologies={project.technologies}
-                imageSrc={project.imageSrc}
-                link={project.link}
-              />
-            </div>
+              type="radio"
+              id={`radio-${index}`}
+              name="slider"
+              className={`${styles.radioButton}`}
+              checked={index === currentCard}
+              onChange={() => goToCard(index)}
+            />
           ))}
+          <div className={`${styles.cards}`}>
+            {fakeProjects.map((project, index) => (
+              <label key={uuidv4()} htmlFor={`radio-${index}`}>
+                <div
+                  key={uuidv4()}
+                  className={`${styles.projectCard} ${
+                    index === currentCard ? `${styles.active}` : "" // Checks if it's the first card being mapped and sets it to active
+                  } ${
+                    index === getPrevIndex(currentCard) ? `${styles.left}` : "" // sets the card on the left of the active card, this is the prev card
+                  }
+                  ${
+                    index === getPrevReplaceIndex(currentCard) // sets the card off screen to the left to come in when prev card is called
+                      ? `${styles.offLeft}`
+                      : ""
+                  } ${
+                    index === getNextIndex(currentCard) ? `${styles.right}` : "" // sets the card on the right of the active card, this is the next card
+                  }${
+                    index === getNextReplaceIndex(currentCard) // sets the card on off screen to the right to come in when next card is called
+                      ? `${styles.offRight}`
+                      : ""
+                  }`}
+                >
+                  <ProjectCard
+                    title={project.title}
+                    description={project.description}
+                    technologies={project.technologies}
+                    imageSrc={project.imageSrc}
+                    link={project.link}
+                  />
+                </div>
+              </label>
+            ))}
+          </div>
         </div>
       </div>
       <div className={`${styles.carouselButtons}`}>
