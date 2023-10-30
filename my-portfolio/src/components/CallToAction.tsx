@@ -75,7 +75,7 @@ const CallToAction = () => {
           I&apos;m always open to new opportunities and collaborations. Feel
           free to reach out to me.
         </p>
-        <div className="flex justify-center space-x-4 bg-white p-3 rounded-2xl mx-auto w-[30vw]">
+        <div className="flex justify-around space-x-4 bg-white p-3 rounded-2xl mx-auto w-[30vw]">
           <a href="mailto:me@florinsalasan.dev" className="btn-primary">
             <Image
               src="/icons8-email-50.png"
