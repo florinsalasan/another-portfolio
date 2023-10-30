@@ -69,11 +69,11 @@ const CallToAction = () => {
       <SectionIntroduction title="" type="title" />
       <div className="container mx-auto">
         <h2 className="text-3xl font-semibold mb-4 pt-4">
-          Like what you see? Let's collaborate on a project!
+          Like what you see? Let&apos;s collaborate on a project!
         </h2>
         <p className="text-xl text-white mb-4">
-          I'm always open to new opportunities and collaborations. Feel free to
-          reach out to me.
+          I&apos;m always open to new opportunities and collaborations. Feel
+          free to reach out to me.
         </p>
         <div className="flex justify-center space-x-4 bg-white p-3 rounded-2xl mx-auto w-[30vw]">
           <a href="mailto:me@florinsalasan.dev" className="btn-primary">
