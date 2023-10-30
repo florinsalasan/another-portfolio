@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 // import ProjectCarousel from "./subComponents/ProjectCarousel";
 import ProjectCard from "./subComponents/ProjectCard";
 import SectionIntroduction from "./subComponents/SectionIntroduction";
 import { v4 as uuidv4 } from "uuid"; // Import uuid
 import styles from "./Projects.module.css";
+import { VoidExpression } from "typescript";
 
 const fakeProjects = [
   {
@@ -41,6 +42,39 @@ const Projects: React.FC = () => {
   const [currentCard, setCurrentCard] = useState(0);
   const totalCards = fakeProjects.length;
 
+  useEffect(() => {
+    const carousel = document.querySelector(`.${styles.carouselContainer}`); // Replace with your actual carousel class or selector
+
+    if (carousel) {
+      const handleCarouselClick = (event: Event) => {
+        event.preventDefault();
+        if (!event) return;
+        const clickedElement = event.target as HTMLElement;
+        if (!clickedElement) return;
+        const clickedCard = clickedElement.closest(`.${styles.projectCard}`);
+        if (!clickedCard) return;
+        if (clickedCard.classList.contains(styles.left)) {
+          // Handle left card click
+          prevCard();
+          // setCurrentCard(getPrevIndex(currentCard));
+        } else if (clickedCard.classList.contains(styles.right)) {
+          // Handle right card click
+          nextCard();
+          // setCurrentCard(getNextIndex(currentCard));
+        } else {
+          // Handle the active card click
+          openModal();
+        }
+      };
+
+      carousel.addEventListener("click", handleCarouselClick);
+
+      return () => {
+        carousel.removeEventListener("click", handleCarouselClick);
+      };
+    }
+  }); // The empty dependency array ensures the effect runs only once on component mount this is what caused the listener to never update the array properly, removing it allowed for next and prevCard methods to cycle through the list as expected.
+
   const getPrevIndex = (currentIndex: number) =>
     (currentIndex - 1 + totalCards) % totalCards;
   const getNextIndex = (currentIndex: number) =>
@@ -50,7 +84,13 @@ const Projects: React.FC = () => {
   const getNextReplaceIndex = (currentIndex: number) =>
     (currentIndex + 2) % totalCards;
 
+  const openModal = () => {
+    // open modal or open a new page to go in greater details about the project
+    console.log("modal will open grr");
+  };
+
   const nextCard = () => {
+    console.log("next card was called");
     const cards = document.querySelectorAll(`.${styles.projectCard}`);
     const currentCardIndex = currentCard; // active card
     const prevCardIndex = getPrevIndex(currentCard); // left card
@@ -121,21 +161,10 @@ const Projects: React.FC = () => {
     setTimeout(() => {
       setCurrentCard(getNextIndex(currentCard));
     }, 400);
-
-    document
-      .querySelector(`.${styles.right}`)
-      ?.addEventListener("onclick", () => {
-        nextCard();
-      });
-
-    document
-      .querySelector(`.${styles.left}`)
-      ?.addEventListener("onclick", () => {
-        prevCard();
-      });
   };
 
   const prevCard = () => {
+    console.log("prev card was called");
     const cards = document.querySelectorAll(`.${styles.projectCard}`);
     const currentCardIndex = currentCard; // active card
     const prevCardIndex = getPrevIndex(currentCard); // left card
@@ -211,9 +240,67 @@ const Projects: React.FC = () => {
     }, 400);
   };
 
-  const goToCard = (index: number) => {
-    setCurrentCard(index);
+  // const goToCard = (index: number) => {
+  //   // So in order to add animations to this as well I'd imagine the easiest way is to determine which direction is closer to navigate through and then just call nextCard or prevCard the amount of times necessary to cycle through to the selected card, now it's just a matter of determining the shorter route.
+
+  //   const currentCardIndex = currentCard;
+  //   const totalCards = fakeProjects.length;
+
+  //   // Calculate the absolute differences between currentCard and the target index in both directions
+  //   const differenceToNext =
+  //     (index - currentCardIndex + totalCards) % totalCards;
+  //   const differenceToPrev =
+  //     (currentCardIndex - index + totalCards) % totalCards;
+
+  //   if (differenceToNext <= differenceToPrev) {
+  //     // Go to the next card
+  //     for (let i = 0; i < differenceToNext; i++) {
+  //       nextCard();
+  //     }
+  //   } else {
+  //     // Go to the previous card
+  //     for (let i = 0; i < differenceToPrev; i++) {
+  //       prevCard();
+  //     }
+  //   }
+  // };
+
+  const goToCard = async (index: number) => {
+    if (index === currentCard) {
+      return; // No need to do anything if the target index is the same as the current one
+    }
+
+    const currentCardIndex = currentCard;
+    const totalCards = fakeProjects.length;
+
+    const differenceToNext =
+      (index - currentCardIndex + totalCards) % totalCards;
+    const differenceToPrev =
+      (currentCardIndex - index + totalCards) % totalCards;
+
+    const calls =
+      differenceToNext <= differenceToPrev
+        ? differenceToNext
+        : differenceToPrev;
+
+    for (let i = 0; i < calls; i++) {
+      if (differenceToNext <= differenceToPrev) {
+        nextCard();
+        await new Promise((resolve) => {
+          setTimeout(resolve, 450);
+        });
+      } else {
+        prevCard();
+        await new Promise((resolve) => {
+          setTimeout(resolve, 450);
+        });
+      }
+    }
   };
+
+  // const handleLabelClick = (event: React.MouseEvent<HTMLLabelElement>) => {
+  //   event.preventDefault();
+  // };
 
   return (
     <section id="projects" className="py-10 bg-blue-500 text-white">
@@ -234,7 +321,11 @@ const Projects: React.FC = () => {
           ))}
           <div className={`${styles.cards}`}>
             {fakeProjects.map((project, index) => (
-              <label key={uuidv4()} htmlFor={`radio-${index}`}>
+              <label
+                key={uuidv4()}
+                htmlFor={`radio-${index}`}
+                // onClick={handleLabelClick}
+              >
                 <div
                   key={uuidv4()}
                   className={`${styles.projectCard} ${
