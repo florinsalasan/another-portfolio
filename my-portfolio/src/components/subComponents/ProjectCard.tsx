@@ -28,11 +28,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         sizes="100vw"
         style={{ width: "100%", height: "auto" }}
       />
-      <h3 className="text-xl mb-2 text-gray-600">{title}</h3>
-      <p className={`${styles.cardDescription}text-gray-600 mb-4`}>
+      <h3 className={`text-xl mb-2 text-gray-600 ${styles.cardText}`}>
+        {title}
+      </h3>
+      <p
+        className={`${
+          (styles.cardDescription, styles.cardText)
+        }text-gray-600 mb-4`}
+      >
         {description}
       </p>
-      <div className="flex flex-wrap">
+      <div className={`flex flex-wrap ${styles.technologies}`}>
         {technologies.map((tech, index) => (
           <span
             key={index}
@@ -46,7 +52,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 mt-4 inline-block hover:underline"
+        className={`text-blue-500 mt-4 inline-block hover:underline" ${styles.cardText}`}
       >
         View Project
       </a>

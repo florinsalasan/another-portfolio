@@ -51,7 +51,7 @@ const ProcessSteps = [
 // };
 const Process: React.FC = () => {
   return (
-    <section id="process" className="pt-10 bg-blue-500 text-white">
+    <section id="process" className="pt-10 bg-blue-500 text-white pb-[20px]">
       <div className="container mx-auto">
         <SectionIntroduction title="Process" type="title" />
         <div className="processContainer ml-[10%] md:ml-[20%] lg:ml-[25%]">
