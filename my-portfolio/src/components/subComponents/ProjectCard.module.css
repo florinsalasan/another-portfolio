@@ -1,0 +1,13 @@
+@media screen and (max-width: 768px) {
+  .cardDescription {
+    display: none;
+    height: 0;
+  }
+  .cardText {
+    text-align: center;
+    display: block;
+  }
+  .technologies {
+    justify-content: center;
+  }
+}

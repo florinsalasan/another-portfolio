@@ -84,7 +84,7 @@ const Header: React.FC = () => {
   return (
     <div id="top" className={`${styles.stickyPlaceholder}`}>
       <header
-        className={`bg-blue-500 text-white p-4 h-[64px] ${
+        className={`bg-blue-500 text-white p-4 h-[64px] flex ${
           isSticky ? styles.stickyCustom : ""
         }`}
       >

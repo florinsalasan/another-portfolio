@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import styles from "./ProjectCard.module.css";
 
 interface ProjectCardProps {
   title: string;
@@ -27,11 +28,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         sizes="100vw"
         style={{ width: "100%", height: "auto" }}
       />
-
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
-
-      <div className="flex flex-wrap">
+      <h3 className={`text-xl mb-2 text-gray-600 ${styles.cardText}`}>
+        {title}
+      </h3>
+      <p
+        className={`${
+          (styles.cardDescription, styles.cardText)
+        }text-gray-600 mb-4`}
+      >
+        {description}
+      </p>
+      <div className={`flex flex-wrap ${styles.technologies}`}>
         {technologies.map((tech, index) => (
           <span
             key={index}
@@ -41,15 +48,43 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </span>
         ))}
       </div>
-
       <a
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 mt-4 inline-block hover:underline"
+        className={`text-blue-500 mt-4 inline-block hover:underline" ${styles.cardText}`}
       >
         View Project
       </a>
+      <div className={`${styles.modal} hidden modal`}>
+        <div className="modal-header">
+          <h3>{title}</h3>
+        </div>
+        <div className="modal-content">
+          <div className="modal-section">
+            <h4>Technologies Used</h4>
+            <ul>
+              {technologies.map((tech, index) => (
+                <li key={index}>{tech}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="modal-section">
+            <h4>External Links</h4>
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              Live Version
+            </a>
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              GitHub Repository
+            </a>
+          </div>
+          <div className="modal-section">
+            <h4>In-Depth Description</h4>
+            <p>{description}</p>
+          </div>
+        </div>
+      </div>
+      );
     </div>
   );
 };

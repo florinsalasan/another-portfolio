@@ -63,7 +63,7 @@ const Projects: React.FC = () => {
           // setCurrentCard(getNextIndex(currentCard));
         } else {
           // Handle the active card click
-          openModal();
+          toggleModal();
         }
       };
 
@@ -84,9 +84,14 @@ const Projects: React.FC = () => {
   const getNextReplaceIndex = (currentIndex: number) =>
     (currentIndex + 2) % totalCards;
 
-  const openModal = () => {
+  const toggleModal = () => {
     // open modal or open a new page to go in greater details about the project
     console.log("modal will open grr");
+    const activeCard = document.querySelector(`.${styles.active}`);
+    if (!activeCard) return;
+    const modal = activeCard.querySelector(`.modal`);
+    if (!modal) return;
+    modal.classList.toggle("hidden");
   };
 
   const nextCard = () => {

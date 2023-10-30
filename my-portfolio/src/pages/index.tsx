@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Process from "@/components/Process";
 import Hero from "@/components/Hero";
 import "tailwindcss/tailwind.css";
+import CallToAction from "@/components/CallToAction";
 
 const Home: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
       <About />
       <Projects />
       <Process />
+      <CallToAction />
     </Layout>
   );
 };
