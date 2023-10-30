@@ -240,27 +240,60 @@ const Projects: React.FC = () => {
     }, 400);
   };
 
-  const goToCard = (index: number) => {
-    // So in order to add animations to this as well I'd imagine the easiest way is to determine which direction is closer to navigate through and then just call nextCard or prevCard the amount of times necessary to cycle through to the selected card, now it's just a matter of determining the shorter route.
+  // const goToCard = (index: number) => {
+  //   // So in order to add animations to this as well I'd imagine the easiest way is to determine which direction is closer to navigate through and then just call nextCard or prevCard the amount of times necessary to cycle through to the selected card, now it's just a matter of determining the shorter route.
+
+  //   const currentCardIndex = currentCard;
+  //   const totalCards = fakeProjects.length;
+
+  //   // Calculate the absolute differences between currentCard and the target index in both directions
+  //   const differenceToNext =
+  //     (index - currentCardIndex + totalCards) % totalCards;
+  //   const differenceToPrev =
+  //     (currentCardIndex - index + totalCards) % totalCards;
+
+  //   if (differenceToNext <= differenceToPrev) {
+  //     // Go to the next card
+  //     for (let i = 0; i < differenceToNext; i++) {
+  //       nextCard();
+  //     }
+  //   } else {
+  //     // Go to the previous card
+  //     for (let i = 0; i < differenceToPrev; i++) {
+  //       prevCard();
+  //     }
+  //   }
+  // };
+
+  const goToCard = async (index: number) => {
+    if (index === currentCard) {
+      return; // No need to do anything if the target index is the same as the current one
+    }
 
     const currentCardIndex = currentCard;
     const totalCards = fakeProjects.length;
 
-    // Calculate the absolute differences between currentCard and the target index in both directions
     const differenceToNext =
       (index - currentCardIndex + totalCards) % totalCards;
     const differenceToPrev =
       (currentCardIndex - index + totalCards) % totalCards;
 
-    if (differenceToNext <= differenceToPrev) {
-      // Go to the next card
-      for (let i = 0; i < differenceToNext; i++) {
+    const calls =
+      differenceToNext <= differenceToPrev
+        ? differenceToNext
+        : differenceToPrev;
+
+    for (let i = 0; i < calls; i++) {
+      if (differenceToNext <= differenceToPrev) {
         nextCard();
-      }
-    } else {
-      // Go to the previous card
-      for (let i = 0; i < differenceToPrev; i++) {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 450);
+        });
+      } else {
         prevCard();
+        await new Promise((resolve) => {
+          setTimeout(resolve, 450);
+        });
       }
     }
   };

@@ -137,6 +137,51 @@
   }
 }
 
+/* Mobile keyframes */
+@keyframes moveRightFromMiddleMobileKF {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200%) scale(0.2);
+  }
+}
+
+@keyframes moveLeftFromMiddleMobileKF {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-200%) scale(0.2);
+  }
+}
+
+@keyframes moveMiddleFromRightMobileKF {
+  0% {
+    opacity: 0;
+    transform: translateX(200%) scale(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1.2);
+  }
+}
+
+@keyframes moveMiddleFromLeftMobileKF {
+  0% {
+    opacity: 0;
+    transform: translateX(-200%) scale(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1.2);
+  }
+}
+
 /* CSS classes for animation control */
 .moveOffScreenFromLeft {
   z-index: 2;
@@ -276,30 +321,41 @@
   opacity: 0;
 }
 
-/* #item-1:checked ~ .cards #song-3,
-#item-2:checked ~ .cards #song-1,
-#item-3:checked ~ .cards #song-2 {
-  transform: translatex(-40%) scale(0.8);
-  opacity: 0.4;
-  z-index: 0;
-}
-
-#item-1:checked ~ .cards #song-2,
-#item-2:checked ~ .cards #song-3,
-#item-3:checked ~ .cards #song-1 {
-  transform: translatex(40%) scale(0.8);
-  opacity: 0.4;
-  z-index: 0;
-}
-
-#item-1:checked ~ .cards #song-1,
-#item-2:checked ~ .cards #song-2,
-#item-3:checked ~ .cards #song-3 {
-  transform: translatex(0) scale(1);
-  opacity: 1;
-  z-index: 1;
-
-  img {
-    box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+/* mobile view for carousel */
+@media screen and (max-width: 768px) {
+  .left,
+  .right {
+    opacity: 0;
   }
-} */
+
+  .active {
+    transform: scale(1.2);
+  }
+
+  .cards {
+    top: 3vh;
+  }
+
+  .moveLeftFromMiddle {
+    animation: 0.4s ease 0s moveLeftFromMiddleMobileKF;
+  }
+  .moveRightFromMiddle {
+    animation: 0.4s ease 0s moveRightFromMiddleMobileKF;
+  }
+  .moveMiddleFromLeft {
+    animation: 0.4s ease 0s moveMiddleFromLeftMobileKF;
+  }
+  .moveMiddleFromRight {
+    animation: 0.4s ease 0s moveMiddleFromRightMobileKF;
+  }
+  .moveLeftFromOffScreen {
+    opacity: 0;
+    animation: none;
+    /* display: none; */
+  }
+  .moveRightFromOffScreen {
+    opacity: 0;
+    animation: none;
+    /* display: none; */
+  }
+}
