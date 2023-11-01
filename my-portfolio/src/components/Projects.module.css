@@ -1,27 +1,3 @@
-/* Projects.module.css */
-
-/* .projectCard {
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  width: 100%;
-} */
-
-/* .active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.left {
-  transform: scale(0.9);
-}
-
-.right {
-  transform: scale(0.9);
-} */
-
-/* .projectCard:not(.active):not(.left):not(.right) {
-  display: none;
-} */
-
 /* Keyframes for animations */
 @keyframes moveOffScreenFromLeftKF {
   /* Define animation steps for moving off-screen from left */
@@ -226,6 +202,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 75vw;
+  margin: auto;
+  margin-top: 5vh;
 }
 
 .navigationDots {
@@ -262,8 +241,8 @@
 
 .projectCard {
   position: absolute;
-  width: 60%;
-  height: 100%;
+  width: 80%;
+  height: 30vh;
   left: 0;
   right: 0;
   margin: auto;
@@ -273,7 +252,7 @@
 
 .carouselContainer {
   width: 100%;
-  max-width: 800px;
+  /* max-width: 800px; */
   max-height: 600px;
   height: 100%;
   transform-style: preserve-3d;
@@ -288,6 +267,7 @@
   width: 100%;
   height: 100%;
   /* margin-bottom: 20px; */
+  max-width: 800px;
   min-height: 50vh;
 }
 
@@ -326,6 +306,7 @@
   .left,
   .right {
     opacity: 0;
+    transform: scale(0.1);
   }
 
   .active {
@@ -334,6 +315,10 @@
 
   .cards {
     top: 3vh;
+  }
+
+  .carouselButtons {
+    margin-top: 0;
   }
 
   .moveLeftFromMiddle {

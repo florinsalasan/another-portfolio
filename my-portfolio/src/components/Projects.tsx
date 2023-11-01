@@ -308,7 +308,7 @@ const Projects: React.FC = () => {
   // };
 
   return (
-    <section id="projects" className="py-10 bg-blue-500 text-white">
+    <section id="projects" className={`pt-10 bg-blue-500 text-white`}>
       <div className="container mx-auto">
         <SectionIntroduction title="Projects" type="title" />
 
@@ -362,27 +362,27 @@ const Projects: React.FC = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div className={`${styles.carouselButtons}`}>
-        <button className="prev" onClick={prevCard}>
-          <span className={`p-6 ${styles.caret}`}>&#9664;</span>{" "}
-          {/* Unicode for left-pointing caret */}
-        </button>
-        <div className={`${styles.navigationDots}`}>
-          {fakeProjects.map((_, index) => (
-            <span
-              key={index}
-              className={`${styles.navigationDot} ${
-                index === currentCard ? `${styles.active}` : ""
-              }`}
-              // onClick={() => goToCard(index)}
-            ></span>
-          ))}
+        <div className={`${styles.carouselButtons}`}>
+          <button className="prev" onClick={prevCard}>
+            <span className={`p-6 ${styles.caret}`}>&#9664;</span>{" "}
+            {/* Unicode for left-pointing caret */}
+          </button>
+          <div className={`${styles.navigationDots}`}>
+            {fakeProjects.map((_, index) => (
+              <span
+                key={index}
+                className={`${styles.navigationDot} ${
+                  index === currentCard ? `${styles.active}` : ""
+                }`}
+                // onClick={() => goToCard(index)}
+              ></span>
+            ))}
+          </div>
+          <button className="next" onClick={nextCard}>
+            <span className={`p-6 ${styles.caret}`}>&#9654;</span>{" "}
+            {/* Unicode for right-pointing caret */}
+          </button>
         </div>
-        <button className="next" onClick={nextCard}>
-          <span className={`p-6 ${styles.caret}`}>&#9654;</span>{" "}
-          {/* Unicode for right-pointing caret */}
-        </button>
       </div>
     </section>
   );

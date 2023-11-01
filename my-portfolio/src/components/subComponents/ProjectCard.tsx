@@ -52,7 +52,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className={`text-blue-500 mt-4 inline-block hover:underline" ${styles.cardText}`}
+        className={`text-blue-500 mt-4 block hover:underline" ${styles.cardText}`}
       >
         View Project
       </a>
