@@ -24,31 +24,9 @@ const ProcessSteps = [
     content:
       "In every phase of the project, I try to keep a watchful eye on best practices, code maintainability, and accessibility. This mindset ensures that the project meets immediate goals while also laying a solid foundation for future improvements. I embrace the principles of clean and reusable code, adding meaningful comments for clarity and fostering a design approach that respects accessibility standards. I strive to create something beautiful today that embraces adaptability to allow for future changes and improvements.",
   },
-  // Add more project data as needed
+  // Add more process info if needed
 ];
 
-// const Process: React.FC = () => {
-//   return (
-//     <section id="process" className="py-10 bg-blue-500 text-white">
-//       <div className="container mx-auto">
-//         <SectionIntroduction title="Process" type="title" />
-//         <div className="processContainer ml-[30%]">
-//           {ProcessSteps.map((step) => (
-//             <ProcessStep
-//               key={uuidv4()}
-//               title={step.heading}
-//               content={step.content}
-//               customStyle="mb-8 mt-8 text-3xl font-normal" // Apply custom styles for this instance
-//             ></ProcessStep>
-//           ))}
-//         </div>
-//       </div>
-//       <button className="bg-yellow-500 text-black rounded-full px-6 py-2 mt-4">
-//         Contact Me!
-//       </button>
-//     </section>
-//   );
-// };
 const Process: React.FC = () => {
   return (
     <section id="process" className="pt-10 bg-blue-500 text-white pb-[20px]">

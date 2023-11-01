@@ -75,11 +75,11 @@ const CallToAction = () => {
           I&apos;m always open to new opportunities and collaborations. Feel
           free to reach out to me.
         </p>
-        <div className="flex justify-around space-x-4 bg-white p-3 rounded-2xl mx-auto w-[30vw]">
+        <div className="flex justify-around space-x-4 bg-white p-3 rounded-2xl mx-auto w-[50vw] mt-10">
           <a href="mailto:me@florinsalasan.dev" className="btn-primary">
             <Image
               src="/icons8-email-50.png"
-              alt="github-logo"
+              alt="email-logo"
               width={20}
               height={20}
             ></Image>
@@ -105,7 +105,19 @@ const CallToAction = () => {
           >
             <Image
               src="/linkedIn.png"
-              alt="github-logo"
+              alt="linkedin-logo"
+              width={20}
+              height={20}
+            ></Image>
+          </a>
+          <a
+            href="/FlorinResumeNov2023.pdf"
+            download={"FlorinsResume"}
+            className="btn-primary"
+          >
+            <Image
+              src="/icons8-resume-50.png"
+              alt="my resume icon"
               width={20}
               height={20}
             ></Image>

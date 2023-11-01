@@ -1,27 +1,3 @@
-/* Projects.module.css */
-
-/* .projectCard {
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  width: 100%;
-} */
-
-/* .active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.left {
-  transform: scale(0.9);
-}
-
-.right {
-  transform: scale(0.9);
-} */
-
-/* .projectCard:not(.active):not(.left):not(.right) {
-  display: none;
-} */
-
 /* Keyframes for animations */
 @keyframes moveOffScreenFromLeftKF {
   /* Define animation steps for moving off-screen from left */
@@ -262,7 +238,7 @@
 
 .projectCard {
   position: absolute;
-  width: 60%;
+  width: 80%;
   height: 100%;
   left: 0;
   right: 0;

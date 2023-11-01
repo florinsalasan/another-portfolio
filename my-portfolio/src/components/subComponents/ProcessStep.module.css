@@ -11,6 +11,9 @@
   max-height: 0; /*  Initially set the max height to 0 to hide the content */
   overflow: hidden; /* Hide overflowing content */
   transition: max-height 0.7s ease-in-out; /* Add a transition for smoother animation */
+  /* text-align: justify;
+  text-justify: newspaper; */
+  padding-right: 5vw;
 }
 
 .expanded {
