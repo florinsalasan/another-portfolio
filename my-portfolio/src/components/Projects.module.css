@@ -202,6 +202,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 75vw;
+  margin: auto;
+  margin-top: 5vh;
 }
 
 .navigationDots {
@@ -239,7 +242,7 @@
 .projectCard {
   position: absolute;
   width: 80%;
-  height: 100%;
+  height: 30vh;
   left: 0;
   right: 0;
   margin: auto;
@@ -249,7 +252,7 @@
 
 .carouselContainer {
   width: 100%;
-  max-width: 800px;
+  /* max-width: 800px; */
   max-height: 600px;
   height: 100%;
   transform-style: preserve-3d;
@@ -264,6 +267,7 @@
   width: 100%;
   height: 100%;
   /* margin-bottom: 20px; */
+  max-width: 800px;
   min-height: 50vh;
 }
 
@@ -311,6 +315,10 @@
 
   .cards {
     top: 3vh;
+  }
+
+  .carouselButtons {
+    margin-top: 0;
   }
 
   .moveLeftFromMiddle {
