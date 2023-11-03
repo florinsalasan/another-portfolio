@@ -4,7 +4,6 @@ import ProjectCard from "./subComponents/ProjectCard";
 import SectionIntroduction from "./subComponents/SectionIntroduction";
 import { v4 as uuidv4 } from "uuid"; // Import uuid
 import styles from "./Projects.module.css";
-import { VoidExpression } from "typescript";
 
 const fakeProjects = [
   {
@@ -309,9 +308,8 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className={`pt-10 bg-blue-500 text-white`}>
-      <div className="container mx-auto">
+      <div className={`container mx-auto`}>
         <SectionIntroduction title="Projects" type="title" />
-
         <div className={`${styles.carouselContainer} p-6  `}>
           {fakeProjects.map((_, index) => (
             <input
@@ -361,27 +359,27 @@ const Projects: React.FC = () => {
               </label>
             ))}
           </div>
-        </div>
-        <div className={`${styles.carouselButtons}`}>
-          <button className="prev" onClick={prevCard}>
-            <span className={`p-6 ${styles.caret}`}>&#9664;</span>{" "}
-            {/* Unicode for left-pointing caret */}
-          </button>
-          <div className={`${styles.navigationDots}`}>
-            {fakeProjects.map((_, index) => (
-              <span
-                key={index}
-                className={`${styles.navigationDot} ${
-                  index === currentCard ? `${styles.active}` : ""
-                }`}
-                // onClick={() => goToCard(index)}
-              ></span>
-            ))}
+          <div className={`${styles.carouselButtons}`}>
+            <button className="prev" onClick={prevCard}>
+              <span className={`p-6 ${styles.caret}`}>&#9664;</span>{" "}
+              {/* Unicode for left-pointing caret */}
+            </button>
+            <div className={`${styles.navigationDots}`}>
+              {fakeProjects.map((_, index) => (
+                <span
+                  key={index}
+                  className={`${styles.navigationDot} ${
+                    index === currentCard ? `${styles.active}` : ""
+                  }`}
+                  // onClick={() => goToCard(index)}
+                ></span>
+              ))}
+            </div>
+            <button className="next" onClick={nextCard}>
+              <span className={`p-6 ${styles.caret}`}>&#9654;</span>{" "}
+              {/* Unicode for right-pointing caret */}
+            </button>
           </div>
-          <button className="next" onClick={nextCard}>
-            <span className={`p-6 ${styles.caret}`}>&#9654;</span>{" "}
-            {/* Unicode for right-pointing caret */}
-          </button>
         </div>
       </div>
     </section>
