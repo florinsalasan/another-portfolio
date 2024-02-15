@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 module florinsalasan/portfolio
+=======
+module portfolio
+>>>>>>> origin/non-gipitee
 
 go 1.22.0
 
