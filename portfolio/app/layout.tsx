@@ -49,19 +49,19 @@ export default function RootLayout({
               <h3 className="">Contact me</h3>
               <div className="flex gap-3 pt-1">
                 <a
-                  className="transition-all hover:text-orange-600 dark:hover:text-orange-500"
+                  className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                   href="mailto:me@florinsalasan.dev"
                 >
                   <MailIcon />
                 </a>
                 <a
-                  className="transition-all hover:text-orange-600 dark:hover:text-orange-500"
+                  className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                   href="https://github.com/florinsalasan"
                 >
                   <Github />
                 </a>
                 <a
-                  className="transition-all hover:text-orange-600 dark:hover:text-orange-500"
+                  className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                   href="https://www.linkedin.com/in/florinsalasan/"
                 >
                   <LinkedinIcon />
