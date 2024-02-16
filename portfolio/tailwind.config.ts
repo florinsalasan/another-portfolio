@@ -1,20 +1,27 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
-const config: Config = {
+export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./public/**/*.svg",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
     },
+    keyframes: {
+        slideUp: {
+            "0%": { transform: "translateY(1em)", opacity: "0" },
+            "100%": { transform: "translateY(0)", opacity: "100" },
+        },
+    },
+    animation: {
+        slideUp: "slideUp .5s ease-in-out",
+    },
+
   },
-  plugins: [],
-};
-export default config;
+  darkMode: "class",
+  plugins: [require("@tailwindcss/typography")]
+} satisfies Config;

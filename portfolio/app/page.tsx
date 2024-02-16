@@ -1,8 +1,67 @@
+import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    </main>
+    <div className="flex flex-row md:justify-between">
+        <div className="prose dark:prose-invert">
+          <h1 className="">
+            Hello there! <br className="sm:hidden" /> I&apos;m Florin.
+          </h1>
+          <div className="max-w-2xl">
+            <p>
+              A software developer based in the GTA, <br/>
+              I am always looking for new opportunities to expand my skillset 
+              and to work on new and interesting things.
+            </p>
+            <h3>Some background</h3>
+            <p>
+                I always loved tinkering with different tech from the moment I 
+                first got my hands on a computer. I started off by following instructions
+                on how to jailbreak my ipod touch and running somewhat suspicious scripts
+                that I didn&apos;t understand at the time. After that I moved on to 
+                learning how to install custom ROMs on my phone, managing to completely
+                wipe the system until I discovered adb. Eventually I was introduced to 
+                programming in high school and that is when I realized this is what I 
+                was looking for, a way to creatively build things and to problem solve.
+            </p>
+            <div>
+              <p>
+                I went on to attend the{" "}
+                <a href="https://utoronto.ca">University of Toronto</a>, where I
+              </p>
+              <ul>
+                <li> Majored in Applied Statistics</li>
+                <li> Minored in Computer Science</li>
+                <li> Minored in Math</li>
+              </ul>
+            </div>
+            <h3>What im about</h3>
+            <p>
+              My goals for the year include building some things that I would love
+              to use as well as rebuild my reading habit. I&apos;m aiming for 52 books
+              read by the end of the year, to go along with a reflection about each
+              of them in my blog section.
+            </p>
+            <p>
+              Whenever I&apos;m not working on something, I am either 
+              looking up new recipes, new restaurants, burning off the calories from
+              said recipes and restaurants, or obsessing over the latest
+              news in the NBA and NHL. 
+            </p>
+          </div>
+        </div>
+          <Link href="/" className="rounded-full invisible w-0 md:w-60 md:visible">
+            <Image
+              className="inline-block h-20 w-20 rounded-full dark:invert"
+              src="/CNTower.svg"
+              alt="Outline of the CN Tower"
+              width={0}
+              height={0} 
+              sizes="10vw"
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </Link>
+  </div>
   );
-}
+} 
