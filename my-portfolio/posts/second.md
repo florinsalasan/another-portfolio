@@ -7,11 +7,11 @@ tags:
   - coding
 ---
 
-# Another Post
+## Another Post
 
 This is the second blog post. Testing continues.
 
-## Subsection
+### Subsection
 
 More content here.
 

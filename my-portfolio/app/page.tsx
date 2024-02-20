@@ -36,7 +36,7 @@ export default function Page() {
                 <li> Minored in Math</li>
               </ul>
             </div>
-            <h3>What im about</h3>
+            <h3>What I enjoy doing</h3>
             <p>
               My goals for the year include building some things that I would love
               to use as well as rebuild my reading habit. I&apos;m aiming for 52 books

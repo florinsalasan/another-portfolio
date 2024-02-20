@@ -6,11 +6,11 @@ tags:
   - programming
 ---
 
-# Introduction
+## Introduction
 
 This is the first blog post. It's just a test.
 
-## Subsection
+### Subsection
 
 Some more content for testing.
 

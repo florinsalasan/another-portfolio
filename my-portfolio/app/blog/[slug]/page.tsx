@@ -19,15 +19,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
     );
     const file = await fsPromises.readFile(filepath, "utf8");
     const data = matter(file);
+    
     return (
-        <div className="prose dark:prose-invert">
-            <h1 className="mb-0">{capitalize(params.slug.replaceAll("-", " "))}</h1>
-            <span>
-                Posted{" "}
-                {new Date(data.data.posted as string).toLocaleString().split(",")[0]}
-            </span>
-
-            <hr />
-        </div>
+       <div className="prose dark:prose-invert">
+           <h1 className="mb-0">{capitalize(params.slug.replaceAll("-", " "))}</h1>
+           <span>
+               Posted{" "}
+               {new Date(data.data.posted as string).toLocaleString().split(",")[0]}
+           </span>
+           <h4 className="mb-6">Tags: {data.data.tags.toString().split(',').join(', ')}</h4>
+           <Markdown>{data.content}</Markdown>
+           <hr />
+       </div>
     )
 };
