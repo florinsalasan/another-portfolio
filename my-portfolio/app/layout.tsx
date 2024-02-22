@@ -68,6 +68,14 @@ export default function RootLayout({
                 </a>
               </div>
             </div>
+            <div className="">
+              <a 
+                className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+                href="https://imjosh.dev" target="_blank"
+              >
+                Design by @im.josh
+              </a>
+            </div>
           </div>
         </div>
       </body>
