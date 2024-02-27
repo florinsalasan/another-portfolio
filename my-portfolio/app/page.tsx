@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -51,7 +53,8 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <Link href="/" className="rounded-full invisible w-0 md:w-60 md:visible block">
+        <div className="rounded-full invisible w-0 absolute md:w-60 md:visible md:static"
+            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
              width="282.000000pt" height="956.000000pt" viewBox="0 0 282.000000 956.000000"
              preserveAspectRatio="xMidYMid meet"
@@ -142,7 +145,7 @@ export default function Page() {
             c-74 13 -84 21 -84 65 0 45 -1 44 69 28z"/>
             </g>
             </svg>
-        </Link>
+        </div>
   </div>
   );
 } 
