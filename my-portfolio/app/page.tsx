@@ -34,7 +34,6 @@ export default function Page() {
               <ul>
                 <li> Majored in Applied Statistics</li>
                 <li> Minored in Computer Science</li>
-                <li> Minored in Math</li>
               </ul>
             </div>
             <h3>What I&apos;m up to </h3>
