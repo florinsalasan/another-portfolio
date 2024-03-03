@@ -30,12 +30,11 @@ export default function Page() {
             <div>
               <p>
                 I went on to attend the{" "}
-                <a href="https://utoronto.ca">University of Toronto</a>, where I
+                <a href="https://utoronto.ca" target="_blank">University of Toronto</a>, where I
               </p>
               <ul>
                 <li> Majored in Applied Statistics</li>
                 <li> Minored in Computer Science</li>
-                <li> Minored in Math</li>
               </ul>
             </div>
             <h3>What I&apos;m up to </h3>
