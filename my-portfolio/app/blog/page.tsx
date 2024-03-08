@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import fsPromises from "fs/promises";
 import { randomUUID } from "crypto";
+import CNTowerSvg from "../components/CNTowerSvg";
 
 export default async function Page() {
   const filepath = path.join(process.cwd(), "posts");
@@ -42,6 +43,7 @@ export default async function Page() {
                 </ul>
 
         </div>
+        <CNTowerSvg />
   </div>
   );
 } 
