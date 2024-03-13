@@ -2,7 +2,8 @@
 
 export default function CNTowerSvg () {
     return (
-    <div className="rounded-full invisible w-0 absolute md:w-60 md:visible md:static"
+    <div className="rounded-full invisible w-0 absolute md:w-60 md:visible md:sticky md:top-20 
+            hover:cursor-pointer h-1"
         onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
          width="282.000000pt" height="956.000000pt" viewBox="0 0 282.000000 956.000000"

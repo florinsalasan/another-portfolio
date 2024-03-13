@@ -6,7 +6,7 @@ import CNTowerSvg from "./components/CNTowerSvg";
 
 export default function Page() {
   return (
-    <div className="flex flex-row md:justify-between md:align-top">
+    <div className="flex flex-row md:justify-between md:align-top relative">
         <div className="prose dark:prose-invert">
           <h1 className="">
             Hello there! <br className="sm:hidden" /> I&apos;m Florin.

@@ -31,7 +31,9 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## TODO:
 
-[] Add a project section on the landing page that showcases other projects hosted on github\
-[] Add a way to sort the blog posts by tags, this is overkill at this point in time\
-[] Begin writing blog posts, attempt to automate some of the metadata like the posted date\
-[] Will add others as the scope expands
+[ ] Add a project section on the landing page that showcases other projects hosted on github\
+[ ] Add a way to sort the blog posts by tags, this is overkill at this point in time\
+[ ] Begin writing blog posts, attempt to automate some of the metadata like the posted date\
+[ ] Will add others as the scope expands\
+[ ] Add a button to go to top of page to replace the CNTower link for mobile views
+
