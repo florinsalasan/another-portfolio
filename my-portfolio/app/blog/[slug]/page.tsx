@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import fsPromises from "fs/promises";
 import Markdown from 'react-markdown';
 import CNTowerSvg from "@/app/components/CNTowerSvg";
+import ToTopBtn from "@/app/components/toTopBtn";
 
 function capitalize(str: string) {
     return str
@@ -34,6 +35,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                <hr />
            </div>
            <CNTowerSvg />
+           <ToTopBtn />
        </div>
     )
 };

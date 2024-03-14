@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import fsPromises from "fs/promises";
 import { randomUUID } from "crypto";
 import CNTowerSvg from "../components/CNTowerSvg";
+import ToTopBtn from "../components/toTopBtn";
 
 export default async function Page() {
   const filepath = path.join(process.cwd(), "posts");
@@ -44,6 +45,7 @@ export default async function Page() {
 
         </div>
         <CNTowerSvg />
+        <ToTopBtn />
   </div>
   );
 } 

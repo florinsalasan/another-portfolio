@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import CNTowerSvg from "./components/CNTowerSvg";
+import ToTopBtn from "./components/toTopBtn";
 
 export default function Page() {
   return (
@@ -54,6 +55,7 @@ export default function Page() {
           </div>
         </div>
         <CNTowerSvg />
+        <ToTopBtn />
   </div>
   );
 } 
