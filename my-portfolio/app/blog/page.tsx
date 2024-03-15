@@ -9,9 +9,14 @@ import ToTopBtn from "../components/toTopBtn";
 export default async function Page() {
   const filepath = path.join(process.cwd(), "posts");
   const posts = await fsPromises.readdir(filepath, { withFileTypes: false });
+  let postTags: string[] = [];
   const orderedPosts = posts
     .map((f) => {
         const d = matter.read(`./posts/${f}`);
+        for (let tag of d.data.tags) {
+            postTags.push(tag)
+            postTags.push(", ")
+        }
         return { data: d.data, slug: f.slice(0, -3) };
     })
     .sort(
@@ -24,6 +29,7 @@ export default async function Page() {
     <div className="flex flex-row md:justify-between md:align-top">
         <div className="prose dark:prose-invert w-full">
             <h1>Posts</h1>
+                <p>{postTags}</p>
                 <ul className="list-none w-4/5">
                     {orderedPosts.map((p) => (
                         <Link
