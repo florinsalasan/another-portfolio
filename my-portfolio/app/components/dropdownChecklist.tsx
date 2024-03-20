@@ -6,8 +6,9 @@ import TagButton from "./tagButton";
 export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: string[], orderedPosts: { data: { [key: string]: any; }; slug: string; }[]; })
 {
     return (
-    <div>
-        <ul className="grid grid-cols-2 lg:grid-cols-3">
+    <div className="inline">
+        <TagButton tag={"Filter by Tags"} />
+        <ul className="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {allTags.map(tag => (
                 <li key={tag} className="list-none block">
                     <TagButton tag={ tag } />
