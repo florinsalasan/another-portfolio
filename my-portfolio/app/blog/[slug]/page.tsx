@@ -13,6 +13,8 @@ function capitalize(str: string) {
         .join(" ");
 }
 
+// In case I double up on tags in the markdown file filter out duplicates
+
 export default async function Page({ params }: { params: { slug: string } }) {
     const filepath = path.join(
         process.cwd(),
@@ -30,7 +32,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                    Posted{" "}
                    {new Date(data.data.posted as string).toLocaleString().split(",")[0]}
                </span>
-               <h4 className="mb-6">Tags: {data.data.tags.toString().split(',').join(', ')}</h4>
+               <h4 className="mb-6">Tags: {getUniqueTags(data.data.tags.toString().split(','))}</h4>
                <Markdown>{data.content}</Markdown>
                <hr />
            </div>
@@ -39,3 +41,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
        </div>
     )
 };
+
+function getUniqueTags(tags: string[]) {
+
+    let uniqueTags = [...new Set(tags)].join(', ')
+    return uniqueTags
+
+}

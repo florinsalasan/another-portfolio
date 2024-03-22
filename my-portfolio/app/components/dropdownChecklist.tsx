@@ -2,15 +2,31 @@
 
 import Link from "next/link"
 import TagButton from "./tagButton";
+import { useState } from "react";
 
 export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: string[], orderedPosts: { data: { [key: string]: any; }; slug: string; }[]; })
 {
+    const [expanded, setExpanded] = useState(false);
+
+    const expandList = () => { 
+        console.log("expandList called")
+        console.log(expanded)
+        setExpanded(!expanded)
+        console.log(expanded)
+    }
+
+    const uniqueTags = [...new Set(allTags)]
+
     return (
-    <div className="inline">
-        <TagButton tag={"Filter by Tags"} />
-        <ul className="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {allTags.map(tag => (
-                <li key={tag} className="list-none block">
+    <div>
+        <div onClick={expandList}>
+            <TagButton tag={expanded ? "Collapse filters" : "Filter by Tags"} />
+        </div>
+        <ul className={["grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-56 p-0",
+                expanded ? "" : "hidden"
+            ].join(' ')}>
+            {uniqueTags.map(tag => (
+                <li key={tag} className="list-none block p-0">
                     <TagButton tag={ tag } />
                 </li>
             ))}
@@ -29,7 +45,7 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                             {/* {(p.data.posted as Date).toLocaleString().split(",")[0]} */}
                             {p.data.posted}
                         </span>
-                    <p className="font-thin text-base mb-0">Tags: {p.data.tags.toString().split(',').join(', ')}</p>
+                    <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
                     </li>
                 </Link>
             ))}
@@ -37,3 +53,12 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
     </div>
     )
 };
+
+
+function getUnique(stringTags: String) {
+
+    let currTags = stringTags.split(',')
+    let uniqueTags = [...new Set(currTags)].join(', ')
+    return uniqueTags
+
+}
