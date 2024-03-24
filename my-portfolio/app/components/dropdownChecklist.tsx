@@ -7,19 +7,23 @@ import { useState } from "react";
 export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: string[], orderedPosts: { data: { [key: string]: any; }; slug: string; }[]; })
 {
     const [expanded, setExpanded] = useState(false);
+    const [activeFilters, setActiveFilters] = useState([])
 
     const expandList = () => { 
-        console.log("expandList called")
-        console.log(expanded)
         setExpanded(!expanded)
-        console.log(expanded)
+    }
+
+    const toggleFilter = () => {
+        // given a button tag, either add it to activeFilters or remove it
+        
+
     }
 
     const uniqueTags = [...new Set(allTags)]
 
     return (
     <div>
-        <div onClick={expandList}>
+        <div onClick={expandList} className="w-40 hover:cursor-pointer">
             <TagButton tag={expanded ? "Collapse filters" : "Filter by Tags"} />
         </div>
         <ul className={["grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-56 p-0",
@@ -27,7 +31,9 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
             ].join(' ')}>
             {uniqueTags.map(tag => (
                 <li key={tag} className="list-none block p-0">
-                    <TagButton tag={ tag } />
+                    <div onClick={toggleFilter} className="w-40"> 
+                        <TagButton tag={ tag } />
+                    </div>
                 </li>
             ))}
         </ul>
