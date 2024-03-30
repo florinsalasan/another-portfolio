@@ -6,20 +6,36 @@ import { useState } from "react";
 
 export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: string[], orderedPosts: { data: { [key: string]: any; }; slug: string; }[]; })
 {
+    const uniqueTags = [...new Set(allTags)]
+
     const [expanded, setExpanded] = useState(false);
-    const [activeFilters, setActiveFilters] = useState([])
+
+    let allTagsFalse = new Map<String, boolean>;
+    uniqueTags.forEach((tag) => {
+        allTagsFalse.set(tag, false);
+    });
+
+    const [activeFilters, setActiveFilters] = useState(allTagsFalse)
 
     const expandList = () => { 
         setExpanded(!expanded)
+        console.log(activeFilters)
     }
 
-    const toggleFilter = () => {
+    const toggleFilter = (e: React.MouseEvent<HTMLElement>) => {
         // given a button tag, either add it to activeFilters or remove it
-        
-
+        let currButtonTag = e.currentTarget.children[0].getAttribute("id")?.toString();
+        console.log(currButtonTag)
+        // Get a copy of the activeFilters, toggle the one with currButtonTag and set it
+        let copyOfFilters = new Map(activeFilters);
+        if (typeof currButtonTag !== "string") return;
+        copyOfFilters.set(currButtonTag, !activeFilters.get(currButtonTag));
+        setActiveFilters(copyOfFilters)
+        console.log(activeFilters)
+        // This is a cursed function, the console log of the tag is working as
+        // expected, yet for some godforsaken reason updating the map with
+        // set and then saving it to the state is a mess.
     }
-
-    const uniqueTags = [...new Set(allTags)]
 
     return (
     <div>
@@ -31,7 +47,7 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
             ].join(' ')}>
             {uniqueTags.map(tag => (
                 <li key={tag} className="list-none block p-0">
-                    <div onClick={toggleFilter} className="w-40"> 
+                    <div onClick={((e: React.MouseEvent<HTMLElement>) => toggleFilter(e))} className="w-40"> 
                         <TagButton tag={ tag } />
                     </div>
                 </li>
