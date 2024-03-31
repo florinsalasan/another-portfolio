@@ -25,16 +25,22 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
     const toggleFilter = (e: React.MouseEvent<HTMLElement>) => {
         // given a button tag, either add it to activeFilters or remove it
         let currButtonTag = e.currentTarget.children[0].getAttribute("id")?.toString();
-        console.log(currButtonTag)
         // Get a copy of the activeFilters, toggle the one with currButtonTag and set it
         let copyOfFilters = new Map(activeFilters);
-        if (typeof currButtonTag !== "string") return;
+        if (typeof currButtonTag !== "string") {
+            return;
+        }
         copyOfFilters.set(currButtonTag, !activeFilters.get(currButtonTag));
         setActiveFilters(copyOfFilters)
-        console.log(activeFilters)
         // This is a cursed function, the console log of the tag is working as
         // expected, yet for some godforsaken reason updating the map with
         // set and then saving it to the state is a mess.
+        // When toggling a new tag, it first returns the previous state that had 
+        // existed, ie: so first toggle returns initial state of all false, toggling 
+        // again works as expected, then toggling a different tag returns all false 
+        // due to the previous state rule, so might be updating as expected but
+        // useState is async so won't necessarily console.log properly have to believe
+        // it works as expected
     }
 
     return (
@@ -84,3 +90,5 @@ function getUnique(stringTags: String) {
     return uniqueTags
 
 }
+
+

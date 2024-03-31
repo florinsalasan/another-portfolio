@@ -43,7 +43,7 @@ export default function RootLayout({
             </div>
             <ToggleTheme />
           </div>
-          <div className="bg-red-700 text-white text-center">Still working on the site, some things may be broken</div>
+          <div className="bg-red-600 text-white text-center">Still working on the site, some things may be broken</div>
           <div className="animate-slideUp transition-opacity">{children}</div>
           <div className="flex-col prose mt-auto flex justify-between gap-8 
                         pt-8 dark:prose-invert prose-h3:mt-0 md:flex-row 

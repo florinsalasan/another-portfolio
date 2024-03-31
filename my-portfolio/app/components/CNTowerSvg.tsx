@@ -8,7 +8,7 @@ export default function CNTowerSvg () {
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
          width="282.000000pt" height="956.000000pt" viewBox="0 0 282.000000 956.000000"
          preserveAspectRatio="xMidYMid meet"
-         className="dark:invert hover:dark:fill-sky-500 hover:fill-blue-800 w-60 h-auto"
+         className="dark:hover:fill-red-600 hover:fill-red-600 w-60 h-auto dark:fill-white"
             >
 
         <g transform="translate(0.000000,956.000000) scale(0.100000,-0.100000)"
