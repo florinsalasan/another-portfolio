@@ -32,15 +32,39 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
         }
         copyOfFilters.set(currButtonTag, !activeFilters.get(currButtonTag));
         setActiveFilters(copyOfFilters)
-        // This is a cursed function, the console log of the tag is working as
-        // expected, yet for some godforsaken reason updating the map with
-        // set and then saving it to the state is a mess.
-        // When toggling a new tag, it first returns the previous state that had 
-        // existed, ie: so first toggle returns initial state of all false, toggling 
-        // again works as expected, then toggling a different tag returns all false 
-        // due to the previous state rule, so might be updating as expected but
-        // useState is async so won't necessarily console.log properly have to believe
+        // This is a cursed function 
+        // nvm, useState is async so won't necessarily console.log properly have to believe
         // it works as expected
+        console.log(getFilteredPosts())
+    }
+
+    const getFilteredPosts = () => {
+        // Get the index of true as a check if any tag filters were applied.
+        if (Array.from(activeFilters.values()).indexOf(true) === -1) {
+            // return all posts 
+            return orderedPosts.map((p: any) => (
+                <Link
+                  href={`./blog/${p.slug}`}
+                  className="no-underline hover:underline"
+                  key={crypto.randomUUID()}
+                >
+                    <li className="w-full mt-6 text-xl capitalize border-b pb-2 
+                        dark:border-white border-solid border-black" key={p.slug}>
+                        {p.slug.replaceAll("-", " ")}
+                        <span className="pl-4 text-base">
+                            {/* {(p.data.posted as Date).toLocaleString().split(",")[0]} */}
+                            {p.data.posted}
+                        </span>
+                    <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
+                    </li>
+                </Link>
+            ))
+        } else {
+            // loop through posts and filter for ones containing one of the activeFilters
+            console.log("posts are being filtered soon")
+            return
+        }
+            
     }
 
     return (
@@ -90,5 +114,4 @@ function getUnique(stringTags: String) {
     return uniqueTags
 
 }
-
 
