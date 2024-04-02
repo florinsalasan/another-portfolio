@@ -38,6 +38,8 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
         console.log(getFilteredPosts())
     }
 
+    // make the getFilteredPosts function a diff component? can make it client side and then
+    // this can use async/await from useState
     const getFilteredPosts = () => {
         // Get the index of true as a check if any tag filters were applied.
         if (Array.from(activeFilters.values()).indexOf(true) === -1) {
@@ -61,8 +63,50 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
             ))
         } else {
             // loop through posts and filter for ones containing one of the activeFilters
-            console.log("posts are being filtered soon")
-            return
+            // List of posts is appearing and disappearing on filtering as expected, 
+            // need to get a good way of filtering now. Best idea I currently have is
+            // first looping over the posts then checking if the tags contain any of the active filters
+            // biggest problem I have with this is that it's quite janky and large O() but theres very 
+            // few tags/posts so it shouldn't be that big of an issue, if no posts match the 
+            // filters should have a message for that scenario too.
+
+            // Start by looping over the orderedPosts
+            let passingPosts = [];
+            for (let post of orderedPosts) {
+                // Loop over active filters I think to see if they are in the given post?
+                // Will need a way to break out of this inner loop and add it to a collection of 
+                // posts that match the filters
+                for (let activeFilter of activeFilters) {
+                    console.log('post tags:')
+                    console.log(post.data.tags);
+                    console.log('activeFilters useState map:')
+                    console.log(activeFilters);
+                    if (activeFilter[1] && post.data.tags.includes(activeFilter[0])) {
+                        passingPosts.push(post)
+                        // should break inner loop and continue main loop I think
+                        break;
+                    }
+                }
+            }
+            console.log('the passingPosts:')
+            console.log(passingPosts)
+            return passingPosts.map((p: any) => (
+                <Link
+                  href={`./blog/${p.slug}`}
+                  className="no-underline hover:underline"
+                  key={crypto.randomUUID()}
+                >
+                    <li className="w-full mt-6 text-xl capitalize border-b pb-2 
+                        dark:border-white border-solid border-black" key={p.slug}>
+                        {p.slug.replaceAll("-", " ")}
+                        <span className="pl-4 text-base">
+                            {/* {(p.data.posted as Date).toLocaleString().split(",")[0]} */}
+                            {p.data.posted}
+                        </span>
+                    <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
+                    </li>
+                </Link>
+            ))
         }
             
     }
@@ -84,7 +128,8 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
             ))}
         </ul>
         <ul className="list-none w-4/5">
-            {orderedPosts.map((p: any) => (
+                {getFilteredPosts()}
+                {/*{orderedPosts.map((p: any) => (
                 <Link
                   href={`./blog/${p.slug}`}
                   className="no-underline hover:underline"
@@ -94,13 +139,12 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                         dark:border-white border-solid border-black" key={p.slug}>
                         {p.slug.replaceAll("-", " ")}
                         <span className="pl-4 text-base">
-                            {/* {(p.data.posted as Date).toLocaleString().split(",")[0]} */}
                             {p.data.posted}
                         </span>
                     <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
                     </li>
                 </Link>
-            ))}
+            ))} */}
         </ul>
     </div>
     )
