@@ -76,16 +76,20 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                 // Loop over active filters I think to see if they are in the given post?
                 // Will need a way to break out of this inner loop and add it to a collection of 
                 // posts that match the filters
+                let passed = true;
                 for (let activeFilter of activeFilters) {
                     console.log('post tags:')
                     console.log(post.data.tags);
                     console.log('activeFilters useState map:')
                     console.log(activeFilters);
-                    if (activeFilter[1] && post.data.tags.includes(activeFilter[0])) {
-                        passingPosts.push(post)
+                    if (activeFilter[1] && !post.data.tags.includes(activeFilter[0])) {
                         // should break inner loop and continue main loop I think
+                        passed = false;
                         break;
                     }
+                }
+                if (passed) {
+                    passingPosts.push(post);
                 }
             }
             console.log('the passingPosts:')
