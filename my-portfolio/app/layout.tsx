@@ -52,18 +52,21 @@ export default function RootLayout({
               <h3 className="">Contact me</h3>
               <div className="flex gap-3 pt-1">
                 <a
+                  aria-label="Link to my email"
                   className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                   href="mailto:me@florinsalasan.dev"
                 >
                   <MailIcon />
                 </a>
                 <a
+                  aria-label="Link to my github"
                   className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                   href="https://github.com/florinsalasan"
                 >
                   <Github />
                 </a>
                 <a
+                  aria-label="Link to my linkedin"
                   className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                   href="https://www.linkedin.com/in/florinsalasan/"
                 >
@@ -73,6 +76,7 @@ export default function RootLayout({
             </div>
             <div className="">
               <a 
+                aria-label="Link to designer's webpage"
                 className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
                 href="https://imjosh.dev" target="_blank"
               >

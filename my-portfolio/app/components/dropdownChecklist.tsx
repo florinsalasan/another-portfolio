@@ -4,6 +4,7 @@ import Link from "next/link"
 import TagButton from "./tagButton";
 import { useState } from "react";
 
+// This is a mess
 export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: string[], orderedPosts: { data: { [key: string]: any; }; slug: string; }[]; })
 {
     const uniqueTags = [...new Set(allTags)]
@@ -133,22 +134,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
         </ul>
         <ul className="list-none w-4/5">
                 {getFilteredPosts()}
-                {/*{orderedPosts.map((p: any) => (
-                <Link
-                  href={`./blog/${p.slug}`}
-                  className="no-underline hover:underline"
-                  key={crypto.randomUUID()}
-                >
-                    <li className="w-full mt-6 text-xl capitalize border-b pb-2 
-                        dark:border-white border-solid border-black" key={p.slug}>
-                        {p.slug.replaceAll("-", " ")}
-                        <span className="pl-4 text-base">
-                            {p.data.posted}
-                        </span>
-                    <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
-                    </li>
-                </Link>
-            ))} */}
         </ul>
     </div>
     )

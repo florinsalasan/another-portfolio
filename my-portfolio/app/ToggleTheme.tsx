@@ -7,6 +7,7 @@ export default function ToggleTheme() {
     const [isDark, setIsDark] = useState(true);
     return (
         <button
+            id="toggle-dark-mode"
             onClick={() => {
               isDark
                ? document.documentElement.classList.remove("dark")
