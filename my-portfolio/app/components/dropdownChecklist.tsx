@@ -20,7 +20,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
 
     const expandList = () => { 
         setExpanded(!expanded)
-        console.log(activeFilters)
     }
 
     const toggleFilter = (e: React.MouseEvent<HTMLElement>) => {
@@ -36,7 +35,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
         // This is a cursed function 
         // nvm, useState is async so won't necessarily console.log properly have to believe
         // it works as expected
-        console.log(getFilteredPosts())
     }
 
     // make the getFilteredPosts function a diff component? can make it client side and then
@@ -55,7 +53,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                         dark:border-white border-solid border-black" key={p.slug}>
                         {p.slug.replaceAll("-", " ")}
                         <span className="pl-4 text-base">
-                            {/* {(p.data.posted as Date).toLocaleString().split(",")[0]} */}
                             {p.data.posted}
                         </span>
                     <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
@@ -63,14 +60,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                 </Link>
             ))
         } else {
-            // loop through posts and filter for ones containing one of the activeFilters
-            // List of posts is appearing and disappearing on filtering as expected, 
-            // need to get a good way of filtering now. Best idea I currently have is
-            // first looping over the posts then checking if the tags contain any of the active filters
-            // biggest problem I have with this is that it's quite janky and large O() but theres very 
-            // few tags/posts so it shouldn't be that big of an issue, if no posts match the 
-            // filters should have a message for that scenario too.
-
             // Start by looping over the orderedPosts
             let passingPosts = [];
             for (let post of orderedPosts) {
@@ -79,10 +68,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                 // posts that match the filters
                 let passed = true;
                 for (let activeFilter of activeFilters) {
-                    console.log('post tags:')
-                    console.log(post.data.tags);
-                    console.log('activeFilters useState map:')
-                    console.log(activeFilters);
                     if (activeFilter[1] && !post.data.tags.includes(activeFilter[0])) {
                         // should break inner loop and continue main loop I think
                         passed = false;
@@ -93,8 +78,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                     passingPosts.push(post);
                 }
             }
-            console.log('the passingPosts:')
-            console.log(passingPosts)
             return passingPosts.map((p: any) => (
                 <Link
                   href={`./blog/${p.slug}`}
@@ -105,7 +88,6 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                         dark:border-white border-solid border-black" key={p.slug}>
                         {p.slug.replaceAll("-", " ")}
                         <span className="pl-4 text-base">
-                            {/* {(p.data.posted as Date).toLocaleString().split(",")[0]} */}
                             {p.data.posted}
                         </span>
                     <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
@@ -119,7 +101,7 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
     return (
     <div>
         <div onClick={expandList} className="w-40 hover:cursor-pointer">
-            <TagButton tag={expanded ? "Collapse filters" : "Filter by Tags"} />
+            <TagButton tag={expanded ? "Collapse filters" : "Filter by Tags"} active={ false }/>
         </div>
         <ul className={["grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-56 p-0",
                 expanded ? "" : "hidden"
@@ -127,7 +109,11 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
             {uniqueTags.map(tag => (
                 <li key={tag} className="list-none block p-0">
                     <div onClick={((e: React.MouseEvent<HTMLElement>) => toggleFilter(e))} className="w-40"> 
-                        <TagButton tag={ tag } />
+                        <TagButton 
+                                tag={ tag } 
+                                // need the or false bit in case .get returns undefined
+                                active={ activeFilters.get(tag) || false }
+                        />
                     </div>
                 </li>
             ))}
