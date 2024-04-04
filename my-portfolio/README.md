@@ -36,4 +36,4 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [ ] Begin writing blog posts, attempt to automate some of the metadata like the posted date
 [ ] Will add others as the scope expands
 [x] Add a button to go to top of page to replace the CNTower link for mobile views
-[ ] Add indicator for which filters are active, add reset filter button
+[x] Add indicator for which filters are active, add reset filter button

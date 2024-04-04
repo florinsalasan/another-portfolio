@@ -22,6 +22,14 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
         setExpanded(!expanded)
     }
 
+    const resetFilters = () => {
+        let allTagsFalse = new Map<String, boolean>;
+        uniqueTags.forEach((tag) => {
+            allTagsFalse.set(tag, false);
+        });
+        setActiveFilters(allTagsFalse);
+    }
+
     const toggleFilter = (e: React.MouseEvent<HTMLElement>) => {
         // given a button tag, either add it to activeFilters or remove it
         let currButtonTag = e.currentTarget.children[0].getAttribute("id")?.toString();
@@ -100,8 +108,13 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
 
     return (
     <div>
-        <div onClick={expandList} className="w-40 hover:cursor-pointer">
-            <TagButton tag={expanded ? "Collapse filters" : "Filter by Tags"} active={ false }/>
+        <div className="flex flex-col gap-y-3">
+            <div onClick={expandList} className="w-40 hover:cursor-pointer">
+                <TagButton tag={expanded ? "Collapse filters" : "Filter by tags"} active={ false }/>
+            </div>
+            <div onClick={resetFilters} className={["w-40 hover:cursor-pointer", expanded ? "" : "hidden"].join(' ')}>
+                <TagButton tag={expanded ? "Reset filters" : ""} active={ false }/>
+            </div>
         </div>
         <ul className={["grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-56 p-0",
                 expanded ? "" : "hidden"
