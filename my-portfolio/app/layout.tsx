@@ -36,6 +36,12 @@ export default function RootLayout({
               </Link>
               <Link
                 className="text-lg font-medium hover:underline dark:text-white"
+                href="/projects"
+              >
+                Projects
+              </Link>
+              <Link
+                className="text-lg font-medium hover:underline dark:text-white"
                 href="/blog"
               >
                 Blog
