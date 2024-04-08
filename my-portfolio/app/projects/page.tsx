@@ -1,6 +1,7 @@
 import CNTowerSvg from "../components/CNTowerSvg";
 import ToTopBtn from "../components/toTopBtn";
 import DropdownChecklist from "../components/dropdownChecklist";
+import ProjectCard from "../components/projectCard";
 
 export default async function Page() {
   let postTags: string[] = [];
@@ -10,6 +11,7 @@ export default async function Page() {
         <div className="prose dark:prose-invert w-full">
             <h1>Projects</h1>
         </div>
+        <ProjectCard />
         <CNTowerSvg />
         <ToTopBtn />
   </div>
