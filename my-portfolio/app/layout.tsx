@@ -2,7 +2,6 @@ import "./globals.css";
 import clsx from "clsx";
 import { DM_Sans } from "next/font/google";
 import ToggleTheme from "./ToggleTheme";
-import Image from "next/image";
 import Link from "next/link";
 import { Github, LinkedinIcon, MailIcon } from "lucide-react";
 

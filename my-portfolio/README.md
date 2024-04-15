@@ -37,3 +37,4 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [ ] Will add others as the scope expands
 - [x] Add a button to go to top of page to replace the CNTower link for mobile views
 - [x] Add indicator for which filters are active, add reset filter button
+- [ ] Modify dropdown component to work with both .md files and .json files

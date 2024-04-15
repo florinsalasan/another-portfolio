@@ -1,14 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
+import { Github } from 'lucide-react';
 
 interface ProjectCardProps {
   imageUrl: string;
   title: string;
   description: string;
   technologies: string[];
+  gitLink: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, title, description, technologies}) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, title, description, technologies, gitLink }) => {
   return (
     <div className="max-w-sm w-full lg:max-w-full lg:flex">
       <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
@@ -25,7 +27,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, title, description,
                 {tech}
               </span>
             ))}
-          </div>
+            <a
+              aria-label="Link to project on github"
+              className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+              href={gitLink}
+              target='_blank'
+            >
+              <Github />
+            </a>
+        </div>
       </div>
     </div>
   );

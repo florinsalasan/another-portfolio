@@ -1,15 +1,17 @@
 [
   {
-    "title": "Project 1",
-    "description": "Description of Project 1",
+    "title": "Personal Portfolio",
+    "description": "This is the site that you're currently on!",
     "technologies": ["React", "TypeScript", "Tailwind CSS"],
-    "imageUrl": "/public/favicon.ico"
-    },
+    "imageUrl": "/public/favicon.ico",
+    "gitLink": "https://github.com/florinsalasan/another-portfolio"
+  },
   {
     "title": "Project 2",
     "description": "Description of Project 2",
     "technologies": ["Node.js", "Express", "MongoDB"],
-    "imageUrl": "/public/favicon.ico"
+    "imageUrl": "/public/favicon.ico",
+    "gitLink": "https://github.com/florinsalasan/another-portfolio"
   }
 ]
 
