@@ -4,8 +4,8 @@ import { DM_Sans } from "next/font/google";
 import ToggleTheme from "./ToggleTheme";
 import Link from "next/link";
 import { Github, LinkedinIcon, MailIcon } from "lucide-react";
-import ToTopBtn from "./components/toTopBtn";
 import CNTowerSvg from "./components/CNTowerSvg";
+import ToTopBtn from "./components/ToTopBtn";
 
 export const metadata = {
   title: "Florin / Salasan",
