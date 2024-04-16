@@ -4,6 +4,8 @@ import { DM_Sans } from "next/font/google";
 import ToggleTheme from "./ToggleTheme";
 import Link from "next/link";
 import { Github, LinkedinIcon, MailIcon } from "lucide-react";
+import ToTopBtn from "./components/ToTopBtn";
+import CNTowerSvg from "./components/CNTowerSvg";
 
 export const metadata = {
   title: "Florin / Salasan",
@@ -49,7 +51,11 @@ export default function RootLayout({
             <ToggleTheme />
           </div>
           <div className="bg-red-600 text-white text-center">Still working on the site, some things may be broken</div>
-          <div className="animate-slideUp transition-opacity">{children}</div>
+          <div className="animate-slideUp transition-opacity flex flex-row md:justify-between md:align-top relative">
+              {children}
+              <CNTowerSvg />
+              <ToTopBtn />
+          </div>
           <div className="flex-col prose mt-auto flex justify-between gap-8 
                         pt-8 dark:prose-invert prose-h3:mt-0 md:flex-row 
                         max-w-lg">

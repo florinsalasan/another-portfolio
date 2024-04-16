@@ -1,17 +1,36 @@
 [
   {
     "title": "Personal Portfolio",
-    "description": "This is the site that you're currently on!",
-    "technologies": ["React", "TypeScript", "Tailwind CSS"],
-    "imageUrl": "/public/favicon.ico",
+    "description": [
+            "This is the site that you're currently on!",
+            "Contains some of my highlighted projects along with what I hope will become a", 
+            "consistent-ish blog"
+        ],
+    "technologies": ["React", "TypeScript", "Tailwind"],
+    "imageUrl": "CNTower.svg",
     "gitLink": "https://github.com/florinsalasan/another-portfolio"
   },
   {
-    "title": "Project 2",
-    "description": "Description of Project 2",
-    "technologies": ["Node.js", "Express", "MongoDB"],
-    "imageUrl": "/public/favicon.ico",
-    "gitLink": "https://github.com/florinsalasan/another-portfolio"
+    "title": "Snip to clipboard",
+    "description": [
+            "A set of three python scripts that act as a snip tool, text extractor from",
+            "an image, and an all in one command. Still WIP for better usability but works",
+            "well enough for a single display. Note that there are some hard coded",
+            "adjustments so that it works on the notched macbook display."
+        ],
+    "technologies": ["python", "tesseract", "tk"],
+    "imageUrl": "CNTower.svg",
+    "gitLink": "https://github.com/florinsalasan/snip-to-clipboard"
+  },
+  {
+    "title": "Discord Reminder Bot",
+    "description": [
+            "A bot built in go that sends reminders about daily tasks in a", 
+            "users personal discord server."
+        ],
+    "technologies": ["go", "discordgo"],
+    "imageUrl": "CNTower.svg",
+    "gitLink": "https://github.com/florinsalasan/discord-reminder-bot"
   }
 ]
 

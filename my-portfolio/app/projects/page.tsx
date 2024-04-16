@@ -1,12 +1,10 @@
-import CNTowerSvg from "../components/CNTowerSvg";
-import ToTopBtn from "../components/toTopBtn";
 import DropdownChecklist from "../components/dropdownChecklist";
 import ProjectCard from "../components/projectCard";
 import projectsData from '../../projects.json';
 
 interface ProjectData {
     title: string;
-    description: string;
+    description: string[];
     imageUrl: string;
     technologies: string[];
     gitLink: string;
@@ -23,8 +21,6 @@ export default async function Page() {
                 <ProjectCard key={index} imageUrl={project.imageUrl} title={project.title} description={project.description} technologies={project.technologies} gitLink={project.gitLink} />
             ))}
         </div>
-        <CNTowerSvg />
-        <ToTopBtn />
   </div>
   );
 } 

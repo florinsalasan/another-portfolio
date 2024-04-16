@@ -1,8 +1,6 @@
 import path from "path";
 import matter from "gray-matter";
 import fsPromises from "fs/promises";
-import CNTowerSvg from "../components/CNTowerSvg";
-import ToTopBtn from "../components/toTopBtn";
 import DropdownChecklist from "../components/dropdownChecklist";
 
 export default async function Page() {
@@ -24,14 +22,10 @@ export default async function Page() {
     );
 
   return (
-    <div className="flex flex-row md:justify-between md:align-top">
-        <div className="prose dark:prose-invert w-full">
-            <h1>Posts</h1>
-            <DropdownChecklist allTags={ postTags } orderedPosts={ orderedPosts }/>
-        </div>
-        <CNTowerSvg />
-        <ToTopBtn />
-  </div>
+    <div className="prose dark:prose-invert w-full">
+        <h1>Posts</h1>
+        <DropdownChecklist allTags={ postTags } orderedPosts={ orderedPosts }/>
+    </div>
   );
 } 
 

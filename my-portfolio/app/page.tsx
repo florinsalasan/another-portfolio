@@ -1,8 +1,5 @@
 'use client'
 
-import CNTowerSvg from "./components/CNTowerSvg";
-import ToTopBtn from "./components/toTopBtn";
-
 export default function Page() {
   return (
     <div className="flex flex-row md:justify-between md:align-top relative">
@@ -52,8 +49,6 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <CNTowerSvg />
-        <ToTopBtn />
   </div>
   );
 } 
