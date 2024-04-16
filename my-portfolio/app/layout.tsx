@@ -4,7 +4,7 @@ import { DM_Sans } from "next/font/google";
 import ToggleTheme from "./ToggleTheme";
 import Link from "next/link";
 import { Github, LinkedinIcon, MailIcon } from "lucide-react";
-import ToTopBtn from "./components/ToTopBtn";
+import ToTopBtn from "./components/toTopBtn";
 import CNTowerSvg from "./components/CNTowerSvg";
 
 export const metadata = {
