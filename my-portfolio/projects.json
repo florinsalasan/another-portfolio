@@ -7,7 +7,7 @@
             "consistent-ish blog"
         ],
     "technologies": ["React", "TypeScript", "Tailwind"],
-    "imageUrl": "CNTower.svg",
+    "imageUrl": "low-res-portfolio.jpg",
     "gitLink": "https://github.com/florinsalasan/another-portfolio"
   },
   {
@@ -19,7 +19,7 @@
             "adjustments so that it works on the notched macbook display."
         ],
     "technologies": ["python", "tesseract", "tk"],
-    "imageUrl": "CNTower.svg",
+    "imageUrl": "snip-to-clipboard.jpg",
     "gitLink": "https://github.com/florinsalasan/snip-to-clipboard"
   },
   {
@@ -29,7 +29,7 @@
             "users personal discord server."
         ],
     "technologies": ["go", "discordgo"],
-    "imageUrl": "CNTower.svg",
+    "imageUrl": "low-res-discord.jpg",
     "gitLink": "https://github.com/florinsalasan/discord-reminder-bot"
   }
 ]

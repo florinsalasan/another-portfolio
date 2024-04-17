@@ -35,3 +35,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original res project thumbnails 
+/public/hi-res-discord.png
+/public/hi-res-discord2.png
+/public/hi-res-portfolio.png
+/public/hi-res-snip.png
