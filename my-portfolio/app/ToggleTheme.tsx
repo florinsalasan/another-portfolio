@@ -50,6 +50,7 @@ export default function ToggleTheme() {
     return (
         <button
             id="toggle-dark-mode"
+            aria-label="toggle dark mode button"
             onClick={toggleDarkMode}>
             {isDark ? <Sun className="text-gray-100" /> : <Moon />}
         </button>

@@ -31,12 +31,13 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## TODO:
 
-- [ ] Add a project section on the landing page that showcases other projects hosted on github
+- [x] Add a project section on the landing page that showcases other projects hosted on github, added separate page instead
 - [x] Add a way to sort the blog posts by tags, this is overkill at this point in time
 - [ ] Begin writing blog posts, attempt to automate some of the metadata like the posted date
-- [ ] Will add others as the scope expands
 - [x] Add a button to go to top of page to replace the CNTower link for mobile views
 - [x] Add indicator for which filters are active, add reset filter button
 - [ ] Modify dropdown component to work with both .md files and .json files for use on blog and project sections
 - [x] Add event listener for system/browser dark mode change and use preference on load
 - [x] Move ToTopBtn and CNTower to the layout instead of on individual pages since they're everywhere anyways
+
+- [ ] Will add others as the scope expands

@@ -98,7 +98,7 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                         <span className="pl-4 text-base">
                             {p.data.posted}
                         </span>
-                    <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
+                        <p className="font-thin text-base mb-0">Tags: {getUnique(p.data.tags.toString())} </p>
                     </li>
                 </Link>
             ))
@@ -123,9 +123,9 @@ export default function DropdownChecklist({ allTags, orderedPosts }: {allTags: s
                 <li key={tag} className="list-none block p-0">
                     <div onClick={((e: React.MouseEvent<HTMLElement>) => toggleFilter(e))} className="w-40"> 
                         <TagButton 
-                                tag={ tag } 
-                                // need the or false bit in case .get returns undefined
-                                active={ activeFilters.get(tag) || false }
+                            tag={ tag } 
+                            // need the or false bit in case .get returns undefined
+                            active={ activeFilters.get(tag) || false }
                         />
                     </div>
                 </li>
