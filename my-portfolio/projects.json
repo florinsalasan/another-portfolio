@@ -4,7 +4,7 @@
     "description": [
             "This is the site that you're currently on!",
             "Contains some of my highlighted projects along with what I hope will become a", 
-            "consistent-ish blog"
+            "consistent-ish blog."
         ],
     "technologies": ["React", "TypeScript", "Tailwind"],
     "imageUrl": "low-res-portfolio.jpg",
@@ -26,7 +26,8 @@
     "title": "Discord Reminder Bot",
     "description": [
             "A bot built in go that sends reminders about daily tasks in a", 
-            "users personal discord server."
+            "users personal discord server. Still WIP and scope of the project",
+            "will likely change once the basics are working as expected."
         ],
     "technologies": ["go", "discordgo"],
     "imageUrl": "low-res-discord.jpg",
