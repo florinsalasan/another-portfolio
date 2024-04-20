@@ -64,22 +64,24 @@ export default function RootLayout({
               <div className="flex gap-3 pt-1">
                 <a
                   aria-label="Link to my email"
-                  className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+                  className="transition-all hover:text-red-600 hover:cursor-pointer"
                   href="mailto:me@florinsalasan.dev"
                 >
                   <MailIcon />
                 </a>
                 <a
                   aria-label="Link to my github"
-                  className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+                  className="transition-all hover:text-red-600" 
                   href="https://github.com/florinsalasan"
+                  target="_blank"
                 >
                   <Github />
                 </a>
                 <a
                   aria-label="Link to my linkedin"
-                  className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+                  className="transition-all hover:text-red-600"
                   href="https://www.linkedin.com/in/florinsalasan/"
+                  target="_blank"
                 >
                   <LinkedinIcon />
                 </a>
@@ -88,7 +90,7 @@ export default function RootLayout({
             <div className="">
               <a 
                 aria-label="Link to designer's webpage"
-                className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+                className="transition-all hover:text-red-600"
                 href="https://imjosh.dev" target="_blank"
               >
                 Design by @im.josh

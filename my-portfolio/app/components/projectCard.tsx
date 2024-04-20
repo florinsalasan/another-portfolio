@@ -33,7 +33,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, title, description,
             </div>
             <a
               aria-label="Link to project on github"
-              className="transition-all hover:text-blue-800 dark:hover:text-orange-500"
+              className="transition-all hover:text-red-600"
               href={gitLink}
               target='_blank'
             >
