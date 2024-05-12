@@ -20,7 +20,7 @@ export default async function Page() {
             {typedProjectsData.map((project: ProjectData, index: number) => (
                 <ProjectCard key={index} imageUrl={project.imageUrl} title={project.title} description={project.description} technologies={project.technologies} gitLink={project.gitLink} />
             ))}
-            <p>*All thumbnails were made using Bing Copilot</p>
+            <p>*Thumbnails were made using Bing Copilot</p>
         </div>
   </div>
   );

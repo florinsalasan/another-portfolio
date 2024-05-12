@@ -32,6 +32,16 @@
     "technologies": ["go", "discordgo"],
     "imageUrl": "low-res-discord.jpg",
     "gitLink": "https://github.com/florinsalasan/discord-reminder-bot"
+  },
+  {
+    "title": "CHIP-8 interpreter",
+    "description": [
+            "A WIP interpreter/emulator that is meant to run CHIP-8 programs.",
+            "Currently in the process of debugging this and then will work on an 8080 or 6502 emulator."
+        ],
+    "technologies": ["C", "SDL", "CMake"],
+    "imageUrl": "low-res-chip8.jpg",
+    "gitLink": "https://github.com/florinsalasan/homegrown-organic-emulators"
   }
 ]
 
