@@ -11,6 +11,18 @@
     "gitLink": "https://github.com/florinsalasan/another-portfolio"
   },
   {
+    "title": "Workout Tracking App",
+    "description": [
+            "A flutter app that is meant to allow users to track their weightlifting",
+            "workouts and see how they progress over time, most features still under",
+            "construction, but the basic tracking of weight and reps is included, see the",
+            "read me on github for full progress."
+        ],
+    "technologies": ["Flutter", "Dart"],
+    "imageUrl": "low-res-workout-app.png",
+    "gitLink": "https://github.com/florinsalasan/workout-tracker"
+  },
+  {
     "title": "Snip to clipboard",
     "description": [
             "A set of three python scripts that act as a snip tool, text extractor from",
