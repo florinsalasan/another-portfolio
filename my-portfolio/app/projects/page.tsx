@@ -6,8 +6,6 @@ interface ProjectData {
     title: string;
     description: string[];
     imageUrl: string;
-    imageWidth: number;
-    imageHeight: number;
     technologies: string[];
     gitLink: string;
 }
@@ -20,7 +18,7 @@ export default async function Page() {
         <div className="prose dark:prose-invert w-full">
             <h1>Projects</h1>
             {typedProjectsData.map((project: ProjectData, index: number) => (
-                <ProjectCard key={index} imageUrl={project.imageUrl} imageWidth={project.imageWidth} imageHeight={project.imageHeight} title={project.title} description={project.description} technologies={project.technologies} gitLink={project.gitLink} />
+                <ProjectCard key={index} imageUrl={project.imageUrl} title={project.title} description={project.description} technologies={project.technologies} gitLink={project.gitLink} />
             ))}
             <p>*Thumbnails were made using Bing Copilot, or bad paintbrush skills or a screenshot</p>
         </div>

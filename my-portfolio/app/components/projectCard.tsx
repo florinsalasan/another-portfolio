@@ -4,31 +4,27 @@ import { Github } from 'lucide-react';
 
 interface ProjectCardProps {
   imageUrl: string;
-  imageWidth: number;
-  imageHeight: number;
   title: string;
   description: string[];
   technologies: string[];
   gitLink: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, imageWidth, imageHeight, title, description, technologies, gitLink }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, title, description, technologies, gitLink }) => {
   return (
     <div className="max-w-sm w-full lg:max-w-full lg:flex mb-4">
       <div className="h-48 lg:h-auto lg:w-48 xl:w-64 flex-none 
                 rounded-t lg:rounded-tr-none lg:rounded-l text-center overflow-hidden
                 border-l border-r border-t lg:border-r-0 lg:border-b border-gray-400 bg-white relative">
-            <Image
-              src={imageUrl}
-              alt={title}
-              width={imageWidth}
-              height={imageHeight}
-              className='m-0'
-              fill
-              sizes="100vw"
-              style={{
-                objectFit: "cover"
-              }} />
+          <Image
+                  src={imageUrl}
+                  alt={title}
+                  className='m-0 '
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "cover"
+                  }} />
       </div>
       <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white dark:bg-gray-800 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
         <div className="mb-8">

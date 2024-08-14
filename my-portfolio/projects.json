@@ -8,8 +8,6 @@
         ],
     "technologies": ["React", "TypeScript", "Tailwind"],
     "imageUrl": "/low-res-portfolio.jpg",
-    "imageWidth": 1792,
-    "imageHeight": 1024,
     "gitLink": "https://github.com/florinsalasan/another-portfolio"
   },
   {
@@ -22,8 +20,6 @@
         ],
     "technologies": ["Flutter", "Dart"],
     "imageUrl": "/workout_logo.svg",
-    "imageWidth": 1920,
-    "imageHeight": 1080,
     "gitLink": "https://github.com/florinsalasan/workout-tracker"
   },
   {
@@ -36,8 +32,6 @@
         ],
     "technologies": ["python", "tesseract", "tk"],
     "imageUrl": "/snip-to-clipboard.jpg",
-    "imageWidth": 1792,
-    "imageHeight": 1024,
     "gitLink": "https://github.com/florinsalasan/snip-to-clipboard"
   },
   {
@@ -49,8 +43,6 @@
         ],
     "technologies": ["go", "discordgo"],
     "imageUrl": "/low-res-discord.jpg",
-    "imageWidth": 1792,
-    "imageHeight": 1024,
     "gitLink": "https://github.com/florinsalasan/discord-reminder-bot"
   },
   {
@@ -61,8 +53,6 @@
         ],
     "technologies": ["C", "SDL", "CMake"],
     "imageUrl": "/low-res-chip8.jpg",
-    "imageWidth": 1026,
-    "imageHeight": 580,
     "gitLink": "https://github.com/florinsalasan/homegrown-organic-emulators"
   }
 ]
