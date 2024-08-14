@@ -7,7 +7,9 @@
             "consistent-ish blog."
         ],
     "technologies": ["React", "TypeScript", "Tailwind"],
-    "imageUrl": "low-res-portfolio.jpg",
+    "imageUrl": "/low-res-portfolio.jpg",
+    "imageWidth": 1792,
+    "imageHeight": 1024,
     "gitLink": "https://github.com/florinsalasan/another-portfolio"
   },
   {
@@ -19,7 +21,9 @@
             "read me on github for full progress."
         ],
     "technologies": ["Flutter", "Dart"],
-    "imageUrl": "low-res-workout-app.png",
+    "imageUrl": "/workout_logo.svg",
+    "imageWidth": 1920,
+    "imageHeight": 1080,
     "gitLink": "https://github.com/florinsalasan/workout-tracker"
   },
   {
@@ -31,7 +35,9 @@
             "adjustments so that it works on the notched macbook display."
         ],
     "technologies": ["python", "tesseract", "tk"],
-    "imageUrl": "snip-to-clipboard.jpg",
+    "imageUrl": "/snip-to-clipboard.jpg",
+    "imageWidth": 1792,
+    "imageHeight": 1024,
     "gitLink": "https://github.com/florinsalasan/snip-to-clipboard"
   },
   {
@@ -42,7 +48,9 @@
             "will likely change once the basics are working as expected."
         ],
     "technologies": ["go", "discordgo"],
-    "imageUrl": "low-res-discord.jpg",
+    "imageUrl": "/low-res-discord.jpg",
+    "imageWidth": 1792,
+    "imageHeight": 1024,
     "gitLink": "https://github.com/florinsalasan/discord-reminder-bot"
   },
   {
@@ -52,7 +60,9 @@
             "Currently in the process of debugging this and then will work on an 8080 or 6502 emulator."
         ],
     "technologies": ["C", "SDL", "CMake"],
-    "imageUrl": "low-res-chip8.jpg",
+    "imageUrl": "/low-res-chip8.jpg",
+    "imageWidth": 1026,
+    "imageHeight": 580,
     "gitLink": "https://github.com/florinsalasan/homegrown-organic-emulators"
   }
 ]
