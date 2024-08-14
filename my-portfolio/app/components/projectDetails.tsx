@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ProjectDetailsProps {
-  imageUrls: string[];
+  imageUrl: string;
   title: string;
   description: string[];
   technologies: string[];
