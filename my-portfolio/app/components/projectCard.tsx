@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Github } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -19,14 +19,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, imageWidth, imageHe
                 rounded-t lg:rounded-tr-none lg:rounded-l text-center overflow-hidden
                 border-l border-r border-t lg:border-r-0 lg:border-b border-gray-400 bg-white relative">
             <Image
-                src={imageUrl}
-                alt={title}
-                width={imageWidth}
-                height={imageHeight}
-                layout='fill'
-                objectFit='cover'
-                className='m-0'
-            />
+              src={imageUrl}
+              alt={title}
+              width={imageWidth}
+              height={imageHeight}
+              className='m-0'
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover"
+              }} />
       </div>
       <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white dark:bg-gray-800 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
         <div className="mb-8">
