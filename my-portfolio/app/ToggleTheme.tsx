@@ -1,7 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import * as React from "react";
 
 

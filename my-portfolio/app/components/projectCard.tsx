@@ -12,7 +12,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ imageUrl, title, description, technologies, gitLink }) => {
   return (
-    <div className="max-w-sm w-full lg:max-w-full lg:flex mb-4">
+    <div className="w-full lg:max-w-full lg:flex lg:flex-grow mb-4">
       <div className="h-48 lg:h-auto lg:w-48 xl:w-64 flex-none 
                 rounded-t lg:rounded-tr-none lg:rounded-l text-center overflow-hidden
                 border-l border-r border-t lg:border-r-0 lg:border-b border-gray-400 bg-white relative">
