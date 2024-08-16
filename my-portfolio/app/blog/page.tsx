@@ -24,7 +24,7 @@ export default async function Page() {
   return (
     <div className="prose dark:prose-invert w-full">
       <h1>Posts</h1>
-      <DropdownChecklist allTags={postTags} orderedPosts={orderedPosts} />
+      <DropdownChecklist allTags={postTags} orderedPosts={orderedPosts} type='blog'/>
     </div>
   );
 }
