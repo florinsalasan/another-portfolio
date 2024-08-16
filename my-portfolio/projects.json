@@ -8,7 +8,8 @@
         ],
     "technologies": ["React", "TypeScript", "Tailwind"],
     "imageUrl": "/low-res-portfolio.jpg",
-    "gitLink": "https://github.com/florinsalasan/another-portfolio"
+    "gitLink": "https://github.com/florinsalasan/another-portfolio",
+    "slug": "portfolio"
   },
   {
     "title": "Workout Tracking App",
@@ -20,7 +21,8 @@
         ],
     "technologies": ["Flutter", "Dart"],
     "imageUrl": "/workout_logo.svg",
-    "gitLink": "https://github.com/florinsalasan/workout-tracker"
+    "gitLink": "https://github.com/florinsalasan/workout-tracker",
+    "slug": "workout-tracker"
   },
   {
     "title": "Snip to clipboard",
@@ -32,7 +34,8 @@
         ],
     "technologies": ["python", "tesseract", "tk"],
     "imageUrl": "/snip-to-clipboard.jpg",
-    "gitLink": "https://github.com/florinsalasan/snip-to-clipboard"
+    "gitLink": "https://github.com/florinsalasan/snip-to-clipboard",
+    "slug": "snip-to-clipboard"
   },
   {
     "title": "Discord Reminder Bot",
@@ -43,7 +46,8 @@
         ],
     "technologies": ["go", "discordgo"],
     "imageUrl": "/low-res-discord.jpg",
-    "gitLink": "https://github.com/florinsalasan/discord-reminder-bot"
+    "gitLink": "https://github.com/florinsalasan/discord-reminder-bot",
+    "slug": "discord-reminder-bot"
   },
   {
     "title": "CHIP-8 interpreter",
@@ -53,7 +57,8 @@
         ],
     "technologies": ["C", "SDL", "CMake"],
     "imageUrl": "/low-res-chip8.jpg",
-    "gitLink": "https://github.com/florinsalasan/homegrown-organic-emulators"
+    "gitLink": "https://github.com/florinsalasan/homegrown-organic-emulators",
+    "slug": "chip-8"
   }
 ]
 
