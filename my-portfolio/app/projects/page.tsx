@@ -1,6 +1,5 @@
 import ProjectCard from "../components/projectCard";
 import projectsData from "../../projects.json";
-import Link from "next/link";
 
 interface ProjectData {
   title: string;
@@ -19,20 +18,15 @@ export default async function Page() {
       <div className="prose dark:prose-invert w-full max-w-none">
         <h1>Projects</h1>
         {typedProjectsData.map((project: ProjectData, index: number) => (
-          <Link 
-            href={`./projects/${project.slug}`}
-            className="no-underline hover:underline"
-            key={crypto.randomUUID()}
-          >
-            <ProjectCard
-              key={index}
-              imageUrl={project.imageUrl}
-              title={project.title}
-              description={project.description}
-              technologies={project.technologies}
-              gitLink={project.gitLink}
-            />
-          </Link>
+          <ProjectCard
+            key={index}
+            imageUrl={project.imageUrl}
+            title={project.title}
+            description={project.description}
+            technologies={project.technologies}
+            gitLink={project.gitLink}
+            slug={project.slug}
+          />
         ))}
         <p>
           *Thumbnails were made using Bing Copilot, or bad paintbrush skills or
