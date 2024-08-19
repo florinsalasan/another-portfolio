@@ -45,7 +45,7 @@
             "will likely change once the basics are working as expected."
         ],
     "technologies": ["go", "discordgo"],
-    "imageUrl": "/discord_gopher3.svg",
+    "imageUrl": "/discord_gopher3_v2.png",
     "gitLink": "https://github.com/florinsalasan/discord-reminder-bot",
     "slug": "discord-reminder-bot"
   },

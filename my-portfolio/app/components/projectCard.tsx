@@ -23,15 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ slug, imageUrl, title, descri
           key={crypto.randomUUID()}
           className="no-underline hover:underline"
         >
-          <Image
-                  src={imageUrl}
-                  alt={title}
-                  className='m-0 '
-                  fill
-                  sizes="100vw"
-                  style={{
-                    objectFit: "cover"
-                  }} />
+            {properImage({ slug, imageUrl, title, description, technologies, gitLink })}
         </Link>
       </div>
       <div className="border-r border-b border-l border-gray-400 dark:border-gray-200 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white dark:bg-slate-800 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
@@ -66,5 +58,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ slug, imageUrl, title, descri
     </div>
   );
 };
+
+const properImage = (all_props: ProjectCardProps): JSX.Element => {
+    // if (all_props.imageUrl.slice(-3) != 'svg') {
+       return  <Image
+                  src={all_props.imageUrl}
+                  alt={all_props.title}
+                  className='m-0 '
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "cover"
+                  }} />
+    // } 
+    // else {
+    //     return <img src={all_props.imageUrl} className='m-0 object-fill' />
+    // }
+}
 
 export default ProjectCard;
