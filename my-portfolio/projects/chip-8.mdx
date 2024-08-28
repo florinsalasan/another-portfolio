@@ -6,6 +6,7 @@ tags:
   - Emulation
   - C
   - SDL
+  - Rust
 ---
 
 ## Chip8 Interpretter
@@ -20,6 +21,15 @@ After finishing up this Chip8 interpretter I still don't know how good my C is s
 pointers, not intentionally, but because I never ran into a scenario where I believed that it would 
 have been necessary to use them. Looking back this may have created issues since tests from various
 test ROMs all pass but the interpretter is still buggy and not working properly on certain games.
+
+For the second emulator I wanted to use Rust. This is for two main reasons, the first is that I enjoy 
+working with new toolsets and seeing what they can offer in comparison to other ones. For rust specifically
+I liked the idea that the language is a lot stricter when it comes to mutability and memory allocation, especially
+in comparison with C where you can just shoot yourself in the foot and the compiler doesn't even blink. I'm still 
+getting the hang of writing rust code but so far I am enjoying it, even the detours to understand why certain things
+are the way they are and encountering rust features such as lifetimes along the way. I also found the way rust sets 
+up unit testing to be really intuitive and easy to work with, which has so far made it far easier to incorporate tests
+compared to the Chip8 emulator.
 
 # Write up still in progress
 
