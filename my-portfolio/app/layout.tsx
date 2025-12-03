@@ -41,12 +41,6 @@ export default function RootLayout({
               >
                 Projects
               </Link>
-              <Link
-                className="text-lg font-medium hover:underline dark:text-white"
-                href="/blog"
-              >
-                Blog
-              </Link>
             </div>
             <ToggleTheme />
           </div>
