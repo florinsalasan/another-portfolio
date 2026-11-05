@@ -751,3 +751,17 @@ summary = ""
 review = """
 
 """
+
+[[books]]
+title = "The Iliad"
+author = "Homer"
+cover = "/images/books/the-iliad.jpg"
+status = "Reading"
+date_read = "Nov 2026"
+rating = 0
+isbn = "9781785996092"
+tags = ["Classics"]
+summary = ""
+review = """
+
+"""
