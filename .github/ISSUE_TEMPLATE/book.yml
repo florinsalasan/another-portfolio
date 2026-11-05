@@ -1,0 +1,102 @@
+name: "📚 Log or Update a Book"
+description: "Add a new book or update an existing book's status, rating, or review on the bookshelf."
+title: "[Book] "
+labels: ["bookshelf"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill out the fields below to add a new book or update an existing one in `content/bookshelf/books.toml`.
+        *Tip: If updating an existing book, you only need to fill in the **Book Title** and the specific fields you want to change.*
+
+  - type: input
+    id: title
+    attributes:
+      label: Book Title
+      description: Exact title of the book (matches existing entries case-insensitively).
+      placeholder: "e.g. East of Eden"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Required for new books; leave blank when updating an existing book to keep its current author.
+      placeholder: "e.g. John Steinbeck"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Reading Status
+      options:
+        - "Finished"
+        - "Reading"
+        - "Want to Read"
+        - "(Keep Existing)"
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      options:
+        - "(Keep Existing / Unrated)"
+        - "5"
+        - "4"
+        - "3"
+        - "2"
+        - "1"
+        - "0"
+      default: 0
+    validations:
+      required: false
+
+  - type: input
+    id: date_read
+    attributes:
+      label: Date Read
+      description: Year or Month + Year (e.g. "Nov 2026", "2026-11", or "2026").
+      placeholder: "e.g. Nov 2026"
+    validations:
+      required: false
+
+  - type: input
+    id: isbn
+    attributes:
+      label: ISBN (Optional)
+      description: Leave blank to auto-fetch from Open Library, or enter a specific ISBN-10/ISBN-13 for an exact cover edition.
+      placeholder: "e.g. 9780140186390"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags.
+      placeholder: "e.g. fiction, classics, philosophy"
+    validations:
+      required: false
+
+  - type: input
+    id: summary
+    attributes:
+      label: Short Summary (Optional)
+      description: One-sentence description shown on the book card.
+      placeholder: "e.g. A sweeping generational epic set in California's Salinas Valley."
+    validations:
+      required: false
+
+  - type: textarea
+    id: review
+    attributes:
+      label: Review & Notes (Optional)
+      description: Full review and notes (supports Markdown). Opened in the bookshelf popup modal.
+      placeholder: "**Key takeaway:** ..."
+    validations:
+      required: false

@@ -1,0 +1,56 @@
+name: Bookshelf Issue Updater
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  update-bookshelf:
+    name: Update books.toml & Fetch Cover
+    runs-on: ubuntu-latest
+    # Security guard: Only run if the issue was opened by the repository owner
+    # and either has the "bookshelf" label or starts with "[Book]"
+    if: >
+      github.event.issue.user.login == github.repository_owner &&
+      (contains(github.event.issue.labels.*.name, 'bookshelf') || startsWith(github.event.issue.title, '[Book]'))
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Parse Issue Form & Update books.toml
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python3 scripts/update_book_from_issue.py
+
+      - name: Fetch Missing ISBNs & Book Covers
+        run: python3 scripts/fetch_covers.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git add content/bookshelf/books.toml static/images/books/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(bookshelf): update via issue #${{ github.event.issue.number }}"
+            git push
+          fi
+
+      - name: Comment and Close Issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "✅ Bookshelf updated and cover synced! Closing issue."
+          gh issue close "$ISSUE_NUMBER" --reason completed
