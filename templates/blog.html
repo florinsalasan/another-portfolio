@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Blog · {{ config.title }}{% endblock title %}
+{% block description %}{{ section.description | default(value=config.description) }}{% endblock description %}
+
+{% block content %}
+<header class="page-header">
+  <span class="page-kicker">Dispatches &amp; Reflections</span>
+  <h1 class="page-title">{{ section.title }}</h1>
+  {% if section.description %}
+  <p class="page-subtitle">{{ section.description }}</p>
+  {% endif %}
+</header>
+
+{% set all_tags = get_taxonomy(kind="tags", required=false) %}
+{% if all_tags and all_tags.items | length > 0 %}
+<div class="controls-bar">
+  <div class="filter-group" role="group" aria-label="Filter posts by tag">
+    <span class="filter-label">Topic:</span>
+    <button type="button" class="filter-pill active" data-blog-filter="all">All Posts</button>
+    {% for item in all_tags.items %}
+    <button type="button" class="filter-pill" data-blog-filter="{{ item.name }}">#{{ item.name }}</button>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div id="blog-list" class="blog-list">
+  {% for post in section.pages %}
+  {% set post_tags = post.taxonomies.tags | default(value=[]) %}
+  <article class="blog-item" data-tags="{{ post_tags | join(sep=',') }}">
+    <div class="blog-meta">
+      <time datetime="{{ post.date }}">{{ post.date | date(format="%B %d, %Y") }}</time>
+      <span>·</span>
+      <span>{{ post.reading_time }} min read</span>
+      {% if post_tags %}
+      <span>·</span>
+      {% for tag in post_tags %}
+      <span class="tag-badge">#{{ tag }}</span>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+    <h2 class="blog-item-title">
+      <a href="{{ post.path }}">{{ post.title }}</a>
+    </h2>
+
+    {% if post.description %}
+    <p class="blog-item-summary">{{ post.description }}</p>
+    {% elif post.summary %}
+    <div class="blog-item-summary">{{ post.summary | safe }}</div>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% endblock content %}

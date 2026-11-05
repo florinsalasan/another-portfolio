@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-intro">
+  <span class="page-kicker">Vol. I · Toronto, Ontario</span>
+  <h1 class="hero-greeting">{{ section.title }}</h1>
+  {% if section.description %}
+  <p class="hero-lead">{{ section.description }}</p>
+  {% endif %}
+</section>
+
+<article class="prose">
+  {{ section.content | safe }}
+</article>
+
+{% set projects_section = get_section(path="projects/_index.md") %}
+{% set blog_section = get_section(path="blog/_index.md") %}
+{% set books_data = load_data(path="content/bookshelf/books.toml", required=false) %}
+
+<div class="home-columns">
+  <!-- Featured Projects -->
+  <section>
+    <div class="editorial-section-header">
+      <h2 class="editorial-section-title">Featured &amp; Active Projects</h2>
+      <a href="/projects/" class="editorial-section-link">View All ({{ projects_section.pages | length }}) →</a>
+    </div>
+
+    <div class="projects-grid">
+      {% for proj in projects_section.pages %}
+      {% if loop.index <= 2 %}
+      <article class="project-card">
+        <div class="project-card-body">
+          <div class="project-card-date">
+            {{ proj.date | date(format="%B %Y") }}
+            {% if proj.extra.status %} · <strong>{{ proj.extra.status }}</strong>{% endif %}
+          </div>
+          <h3 class="project-card-title">
+            <a href="{{ proj.path }}">{{ proj.title }}</a>
+          </h3>
+          <p class="project-card-desc">{{ proj.description }}</p>
+          {% if proj.taxonomies.technologies %}
+          <div class="tag-list">
+            {% for tech in proj.taxonomies.technologies %}
+            <span class="tag-badge">{{ tech }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="project-card-footer">
+            <a href="{{ proj.path }}" class="project-link-primary">Read Write-up →</a>
+            {% if proj.extra.git_link %}
+            <a href="{{ proj.extra.git_link }}" target="_blank" rel="noopener" class="project-link-ext">GitHub ↗</a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Recent Blog Posts -->
+  <section>
+    <div class="editorial-section-header">
+      <h2 class="editorial-section-title">Recent Dispatches</h2>
+      <a href="/blog/" class="editorial-section-link">All Posts ({{ blog_section.pages | length }}) →</a>
+    </div>
+
+    <div class="blog-list">
+      {% for post in blog_section.pages %}
+      {% if loop.index <= 3 %}
+      <article class="blog-item">
+        <div class="blog-meta">
+          <time datetime="{{ post.date }}">{{ post.date | date(format="%b %d, %Y") }}</time>
+          <span>·</span>
+          <span>{{ post.reading_time }} min read</span>
+          {% if post.taxonomies.tags %}
+          <span>·</span>
+          {% for tag in post.taxonomies.tags %}
+          <span class="tag-badge">#{{ tag }}</span>
+          {% endfor %}
+          {% endif %}
+        </div>
+        <h3 class="blog-item-title">
+          <a href="{{ post.path }}">{{ post.title }}</a>
+        </h3>
+        {% if post.description %}
+        <p class="blog-item-summary">{{ post.description }}</p>
+        {% endif %}
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}#{{ term.name }} · {{ config.title }}{% endblock title %}
+{% block content %}
+<header class="page-header">
+  <span class="page-kicker"><a href="/blog/">← Back to Blog</a></span>
+  <h1 class="page-title">Posts tagged #{{ term.name }}</h1>
+</header>
+<div class="blog-list">
+  {% for page in term.pages %}
+  <article class="blog-item">
+    <div class="blog-meta">
+      <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+    </div>
+    <h2 class="blog-item-title"><a href="{{ page.path }}">{{ page.title }}</a></h2>
+    {% if page.description %}
+    <p class="blog-item-summary">{{ page.description }}</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% endblock content %}

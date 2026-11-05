@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ term.name }} Projects · {{ config.title }}{% endblock title %}
+{% block content %}
+<header class="page-header">
+  <span class="page-kicker"><a href="/projects/">← All Projects</a></span>
+  <h1 class="page-title">Projects using {{ term.name }}</h1>
+</header>
+<div class="projects-grid">
+  {% for page in term.pages %}
+  <article class="project-card">
+    <div class="project-card-body">
+      <div class="project-card-date">{{ page.date | date(format="%B %Y") }}</div>
+      <h2 class="project-card-title"><a href="{{ page.path }}">{{ page.title }}</a></h2>
+      <p class="project-card-desc">{{ page.description }}</p>
+      <div class="project-card-footer">
+        <a href="{{ page.path }}" class="project-link-primary">Read Write-up →</a>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock content %}

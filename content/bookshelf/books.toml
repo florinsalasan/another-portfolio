@@ -1,0 +1,737 @@
+# ==========================================================================
+# Florin's Bookshelf Data
+# Add a new [[books]] block below and push to GitHub to update the live site!
+# Status options: "Finished" | "Reading" | "Want to Read"
+# ==========================================================================
+
+yearly_goal = 52
+
+[[books]]
+title = "Ultralearning"
+author = "Scott H. Young"
+status = "Finished"
+date_read = "2024"
+rating = 5
+isbn = "9780008305727"
+cover = "/images/books/ultralearning.jpg"
+tags = ["learning", "productivity", "skill-acquisition"]
+summary = "Master hard skills, outsmart the competition, and accelerate your career through aggressive, self-directed learning."
+review = """
+**Key takeaway:** Learn by doing directly rather than getting stuck in passive theory first.
+
+In high school and university, the default approach was always theory first followed by attempting to apply it. *Ultralearning* flips that on its head: run into the wall while trying to accomplish a real task, and then use theory to solve the exact obstacle in front of you.
+
+This inspired me to escape "tutorial hell" by building projects from scratch and maintaining a daily coding habit.
+"""
+
+[[books]]
+title = "Effortless"
+author = "Greg McKeown"
+status = "Finished"
+date_read = "2024"
+rating = 4
+isbn = "9780593401118"
+cover = "/images/books/effortless.jpg"
+tags = ["productivity", "mindset"]
+summary = "Make it easier to do what matters most by removing unnecessary friction from daily habits and projects."
+review = """
+A solid follow-up to *Essentialism*. Instead of brute-forcing every goal through sheer willpower, *Effortless* focuses on designing systems with lower activation energy so that starting—and staying consistent—becomes the path of least resistance.
+"""
+
+[[books]]
+title = "Million Dollar Weekend"
+author = "Noah Kagan"
+status = "Finished"
+date_read = "2024"
+rating = 4
+isbn = "9780593539781"
+cover = "/images/books/million-dollar-weekend.jpg"
+tags = ["entrepreneurship", "action"]
+summary = "The surprisingly simple way to launch a 7-figure business in 48 hours by overcoming the fear of starting and asking."
+review = """
+The recurring theme that resonated most with me: **just start**. Over-planning is a subtle form of procrastination; shipping a small experiment quickly teaches you more than weeks of speculation.
+"""
+
+[[books]]
+title = "Animal Farm"
+author = "George Orwell"
+status = "Finished"
+date_read = "2024"
+rating = 5
+isbn = "9780451526342"
+cover = "/images/books/animal-farm.jpg"
+tags = ["classics", "fiction", "allegory"]
+summary = "A timeless satirical allegory of power, revolution, and how lofty ideals can be gradually corrupted through language."
+review = """
+Short, sharp, and unforgettable. Orwell packs more insight into a hundred pages than most novels manage in five hundred.
+"""
+
+[[books]]
+title = "Wuthering Heights"
+author = "Emily Brontë"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780896731714"
+cover = "/images/books/wuthering-heights.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Alchemist"
+author = "Paulo Coelho"
+cover = "/images/books/the-alchemist.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780062390622"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "And Then There Were None"
+author = "Agatha Christie"
+cover = "/images/books/and-then-there-were-none.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780671754013"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Fahrenheit 451"
+author = "Ray Bradbury"
+cover = "/images/books/fahrenheit-451.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9781451673319"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Martyr!"
+author = "Kaveh Akbar"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593862759"
+cover = "/images/books/martyr.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "I Have No Mouth, and I Must Scream"
+author = "Harlan Ellison"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780441363940"
+cover = "/images/books/i-have-no-mouth-and-i-must-scream.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Butcher's Crossing"
+author = "John Williams"
+cover = "/images/books/butcher-s-crossing.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9781590171981"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "East of Eden"
+author = "John Steinbeck"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780140186390"
+cover = "/images/books/east-of-eden.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Blood Meridian"
+author = "Cormac McCarthy"
+cover = "/images/books/blood-meridian.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "0679728759"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Tinker, Tailor, Soldier, Spy"
+author = "John le Carré"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780743457903"
+cover = "/images/books/tinker-tailor-soldier-spy.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Johnny Got His Gun"
+author = "Dalton Trumbo"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780553142358"
+cover = "/images/books/johnny-got-his-gun.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Piranesi"
+author = "Susanna Clarke"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9781526625977"
+cover = "/images/books/piranesi.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Five Decembers"
+author = "James Kestrel"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9781789096118"
+cover = "/images/books/five-decembers.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Three-Body Problem"
+author = "Cixin Liu"
+cover = "/images/books/the-three-body-problem.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780765377067"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Project Hail Mary"
+author = "Andy Weir"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593135211"
+cover = "/images/books/project-hail-mary.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Wool"
+author = "Hugh Howey"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780358447832"
+cover = "/images/books/wool.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Artemis"
+author = "Andy Weir"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780553448146"
+cover = "/images/books/artemis.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Angels & Demons"
+author = "Dan Brown"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780552161268"
+cover = "/images/books/angels-demons.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Martian"
+author = "Andy Weir"
+cover = "/images/books/the-martian.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780804139021"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "American Psycho"
+author = "Bret Easton Ellis"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780307278630"
+cover = "/images/books/american-psycho.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "How to Win Friends and Influence People"
+author = "Dale Carnegie"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780671827434"
+cover = "/images/books/how-to-win-friends-and-influence-people.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "2001: A Space Odyssey"
+author = "Arthur C. Clarke"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780905712826"
+cover = "/images/books/2001-a-space-odyssey.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Do Androids Dream of Electric Sheep?"
+author = "Philip K. Dick"
+cover = "/images/books/do-androids-dream-of-electric-sheep.jpg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "0345404475"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "1984"
+author = "George Orwell"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780582777316"
+cover = "/images/books/1984.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Pines"
+author = "Blake Crouch"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593598337"
+cover = "/images/books/pines.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Dark Places"
+author = "Gillian Flynn"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780753827031"
+cover = "/images/books/dark-places.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Sharp Things"
+author = "Gillian Flynn"
+status = "Finished"
+date_read = "2026"
+rating = 0
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Red Rising"
+author = "Pierce Brown"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780606394604"
+cover = "/images/books/red-rising.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Gone Girl"
+author = "Gillian Flynn"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780297859383"
+cover = "/images/books/gone-girl.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Psychology of Money"
+author = "Morgan Housel"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780857197689"
+cover = "/images/books/the-psychology-of-money.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Your Face Belongs to Us"
+author = "Kashmir Hill"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593448571"
+cover = "/images/books/your-face-belongs-to-us.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Slaughterhouse-Five"
+author = "Kurt Vonnegut"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780224618014"
+cover = "/images/books/slaughterhouse-five.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Brave New World"
+author = "Aldous Huxley"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780060120351"
+cover = "/images/books/brave-new-world.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Beijing Rules"
+author = "Bethany Allen"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780063057418"
+cover = "/images/books/beijing-rules.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Average Is Over"
+author = "Tyler Cowen"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780525953739"
+cover = "/images/books/average-is-over.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Stolen Focus"
+author = "Johann Hari"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593138526"
+cover = "/images/books/stolen-focus.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Optionality"
+author = "Richard Meadows"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780473545505"
+cover = "/images/books/optionality.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Human Compatible"
+author = "Stuart Russell"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780525558620"
+cover = "/images/books/human-compatible.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Outlive"
+author = "Peter Attia"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593236604"
+cover = "/images/books/outlive.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Precipice"
+author = "Toby Ord"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780316484893"
+cover = "/images/books/the-precipice.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Big Short"
+author = "Michael Lewis"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780141930565"
+cover = "/images/books/the-big-short.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Atomic Habits"
+author = "James Clear"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780735211292"
+cover = "/images/books/atomic-habits.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "The Billion Dollar Spy"
+author = "David E. Hoffman"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9781785781971"
+cover = "/images/books/the-billion-dollar-spy.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Chip War"
+author = "Chris Miller"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9781982172015"
+cover = "/images/books/chip-war.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "How Big Things Get Done"
+author = "Bent Flyvbjerg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593239513"
+cover = "/images/books/how-big-things-get-done.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Kingpin"
+author = "Kevin Poulsen"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780307588692"
+cover = "/images/books/kingpin.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Moneyball"
+author = "Michael Lewis"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780786259687"
+cover = "/images/books/moneyball.jpg"
+tags = []
+summary = ""
+review = """
+
+"""
+
+[[books]]
+title = "Sandworm"
+author = "Andy Greenberg"
+status = "Finished"
+date_read = "2026"
+rating = 0
+isbn = "9780593146798"
+cover = "/images/books/sandworm.jpg"
+tags = []
+summary = ""
+review = """
+
+"""

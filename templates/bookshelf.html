@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Bookshelf · {{ config.title }}{% endblock title %}
+{% block description %}{{ section.description | default(value=config.description) }}{% endblock description %}
+
+{% block content %}
+<header class="page-header">
+  <span class="page-kicker">Reading Log &amp; Notes</span>
+  <h1 class="page-title">{{ section.title }}</h1>
+  {% if section.description %}
+  <p class="page-subtitle">{{ section.description }}</p>
+  {% endif %}
+</header>
+
+{% if section.content %}
+<div class="prose" style="margin-bottom: 2rem;">
+  {{ section.content | safe }}
+</div>
+{% endif %}
+
+{% set books_data = load_data(path="content/bookshelf/books.toml") %}
+{% set books = books_data.books %}
+
+{% set finished_count = 0 %}
+{% set reading_count = 0 %}
+{% set want_count = 0 %}
+{% for b in books %}
+  {% if b.status == "Finished" %}
+    {% set_global finished_count = finished_count + 1 %}
+  {% elif b.status == "Reading" %}
+    {% set_global reading_count = reading_count + 1 %}
+  {% elif b.status == "Want to Read" %}
+    {% set_global want_count = want_count + 1 %}
+  {% endif %}
+{% endfor %}
+
+<div class="bookshelf-stats">
+  <div class="stat-box">
+    <div class="stat-number">{{ books | length }}</div>
+    <div class="stat-label">Total Logged</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-number">{{ finished_count }}</div>
+    <div class="stat-label">Finished</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-number">{{ reading_count }}</div>
+    <div class="stat-label">Currently Reading</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-number">{{ books_data.yearly_goal | default(value=52) }}</div>
+    <div class="stat-label">Annual Target</div>
+  </div>
+</div>
+
+<div class="controls-bar">
+  <div class="filter-group" role="group" aria-label="Filter books by reading status">
+    <span class="filter-label">Shelf:</span>
+    <button type="button" class="filter-pill active" data-book-status="all">All ({{ books | length }})</button>
+    <button type="button" class="filter-pill" data-book-status="finished">Finished ({{ finished_count }})</button>
+    <button type="button" class="filter-pill" data-book-status="reading">Reading ({{ reading_count }})</button>
+    <button type="button" class="filter-pill" data-book-status="want to read">Want to Read ({{ want_count }})</button>
+  </div>
+
+  <div class="filter-group">
+    <input
+      type="search"
+      id="book-filter-input"
+      class="sort-select"
+      placeholder="Filter by title or author..."
+      aria-label="Filter books by title or author"
+      style="min-width: 210px;"
+    />
+  </div>
+</div>
+
+<div id="books-grid" class="books-grid">
+  {% for book in books %}
+  {% set status_slug = book.status | slugify %}
+  <article
+    id="book-{{ book.title | slugify }}"
+    class="book-card"
+    data-status="{{ book.status | lower }}"
+    data-search="{{ book.title }} {{ book.author }} {{ book.tags | default(value=[]) | join(sep=' ') }}"
+  >
+    <div class="book-card-top">
+      <div class="book-cover">
+        {% if book.cover %}
+        <img src="{{ book.cover }}" alt="Cover of {{ book.title }}" loading="lazy" />
+        {% elif book.isbn %}
+        <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Cover of {{ book.title }}" loading="lazy" />
+        {% else %}
+        <span class="book-cover-spine"></span>
+        <div class="book-cover-fallback-title">{{ book.title }}</div>
+        <div class="book-cover-fallback-author">{{ book.author }}</div>
+        {% endif %}
+      </div>
+
+      <div class="book-info">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <div class="book-author">by {{ book.author }}</div>
+
+        {% if book.rating and book.rating > 0 %}
+        <div class="book-rating" aria-label="Rating: {{ book.rating }} out of 5 stars" title="{{ book.rating }} / 5 stars">
+          {% for i in range(end=5) %}
+            {% if i < book.rating %}★{% else %}☆{% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="book-meta-row">
+          <span class="tag-badge status-{{ status_slug }}">{{ book.status }}</span>
+          {% if book.date_read %}
+          <span class="tag-badge">{{ book.date_read }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% if book.summary %}
+    <p class="book-summary">{{ book.summary }}</p>
+    {% endif %}
+
+    {% if book.review and book.review | trim != "" %}
+    <details class="book-review-details">
+      <summary>Read Review &amp; Notes</summary>
+      <div class="book-review-content">
+        {{ book.review | markdown | safe }}
+      </div>
+    </details>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% endblock content %}

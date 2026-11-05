@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Tags · {{ config.title }}{% endblock title %}
+{% block content %}
+<header class="page-header">
+  <span class="page-kicker">Taxonomy</span>
+  <h1 class="page-title">All Topics</h1>
+</header>
+<div class="tag-list">
+  {% for term in terms %}
+  <a href="{{ term.path }}" class="filter-pill">#{{ term.name }} ({{ term.pages | length }})</a>
+  {% endfor %}
+</div>
+{% endblock content %}

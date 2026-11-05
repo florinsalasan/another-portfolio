@@ -1,0 +1,8 @@
+# Zola build output
+/public/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+*~
+*.swp

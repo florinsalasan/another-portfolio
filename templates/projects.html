@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Projects · {{ config.title }}{% endblock title %}
+{% block description %}{{ section.description | default(value=config.description) }}{% endblock description %}
+
+{% block content %}
+<header class="page-header">
+  <span class="page-kicker">Workshop &amp; Systems</span>
+  <h1 class="page-title">{{ section.title }}</h1>
+  {% if section.description %}
+  <p class="page-subtitle">{{ section.description }}</p>
+  {% endif %}
+</header>
+
+{% set all_techs = get_taxonomy(kind="technologies", required=false) %}
+
+<div class="controls-bar">
+  <div class="filter-group" role="group" aria-label="Filter projects by technology">
+    <span class="filter-label">Filter:</span>
+    <button type="button" class="filter-pill active" data-project-filter="all">All</button>
+    {% if all_techs %}
+      {% for item in all_techs.items %}
+      <button type="button" class="filter-pill" data-project-filter="{{ item.name }}">{{ item.name }}</button>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="filter-group">
+    <label for="project-sort" class="filter-label">Sort:</label>
+    <select id="project-sort" class="sort-select">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+    </select>
+  </div>
+</div>
+
+<div id="projects-grid" class="projects-grid">
+  {% for page in section.pages %}
+  {% set techs_list = page.taxonomies.technologies | default(value=[]) %}
+  {% set status_slug = page.extra.status | default(value="In Progress") | slugify %}
+  <article
+    class="project-card"
+    data-date="{{ page.date }}"
+    data-tech="{{ techs_list | join(sep=',') }}"
+  >
+    {% if page.extra.cover_image %}
+    <a href="{{ page.path }}" class="project-card-media">
+      <img src="{{ page.extra.cover_image }}" alt="{{ page.title }} preview" loading="lazy" />
+      {% if page.extra.status %}
+      <span class="project-status-badge status-{{ status_slug }}">{{ page.extra.status }}</span>
+      {% endif %}
+    </a>
+    {% endif %}
+
+    <div class="project-card-body">
+      <div class="project-card-date">{{ page.date | date(format="%B %Y") }}</div>
+      <h2 class="project-card-title">
+        <a href="{{ page.path }}">{{ page.title }}</a>
+      </h2>
+      <p class="project-card-desc">{{ page.description }}</p>
+
+      {% if techs_list %}
+      <div class="tag-list">
+        {% for tech in techs_list %}
+        <span class="tag-badge">{{ tech }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="project-card-footer">
+        <a href="{{ page.path }}" class="project-link-primary">Read Write-up →</a>
+        {% if page.extra.git_link %}
+        <a href="{{ page.extra.git_link }}" target="_blank" rel="noopener" class="project-link-ext">
+          GitHub ↗
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock content %}

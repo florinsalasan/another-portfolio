@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · Projects · {{ config.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=config.description) }}{% endblock description %}
+
+{% block content %}
+<article>
+  <header class="page-header">
+    <div class="blog-meta" style="margin-bottom: 0.5rem;">
+      <a href="/projects/" class="editorial-section-link">← All Projects</a>
+      <span>·</span>
+      <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+      {% if page.extra.status %}
+      <span>·</span>
+      <span class="tag-badge">{{ page.extra.status }}</span>
+      {% endif %}
+    </div>
+
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.description %}
+    <p class="page-subtitle">{{ page.description }}</p>
+    {% endif %}
+
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem;">
+      {% if page.taxonomies.technologies %}
+      <div class="tag-list" style="margin-bottom: 0;">
+        {% for tech in page.taxonomies.technologies %}
+        <span class="tag-badge">{{ tech }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div style="display: flex; gap: 0.75rem;">
+        {% if page.extra.git_link %}
+        <a href="{{ page.extra.git_link }}" target="_blank" rel="noopener" class="icon-btn">
+          <span>View Source on GitHub ↗</span>
+        </a>
+        {% endif %}
+        {% if page.extra.live_link %}
+        <a href="{{ page.extra.live_link }}" target="_blank" rel="noopener" class="icon-btn">
+          <span>Live Site ↗</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  {% if page.extra.gallery %}
+  <section class="project-gallery">
+    <span class="page-kicker">Project Visuals &amp; Screenshots</span>
+    <div class="gallery-grid">
+      {% for item in page.extra.gallery %}
+      <figure class="gallery-item">
+        <a href="{{ item.src }}" target="_blank" rel="noopener">
+          <img src="{{ item.src }}" alt="{{ item.caption | default(value=page.title) }}" loading="lazy" />
+        </a>
+        {% if item.caption %}
+        <figcaption class="gallery-caption">{{ item.caption }}</figcaption>
+        {% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="prose">
+    {{ page.content | safe }}
+  </div>
+</article>
+{% endblock content %}
