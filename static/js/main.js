@@ -381,18 +381,52 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. Bookshelf Filtering (Status + Search Input)
+     6. Bookshelf Filtering & Sorting (Status + Search + Sort Order)
      ------------------------------------------------------------------------ */
   const booksGrid = document.getElementById('books-grid');
   const bookFilterBtns = document.querySelectorAll('[data-book-status]');
   const bookSearchInput = document.getElementById('book-filter-input');
+  const bookSortSelect = document.getElementById('book-sort');
 
   if (booksGrid) {
     let activeStatus = 'all';
     let bookQuery = '';
 
+    function parseReadDate(str) {
+      if (!str) return null;
+      const s = str.trim();
+      if (!s) return null;
+      if (/^\d{4}$/.test(s)) {
+        return new Date(parseInt(s, 10), 0, 1).getTime();
+      }
+      const ymMatch = s.match(/^(\d{4})[-/](\d{1,2})$/);
+      if (ymMatch) {
+        return new Date(parseInt(ymMatch[1], 10), parseInt(ymMatch[2], 10) - 1, 1).getTime();
+      }
+      const myMatch = s.match(/^(\d{1,2})[-/](\d{4})$/);
+      if (myMatch) {
+        return new Date(parseInt(myMatch[2], 10), parseInt(myMatch[1], 10) - 1, 1).getTime();
+      }
+      const isoMatch = s.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+      if (isoMatch) {
+        return new Date(parseInt(isoMatch[1], 10), parseInt(isoMatch[2], 10) - 1, parseInt(isoMatch[3], 10)).getTime();
+      }
+      const parsed = Date.parse(s);
+      if (!isNaN(parsed)) {
+        return parsed;
+      }
+      const wordYearMatch = s.match(/^([a-zA-Z]+)[,\s]+(\d{4})$/);
+      if (wordYearMatch) {
+        const p = Date.parse(wordYearMatch[1] + ' 1, ' + wordYearMatch[2]);
+        if (!isNaN(p)) return p;
+      }
+      return null;
+    }
+
     function updateBooksView() {
-      const cards = booksGrid.querySelectorAll('.book-card');
+      const cards = Array.from(booksGrid.querySelectorAll('.book-card'));
+
+      // Filter by shelf status and search input
       cards.forEach(function (card) {
         const status = (card.getAttribute('data-status') || '').toLowerCase();
         const text = (card.getAttribute('data-search') || '').toLowerCase();
@@ -406,6 +440,45 @@
         }
         card.style.display = statusMatch && queryMatch ? 'flex' : 'none';
       });
+
+      // Sort
+      if (bookSortSelect) {
+        const sortVal = bookSortSelect.value;
+        cards.sort(function (a, b) {
+          if (sortVal === 'title-asc') {
+            const titleA = a.getAttribute('data-title') || '';
+            const titleB = b.getAttribute('data-title') || '';
+            return titleA.localeCompare(titleB, undefined, { sensitivity: 'base' });
+          }
+          if (sortVal === 'title-desc') {
+            const titleA = a.getAttribute('data-title') || '';
+            const titleB = b.getAttribute('data-title') || '';
+            return titleB.localeCompare(titleA, undefined, { sensitivity: 'base' });
+          }
+          if (sortVal === 'last-read' || sortVal === 'first-read') {
+            const dateA = parseReadDate(a.getAttribute('data-date-read'));
+            const dateB = parseReadDate(b.getAttribute('data-date-read'));
+            if (dateA !== null && dateB !== null) {
+              const diff = sortVal === 'last-read' ? dateB - dateA : dateA - dateB;
+              if (diff !== 0) return diff;
+              const orderA = parseInt(a.getAttribute('data-default-order') || '0', 10);
+              const orderB = parseInt(b.getAttribute('data-default-order') || '0', 10);
+              return orderA - orderB;
+            }
+            if (dateA !== null) return -1;
+            if (dateB !== null) return 1;
+            // Both missing a read date: fall back to default order
+          }
+          // Default / Custom file order as defined in books.toml
+          const orderA = parseInt(a.getAttribute('data-default-order') || '0', 10);
+          const orderB = parseInt(b.getAttribute('data-default-order') || '0', 10);
+          return orderA - orderB;
+        });
+
+        cards.forEach(function (card) {
+          booksGrid.appendChild(card);
+        });
+      }
     }
 
     bookFilterBtns.forEach(function (btn) {
@@ -419,11 +492,18 @@
       });
     });
 
+    if (bookSortSelect) {
+      bookSortSelect.addEventListener('change', updateBooksView);
+    }
+
     if (bookSearchInput) {
       bookSearchInput.addEventListener('input', function (e) {
         bookQuery = (e.target.value || '').trim().toLowerCase();
         updateBooksView();
       });
     }
+
+    // Apply initial sort & filter on page load (defaults to Last Read / Newest)
+    updateBooksView();
   }
 })();

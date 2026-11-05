@@ -63,6 +63,17 @@
   </div>
 
   <div class="filter-group">
+    <label for="book-sort" class="filter-label">Sort:</label>
+    <select id="book-sort" class="sort-select" aria-label="Sort books">
+      <option value="last-read" selected>Last Read (Newest)</option>
+      <option value="first-read">First Read (Oldest)</option>
+      <option value="title-asc">Alphabetical (A → Z)</option>
+      <option value="title-desc">Reverse Alpha (Z → A)</option>
+      <option value="custom">File Order</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
     <input
       type="search"
       id="book-filter-input"
@@ -81,6 +92,9 @@
     id="book-{{ book.title | slugify }}"
     class="book-card"
     data-status="{{ book.status | lower }}"
+    data-title="{{ book.title }}"
+    data-date-read="{{ book.date_read | default(value='') }}"
+    data-default-order="{{ loop.index0 }}"
     data-search="{{ book.title }} {{ book.author }} {{ book.tags | default(value=[]) | join(sep=' ') }}"
   >
     <div class="book-card-top">
