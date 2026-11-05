@@ -62,11 +62,48 @@
     <button type="button" class="filter-pill" data-book-status="want to read">Want to Read ({{ want_count }})</button>
   </div>
 
+  <div class="filter-group tag-dropdown-wrap" id="book-tag-dropdown">
+    <span class="filter-label">Tags:</span>
+    <button
+      type="button"
+      id="book-tag-toggle"
+      class="sort-select tag-dropdown-toggle"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span id="book-tag-toggle-label">All Tags</span>
+      <span class="tag-dropdown-caret">▾</span>
+    </button>
+    <button
+      type="button"
+      id="book-tag-clear-inline"
+      class="filter-pill filter-pill-clear"
+      style="display: none;"
+      title="Clear selected tags"
+    >
+      Clear ✕
+    </button>
+
+    <div id="book-tag-popover" class="tag-dropdown-popover" role="group" aria-label="Filter books by tags">
+      <div class="tag-popover-header">
+        <span class="filter-label">Filter by Tags (Multi-select)</span>
+        <button type="button" id="book-tag-clear" class="tag-popover-clear-btn" style="display: none;">
+          Clear filter ✕
+        </button>
+      </div>
+      <div id="book-tag-pills" class="tag-popover-pills">
+        <button type="button" class="filter-pill active" data-book-tag="all">Show All</button>
+      </div>
+    </div>
+  </div>
+
   <div class="filter-group">
     <label for="book-sort" class="filter-label">Sort:</label>
     <select id="book-sort" class="sort-select" aria-label="Sort books">
       <option value="last-read" selected>Last Read (Newest)</option>
       <option value="first-read">First Read (Oldest)</option>
+      <option value="rating-desc">Highest Rated (★ 5 → 1)</option>
+      <option value="rating-asc">Lowest Rated (★ 1 → 5)</option>
       <option value="title-asc">Alphabetical (A → Z)</option>
       <option value="title-desc">Reverse Alpha (Z → A)</option>
       <option value="custom">File Order</option>
@@ -93,6 +130,8 @@
     class="book-card"
     data-status="{{ book.status | lower }}"
     data-title="{{ book.title }}"
+    data-rating="{{ book.rating | default(value=0) }}"
+    data-tags="{{ book.tags | default(value=[]) | join(sep=',') }}"
     data-date-read="{{ book.date_read | default(value='') }}"
     data-default-order="{{ loop.index0 }}"
     data-search="{{ book.title }} {{ book.author }} {{ book.tags | default(value=[]) | join(sep=' ') }}"
@@ -167,6 +206,7 @@
       </button>
     </header>
     <div id="review-modal-body" class="review-modal-body prose"></div>
+    <footer id="review-modal-footer" class="review-modal-footer" style="display: none;"></footer>
   </div>
 </div>
 {% endblock content %}

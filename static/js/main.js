@@ -357,40 +357,91 @@
   }
 
   /* ------------------------------------------------------------------------
-     5. Blog Page Tag Filtering
+     5. Blog Page Multi-Select Tag Filtering
      ------------------------------------------------------------------------ */
   const blogList = document.getElementById('blog-list');
   const blogFilterBtns = document.querySelectorAll('[data-blog-filter]');
+  const blogFilterClear = document.getElementById('blog-filter-clear');
 
   if (blogList && blogFilterBtns.length > 0) {
+    const selectedBlogTags = new Set();
+    const allBlogBtn = document.querySelector('[data-blog-filter="all"]');
+
+    function updateBlogView() {
+      const hasTags = selectedBlogTags.size > 0;
+      if (allBlogBtn) {
+        allBlogBtn.classList.toggle('active', !hasTags);
+      }
+      if (blogFilterClear) {
+        blogFilterClear.style.display = hasTags ? 'inline-flex' : 'none';
+      }
+      blogFilterBtns.forEach(function (btn) {
+        const tag = (btn.getAttribute('data-blog-filter') || '').toLowerCase();
+        if (tag && tag !== 'all') {
+          btn.classList.toggle('active', selectedBlogTags.has(tag));
+        }
+      });
+
+      const items = blogList.querySelectorAll('.blog-item');
+      items.forEach(function (item) {
+        if (!hasTags) {
+          item.style.display = 'flex';
+          return;
+        }
+        const itemTags = (item.getAttribute('data-tags') || '')
+          .toLowerCase()
+          .split(',')
+          .map(function (t) {
+            return t.trim();
+          })
+          .filter(Boolean);
+        const matches = Array.from(selectedBlogTags).some(function (t) {
+          return itemTags.includes(t);
+        });
+        item.style.display = matches ? 'flex' : 'none';
+      });
+    }
+
     blogFilterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        blogFilterBtns.forEach(function (b) {
-          b.classList.remove('active');
-        });
-        btn.classList.add('active');
         const tag = (btn.getAttribute('data-blog-filter') || 'all').toLowerCase();
-
-        const items = blogList.querySelectorAll('.blog-item');
-        items.forEach(function (item) {
-          const itemTags = (item.getAttribute('data-tags') || '').toLowerCase().split(',');
-          item.style.display = tag === 'all' || itemTags.includes(tag) ? 'flex' : 'none';
-        });
+        if (tag === 'all') {
+          selectedBlogTags.clear();
+        } else if (selectedBlogTags.has(tag)) {
+          selectedBlogTags.delete(tag);
+        } else {
+          selectedBlogTags.add(tag);
+        }
+        updateBlogView();
       });
     });
+
+    if (blogFilterClear) {
+      blogFilterClear.addEventListener('click', function () {
+        selectedBlogTags.clear();
+        updateBlogView();
+      });
+    }
   }
 
   /* ------------------------------------------------------------------------
-     6. Bookshelf Filtering & Sorting (Status + Search + Sort Order)
+     6. Bookshelf Filtering & Sorting (Status + Multi-Tag Popover + Search + Sort)
      ------------------------------------------------------------------------ */
   const booksGrid = document.getElementById('books-grid');
   const bookFilterBtns = document.querySelectorAll('[data-book-status]');
   const bookSearchInput = document.getElementById('book-filter-input');
   const bookSortSelect = document.getElementById('book-sort');
+  const bookTagDropdown = document.getElementById('book-tag-dropdown');
+  const bookTagToggle = document.getElementById('book-tag-toggle');
+  const bookTagToggleLabel = document.getElementById('book-tag-toggle-label');
+  const bookTagPillsContainer = document.getElementById('book-tag-pills');
+  const bookTagClearBtn = document.getElementById('book-tag-clear');
+  const bookTagClearInline = document.getElementById('book-tag-clear-inline');
 
   if (booksGrid) {
     let activeStatus = 'all';
     let bookQuery = '';
+    const selectedBookTags = new Set();
 
     function parseReadDate(str) {
       if (!str) return null;
@@ -423,14 +474,62 @@
       return null;
     }
 
+    function syncBookTagUI() {
+      const count = selectedBookTags.size;
+      const hasTags = count > 0;
+
+      if (bookTagToggleLabel) {
+        bookTagToggleLabel.textContent = hasTags
+          ? count === 1
+            ? '1 Tag Selected'
+            : count + ' Tags Selected'
+          : 'All Tags';
+      }
+      if (bookTagToggle) {
+        bookTagToggle.classList.toggle('has-active', hasTags);
+      }
+      if (bookTagClearBtn) {
+        bookTagClearBtn.style.display = hasTags ? 'inline-block' : 'none';
+      }
+      if (bookTagClearInline) {
+        bookTagClearInline.style.display = hasTags ? 'inline-flex' : 'none';
+      }
+      if (bookTagPillsContainer) {
+        const pills = bookTagPillsContainer.querySelectorAll('[data-book-tag]');
+        pills.forEach(function (pill) {
+          const t = (pill.getAttribute('data-book-tag') || '').toLowerCase();
+          if (t === 'all') {
+            pill.classList.toggle('active', !hasTags);
+          } else {
+            pill.classList.toggle('active', selectedBookTags.has(t));
+          }
+        });
+      }
+    }
+
     function updateBooksView() {
       const cards = Array.from(booksGrid.querySelectorAll('.book-card'));
+      const hasTags = selectedBookTags.size > 0;
+      syncBookTagUI();
 
-      // Filter by shelf status and search input
+      // Filter by shelf status, multi-select tags, and search input
       cards.forEach(function (card) {
         const status = (card.getAttribute('data-status') || '').toLowerCase();
         const text = (card.getAttribute('data-search') || '').toLowerCase();
+        const cardTags = (card.getAttribute('data-tags') || '')
+          .toLowerCase()
+          .split(',')
+          .map(function (t) {
+            return t.trim();
+          })
+          .filter(Boolean);
+
         const statusMatch = activeStatus === 'all' || status === activeStatus;
+        const tagMatch =
+          !hasTags ||
+          Array.from(selectedBookTags).some(function (t) {
+            return cardTags.includes(t);
+          });
         let queryMatch = true;
         if (bookQuery) {
           const tokens = bookQuery.split(/\s+/).filter(Boolean);
@@ -438,7 +537,7 @@
             return fuzzyScoreField(t, text) > 0;
           });
         }
-        card.style.display = statusMatch && queryMatch ? 'flex' : 'none';
+        card.style.display = statusMatch && tagMatch && queryMatch ? 'flex' : 'none';
       });
 
       // Sort
@@ -454,6 +553,16 @@
             const titleA = a.getAttribute('data-title') || '';
             const titleB = b.getAttribute('data-title') || '';
             return titleB.localeCompare(titleA, undefined, { sensitivity: 'base' });
+          }
+          if (sortVal === 'rating-desc' || sortVal === 'rating-asc') {
+            const ratingA = parseInt(a.getAttribute('data-rating') || '0', 10);
+            const ratingB = parseInt(b.getAttribute('data-rating') || '0', 10);
+            // Always place rated books (> 0) above unrated books (0)
+            if (ratingA > 0 && ratingB === 0) return -1;
+            if (ratingB > 0 && ratingA === 0) return 1;
+            if (ratingA > 0 && ratingB > 0 && ratingA !== ratingB) {
+              return sortVal === 'rating-desc' ? ratingB - ratingA : ratingA - ratingB;
+            }
           }
           if (sortVal === 'last-read' || sortVal === 'first-read') {
             const dateA = parseReadDate(a.getAttribute('data-date-read'));
@@ -492,6 +601,71 @@
       });
     });
 
+    // Populate tag pills inside the Bookshelf tag popover
+    if (bookTagPillsContainer) {
+      const tagMap = new Map();
+      booksGrid.querySelectorAll('.book-card').forEach(function (card) {
+        const raw = card.getAttribute('data-tags') || '';
+        raw.split(',').forEach(function (t) {
+          const clean = t.trim();
+          if (clean && !tagMap.has(clean.toLowerCase())) {
+            tagMap.set(clean.toLowerCase(), clean);
+          }
+        });
+      });
+      Array.from(tagMap.keys())
+        .sort()
+        .forEach(function (key) {
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'filter-pill';
+          pill.setAttribute('data-book-tag', key);
+          pill.textContent = '#' + tagMap.get(key);
+          bookTagPillsContainer.appendChild(pill);
+        });
+
+      bookTagPillsContainer.addEventListener('click', function (e) {
+        const pill = e.target.closest('[data-book-tag]');
+        if (!pill) return;
+        const tag = (pill.getAttribute('data-book-tag') || 'all').toLowerCase();
+        if (tag === 'all') {
+          selectedBookTags.clear();
+        } else if (selectedBookTags.has(tag)) {
+          selectedBookTags.delete(tag);
+        } else {
+          selectedBookTags.add(tag);
+        }
+        updateBooksView();
+      });
+    }
+
+    if (bookTagToggle && bookTagDropdown) {
+      bookTagToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = bookTagDropdown.classList.toggle('open');
+        bookTagToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!bookTagDropdown.contains(e.target)) {
+          bookTagDropdown.classList.remove('open');
+          bookTagToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    function clearBookTags() {
+      selectedBookTags.clear();
+      updateBooksView();
+    }
+
+    if (bookTagClearBtn) {
+      bookTagClearBtn.addEventListener('click', clearBookTags);
+    }
+    if (bookTagClearInline) {
+      bookTagClearInline.addEventListener('click', clearBookTags);
+    }
+
     if (bookSortSelect) {
       bookSortSelect.addEventListener('change', updateBooksView);
     }
@@ -517,6 +691,7 @@
     const modalRating = document.getElementById('review-modal-rating');
     const modalBadges = document.getElementById('review-modal-badges');
     const modalBody = document.getElementById('review-modal-body');
+    const modalFooter = document.getElementById('review-modal-footer');
 
     function closeReviewModal() {
       if (!reviewOverlay) return;
@@ -532,6 +707,12 @@
       const ratingEl = card.querySelector('.book-rating');
       const badgesEl = card.querySelector('.book-meta-row');
       const tplEl = card.querySelector('.book-review-template');
+      const rawTags = (card.getAttribute('data-tags') || '')
+        .split(',')
+        .map(function (t) {
+          return t.trim();
+        })
+        .filter(Boolean);
 
       if (modalCover && coverEl) {
         modalCover.innerHTML = coverEl.innerHTML;
@@ -557,9 +738,44 @@
         modalBody.innerHTML = tplEl.innerHTML;
         modalBody.scrollTop = 0;
       }
+      if (modalFooter) {
+        modalFooter.innerHTML = '';
+        if (rawTags.length > 0) {
+          const label = document.createElement('span');
+          label.className = 'filter-label';
+          label.textContent = 'Tags:';
+          modalFooter.appendChild(label);
+
+          rawTags.forEach(function (t) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'filter-pill';
+            btn.textContent = '#' + t;
+            btn.setAttribute('data-modal-tag', t.toLowerCase());
+            if (selectedBookTags.has(t.toLowerCase())) {
+              btn.classList.add('active');
+            }
+            modalFooter.appendChild(btn);
+          });
+          modalFooter.style.display = 'flex';
+        } else {
+          modalFooter.style.display = 'none';
+        }
+      }
 
       reviewOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
+    }
+
+    if (modalFooter) {
+      modalFooter.addEventListener('click', function (e) {
+        const tagBtn = e.target.closest('[data-modal-tag]');
+        if (!tagBtn) return;
+        const selectedTag = tagBtn.getAttribute('data-modal-tag');
+        selectedBookTags.add(selectedTag);
+        updateBooksView();
+        closeReviewModal();
+      });
     }
 
     booksGrid.addEventListener('click', function (e) {
@@ -584,8 +800,14 @@
     }
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && reviewOverlay && reviewOverlay.classList.contains('open')) {
-        closeReviewModal();
+      if (e.key === 'Escape') {
+        if (reviewOverlay && reviewOverlay.classList.contains('open')) {
+          closeReviewModal();
+        }
+        if (bookTagDropdown && bookTagDropdown.classList.contains('open')) {
+          bookTagDropdown.classList.remove('open');
+          if (bookTagToggle) bookTagToggle.setAttribute('aria-expanded', 'false');
+        }
       }
     });
   }

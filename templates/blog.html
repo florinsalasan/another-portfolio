@@ -21,6 +21,7 @@
     {% for item in all_tags.items %}
     <button type="button" class="filter-pill" data-blog-filter="{{ item.name }}">#{{ item.name }}</button>
     {% endfor %}
+    <button type="button" id="blog-filter-clear" class="filter-pill filter-pill-clear" style="display: none;">Clear ✕</button>
   </div>
 </div>
 {% endif %}
