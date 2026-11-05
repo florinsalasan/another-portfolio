@@ -431,8 +431,10 @@ review = """
 """
 
 [[books]]
-title = "Sharp Things"
+title = "Sharp Objects"
 author = "Gillian Flynn"
+cover = "/images/books/sharp-objects.jpg"
+isbn = "9780606367226"
 status = "Finished"
 date_read = "2026"
 rating = 0
