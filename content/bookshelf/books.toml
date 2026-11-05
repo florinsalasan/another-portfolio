@@ -737,3 +737,17 @@ summary = ""
 review = """
 
 """
+
+[[books]]
+title = "A Little Life"
+author = "Hanya Yanagihara"
+cover = "/images/books/a-little-life.jpg"
+isbn = "9780804172707"
+status = "Reading"
+date_read = "Nov 2026"
+rating = 0
+tags = ["fiction"]
+summary = ""
+review = """
+
+"""
