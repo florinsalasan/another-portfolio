@@ -136,14 +136,37 @@
     {% endif %}
 
     {% if book.review and book.review | trim != "" %}
-    <details class="book-review-details">
-      <summary>Read Review &amp; Notes</summary>
-      <div class="book-review-content">
+    <div class="book-review-trigger-wrap">
+      <button type="button" class="book-review-btn" aria-haspopup="dialog">
+        Read Review &amp; Notes →
+      </button>
+      <template class="book-review-template">
         {{ book.review | markdown | safe }}
-      </div>
-    </details>
+      </template>
+    </div>
     {% endif %}
   </article>
   {% endfor %}
+</div>
+
+<div id="book-review-overlay" class="review-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+  <div class="review-modal">
+    <header class="review-modal-header">
+      <div class="review-modal-header-main">
+        <div id="review-modal-cover" class="book-cover review-modal-cover"></div>
+        <div class="review-modal-meta">
+          <span class="page-kicker" style="margin-bottom: 0.15rem;">Review &amp; Notes</span>
+          <h2 id="review-modal-title" class="review-modal-title"></h2>
+          <div id="review-modal-author" class="book-author" style="margin-bottom: 0.35rem;"></div>
+          <div id="review-modal-rating" class="book-rating" style="display: none;"></div>
+          <div id="review-modal-badges" class="book-meta-row"></div>
+        </div>
+      </div>
+      <button type="button" id="review-modal-close" class="review-modal-close" aria-label="Close review">
+        ✕
+      </button>
+    </header>
+    <div id="review-modal-body" class="review-modal-body prose"></div>
+  </div>
 </div>
 {% endblock content %}

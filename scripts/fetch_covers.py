@@ -235,7 +235,12 @@ def process_one_book(
         return None
 
     target_isbn = override_isbn or existing_isbn
-    downloaded = local_abs_path.exists() and not force and not override_isbn
+    downloaded = (
+        bool(existing_cover)
+        and local_abs_path.exists()
+        and not force
+        and not override_isbn
+    )
 
     if target_isbn and (override_isbn or not downloaded):
         isbn_cover_url = f"https://covers.openlibrary.org/b/isbn/{target_isbn}-L.jpg?default=false"

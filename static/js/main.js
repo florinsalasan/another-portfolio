@@ -505,5 +505,88 @@
 
     // Apply initial sort & filter on page load (defaults to Last Read / Newest)
     updateBooksView();
+
+    /* ----------------------------------------------------------------------
+       7. Book Review & Notes Modal Popup
+       ---------------------------------------------------------------------- */
+    const reviewOverlay = document.getElementById('book-review-overlay');
+    const reviewCloseBtn = document.getElementById('review-modal-close');
+    const modalCover = document.getElementById('review-modal-cover');
+    const modalTitle = document.getElementById('review-modal-title');
+    const modalAuthor = document.getElementById('review-modal-author');
+    const modalRating = document.getElementById('review-modal-rating');
+    const modalBadges = document.getElementById('review-modal-badges');
+    const modalBody = document.getElementById('review-modal-body');
+
+    function closeReviewModal() {
+      if (!reviewOverlay) return;
+      reviewOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function openReviewModal(card) {
+      if (!reviewOverlay) return;
+      const coverEl = card.querySelector('.book-cover');
+      const titleEl = card.querySelector('.book-title');
+      const authorEl = card.querySelector('.book-author');
+      const ratingEl = card.querySelector('.book-rating');
+      const badgesEl = card.querySelector('.book-meta-row');
+      const tplEl = card.querySelector('.book-review-template');
+
+      if (modalCover && coverEl) {
+        modalCover.innerHTML = coverEl.innerHTML;
+      }
+      if (modalTitle && titleEl) {
+        modalTitle.textContent = titleEl.textContent;
+      }
+      if (modalAuthor && authorEl) {
+        modalAuthor.textContent = authorEl.textContent;
+      }
+      if (modalRating) {
+        if (ratingEl) {
+          modalRating.textContent = ratingEl.textContent;
+          modalRating.style.display = 'block';
+        } else {
+          modalRating.style.display = 'none';
+        }
+      }
+      if (modalBadges && badgesEl) {
+        modalBadges.innerHTML = badgesEl.innerHTML;
+      }
+      if (modalBody && tplEl) {
+        modalBody.innerHTML = tplEl.innerHTML;
+        modalBody.scrollTop = 0;
+      }
+
+      reviewOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    booksGrid.addEventListener('click', function (e) {
+      const btn = e.target.closest('.book-review-btn');
+      if (!btn) return;
+      const card = btn.closest('.book-card');
+      if (card) {
+        openReviewModal(card);
+      }
+    });
+
+    if (reviewCloseBtn) {
+      reviewCloseBtn.addEventListener('click', closeReviewModal);
+    }
+
+    if (reviewOverlay) {
+      reviewOverlay.addEventListener('click', function (e) {
+        if (e.target === reviewOverlay) {
+          closeReviewModal();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && reviewOverlay && reviewOverlay.classList.contains('open')) {
+        closeReviewModal();
+      }
+    });
   }
 })();
