@@ -165,10 +165,12 @@
     {% endfor %}
     {% if books_data and books_data.books %}
       {% for book in books_data.books %}
+      {% set book_summary = book.summary | default(value="") %}
+      {% set book_desc = book.author ~ " — " ~ book_summary %}
       {
         "category": "Bookshelf",
         "title": {{ book.title | json_encode() | safe }},
-        "description": {{ (book.author ~ " — " ~ book.summary) | json_encode() | safe }},
+        "description": {{ book_desc | json_encode() | safe }},
         "url": "/bookshelf/#book-{{ book.title | slugify }}",
         "meta": {{ book.status | default(value="Finished") | json_encode() | safe }},
         "tags": {{ book.tags | default(value=[]) | json_encode() | safe }},
