@@ -765,3 +765,17 @@ summary = ""
 review = """
 
 """
+
+[[books]]
+title = "The Algebra of Happiness"
+author = "Scott Galloway"
+cover = "/images/books/the-algebra-of-happiness.jpg"
+isbn = "9780593084199"
+status = "Reading"
+date_read = "June 2026"
+rating = 0
+tags = []
+summary = ""
+review = """
+
+"""
