@@ -576,6 +576,18 @@ img {
   gap: 0.45rem;
 }
 
+.filter-group-full {
+  flex: 1 1 100%;
+}
+
+.filter-group-grow {
+  flex: 1 1 160px;
+}
+
+.filter-group-grow .sort-select {
+  width: 100%;
+}
+
 .filter-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;

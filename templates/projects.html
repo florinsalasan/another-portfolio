@@ -15,14 +15,44 @@
 {% set all_techs = get_taxonomy(kind="technologies", required=false) %}
 
 <div class="controls-bar">
-  <div class="filter-group" role="group" aria-label="Filter projects by technology">
-    <span class="filter-label">Filter:</span>
-    <button type="button" class="filter-pill active" data-project-filter="all">All</button>
-    {% if all_techs %}
-      {% for item in all_techs.items %}
-      <button type="button" class="filter-pill" data-project-filter="{{ item.name }}">{{ item.name }}</button>
-      {% endfor %}
-    {% endif %}
+  <div class="filter-group tag-dropdown-wrap" id="project-tag-dropdown">
+    <span class="filter-label">Tags:</span>
+    <button
+      type="button"
+      id="project-tag-toggle"
+      class="sort-select tag-dropdown-toggle"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span id="project-tag-toggle-label">All Tags</span>
+      <span class="tag-dropdown-caret">▾</span>
+    </button>
+    <button
+      type="button"
+      id="project-tag-clear-inline"
+      class="filter-pill filter-pill-clear"
+      style="display: none;"
+      title="Clear selected tags"
+    >
+      Clear ✕
+    </button>
+
+    <div id="project-tag-popover" class="tag-dropdown-popover" role="group" aria-label="Filter projects by technology">
+      <div class="tag-popover-header">
+        <span class="filter-label">Filter by Tags (Multi-select)</span>
+        <button type="button" id="project-tag-clear" class="tag-popover-clear-btn" style="display: none;">
+          Clear filter ✕
+        </button>
+      </div>
+      <div id="project-tag-pills" class="tag-popover-pills">
+        <button type="button" class="filter-pill active" data-project-filter="all">Show All</button>
+        {% if all_techs %}
+          {% for item in all_techs.items %}
+          <button type="button" class="filter-pill" data-project-filter="{{ item.name }}">#{{ item.name }}</button>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
   </div>
 
   <div class="filter-group">

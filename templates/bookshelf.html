@@ -54,7 +54,7 @@
 </div>
 
 <div class="controls-bar">
-  <div class="filter-group" role="group" aria-label="Filter books by reading status">
+  <div class="filter-group filter-group-full" role="group" aria-label="Filter books by reading status">
     <span class="filter-label">Shelf:</span>
     <button type="button" class="filter-pill active" data-book-status="all">All ({{ books | length }})</button>
     <button type="button" class="filter-pill" data-book-status="finished">Finished ({{ finished_count }})</button>
@@ -110,14 +110,13 @@
     </select>
   </div>
 
-  <div class="filter-group">
+  <div class="filter-group filter-group-grow">
     <input
       type="search"
       id="book-filter-input"
       class="sort-select"
       placeholder="Filter by title or author..."
       aria-label="Filter books by title or author"
-      style="min-width: 210px;"
     />
   </div>
 </div>

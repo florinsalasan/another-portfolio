@@ -15,13 +15,42 @@
 {% set all_tags = get_taxonomy(kind="tags", required=false) %}
 {% if all_tags and all_tags.items | length > 0 %}
 <div class="controls-bar">
-  <div class="filter-group" role="group" aria-label="Filter posts by tag">
-    <span class="filter-label">Topic:</span>
-    <button type="button" class="filter-pill active" data-blog-filter="all">All Posts</button>
-    {% for item in all_tags.items %}
-    <button type="button" class="filter-pill" data-blog-filter="{{ item.name }}">#{{ item.name }}</button>
-    {% endfor %}
-    <button type="button" id="blog-filter-clear" class="filter-pill filter-pill-clear" style="display: none;">Clear ✕</button>
+  <div class="filter-group tag-dropdown-wrap" id="blog-tag-dropdown">
+    <span class="filter-label">Tags:</span>
+    <button
+      type="button"
+      id="blog-tag-toggle"
+      class="sort-select tag-dropdown-toggle"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span id="blog-tag-toggle-label">All Tags</span>
+      <span class="tag-dropdown-caret">▾</span>
+    </button>
+    <button
+      type="button"
+      id="blog-tag-clear-inline"
+      class="filter-pill filter-pill-clear"
+      style="display: none;"
+      title="Clear selected tags"
+    >
+      Clear ✕
+    </button>
+
+    <div id="blog-tag-popover" class="tag-dropdown-popover" role="group" aria-label="Filter posts by tag">
+      <div class="tag-popover-header">
+        <span class="filter-label">Filter by Tags (Multi-select)</span>
+        <button type="button" id="blog-tag-clear" class="tag-popover-clear-btn" style="display: none;">
+          Clear filter ✕
+        </button>
+      </div>
+      <div id="blog-tag-pills" class="tag-popover-pills">
+        <button type="button" class="filter-pill active" data-blog-filter="all">Show All</button>
+        {% for item in all_tags.items %}
+        <button type="button" class="filter-pill" data-blog-filter="{{ item.name }}">#{{ item.name }}</button>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 {% endif %}
