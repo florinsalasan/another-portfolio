@@ -779,3 +779,16 @@ summary = ""
 review = """
 
 """
+
+[[books]]
+title = "The Bell Jar"
+author = "Sylvia Plath"
+cover = "/images/books/the-bell-jar.jpg"
+isbn = "9780375404634"
+status = "Reading"
+rating = 0
+tags = []
+summary = ""
+review = """
+
+"""
